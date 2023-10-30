@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : lun. 30 oct. 2023 à 13:18
+-- Généré le : lun. 30 oct. 2023 à 13:30
 -- Version du serveur : 10.11.4-MariaDB-1~deb12u1
 -- Version de PHP : 8.2.7
 
@@ -87,7 +87,9 @@ INSERT INTO `Articles` (`articlesId`, `nom`, `references`, `prixHT`, `TVA`, `pou
 
 CREATE TABLE `Users` (
   `usersId` int(255) NOT NULL,
-  `group` varchar(255) DEFAULT NULL
+  `group` varchar(255) DEFAULT NULL,
+  `mail` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -100,7 +102,6 @@ CREATE TABLE `UsersInfos` (
   `usersInfosId` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
   `surname` varchar(30) NOT NULL,
-  `mail` varchar(70) NOT NULL,
   `states` varchar(100) NOT NULL,
   `city` varchar(255) NOT NULL,
   `number` int(11) NOT NULL,
