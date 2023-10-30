@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../dev/dist/output.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../dev/assets/favicon.png" />
+    <title>Brico'brac</title>
+</head>
+    <body>
+        <?php require './templates/header.php'; ?>
+        <!-- Slogan -->
+        <section class="bg-top-banner  h-[678px] flex items-center">
+            <h2 class="container w-1/2 text-white text-center">
+                Bienvenue sur Brico’brac ! <br />
+                La référence du magasin de bricolage près de chez vous !
+            </h2>
+        </section>
+        <?php require './templates/footer.php'; ?>
+    </body>
+</html>
