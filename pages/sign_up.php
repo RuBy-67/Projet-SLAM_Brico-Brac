@@ -1,7 +1,6 @@
 <?php
 session_start();
 require '../php/db.php';
-require '../php/function.php';
 require '../templates/header.php'; 
 require './templates/footer.php'; 
 ?>
