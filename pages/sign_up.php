@@ -70,19 +70,20 @@ if (isset($_POST['submit'])) {
 }
 
 ?>
-<section>
+<section class="max-w-md mx-auto mt-10 p-4 bg-white shadow-md rounded-lg">
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        <input type="text" name="nom" required placeholder="Nom"><br><br>
-        <input type="text" name="prenom" required placeholder="Prénom"><br><br>
-        <input type="email" name="mail" required placeholder="Adresse@e-mail"><br><br>
-        <input type="tel" name="tel" placeholder="Téléphone" maxlength="10"><br><br>
-        <input type="password" name="mdp" required placeholder="Mot de passe"><br><br>
-        <input type="password" name="mdp_confirm" required placeholder="Confirmez le mot de passe"><br><br>
-        <input type="text" name="states" required placeholder="Pays"><br><br>
-        <input type="text" name="city" required placeholder="Ville"><br><br>
-        <input type="text" name="street" required placeholder="Rue"><br><br>
-        <input type="text" name="number" required placeholder="Numéro de rue"><br><br>
-        <input type="submit" name="submit" value="S'inscrire">
+        <input type="text" name="nom" required placeholder="Nom" class="w-full py-2 px-3 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-500" /><br><br>
+        <input type="text" name="prenom" required placeholder="Prénom" class="w-full py-2 px-3 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-500" /><br><br>
+        <input type="email" name="mail" required placeholder="Adresse@e-mail" class="w-full py-2 px-3 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-500" /><br><br>
+        <input type="tel" name="tel" placeholder="Téléphone" maxlength="10" class="w-full py-2 px-3 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-500" /><br><br>
+        <input type="password" name="mdp" required placeholder="Mot de passe" class="w-full py-2 px-3 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-500" /><br><br>
+        <input type="password" name="mdp_confirm" required placeholder="Confirmez le mot de passe" class="w-full py-2 px-3 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-500" /><br><br>
+        <input type="text" name="states" required placeholder="Pays" class="w-full py-2 px-3 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-500" /><br><br>
+        <input type="text" name="city" required placeholder="Ville" class="w-full py-2 px-3 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-500" /><br><br>
+        <input type="text" name="street" required placeholder="Rue" class="w-full py-2 px-3 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-500" /><br><br>
+        <input type="text" name="number" required placeholder="Numéro de rue" class="w-full py-2 px-3 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-500" /><br><br>
+        <input type="submit" name="submit" value="S'inscrire" class="w-full bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring focus:ring-indigo-400" />
     </form>
 </section>
+
 <?php require '../templates/footer.php'; ?>

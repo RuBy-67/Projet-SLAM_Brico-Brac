@@ -44,11 +44,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<section>
+<section class="max-w-md mx-auto mt-10 p-4 bg-white shadow-md rounded-lg">
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        <input type="text" name="mail" required placeholder="adresse-mail@email.com"><br><br>
-        <input type="password" name="mdp" required placeholder="Mot de passe"><br><br>
-        <input type="submit" value="Se connecter">
+        <div class="mb-4">
+            <label for="mail" class="block text-sm font-medium text-gray-700">Adresse e-mail</label>
+            <input type="text" name="mail" id="mail" required placeholder="adresse-mail@email.com" class="w-full py-2 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-500" />
+        </div>
+        <div class="mb-4">
+            <label for="mdp" class="block text-sm font-medium text-gray-700">Mot de passe</label>
+            <input type="password" name="mdp" id="mdp" required placeholder="Mot de passe" class="w-full py-2 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-500" />
+        </div>
+        <button type="submit" class="w-full bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring focus:ring-indigo-400">Se connecter</button>
     </form>
 </section>
+
 <?php require '../templates/footer.php'; ?>
