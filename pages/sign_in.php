@@ -2,7 +2,6 @@
 session_start();
 require '../php/db.php';
 require '../templates/header.php';
-require '../templates/footer.php'; 
 ?>
 
 <!-- Slogan -->
@@ -17,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["mdp"];
 
     $sql = "SELECT * FROM users WHERE mail=?";
-    $stmt = $conn->prepare($sql);
+    $stmt = $mysqli->prepare($sql);
     $stmt->bind_param("s", $mail);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -52,3 +51,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="submit" value="Se connecter">
     </form>
 </section>
+<?php require '../templates/footer.php'; ?>

@@ -1,8 +1,7 @@
 <?php
 session_start();
 require '../php/db.php';
-require '../templates/header.php'; 
-require './templates/footer.php'; 
+require '../templates/header.php';
 ?>
 
 <!-- Slogan -->
@@ -36,14 +35,14 @@ if (isset($_POST['submit'])) {
         $hashed_password = password_hash($mdp, PASSWORD_DEFAULT);
 
         $insertUserSql = "INSERT INTO users (mail, password) VALUES (?, ?)";
-        $stmt = $conn->prepare($insertUserSql);
+        $stmt = $mysqli->prepare($insertUserSql);
         $stmt->bind_param("ss", $mail, $hashed_password);
         if ($stmt->execute()) {
             $userId = $stmt->insert_id;
 
             // Insertion des informations supplémentaires dans la table "userInfos"
             $insertUserInfoSql = "INSERT INTO userInfos (usersInfosId, name, surname, states, city, street, number, phone, accountCreation, birthdate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            $stmt2 = $conn->prepare($insertUserInfoSql);
+            $stmt2 = $mysqli->prepare($insertUserInfoSql);
             $stmt2->bind_param("isssssssss", $userId, $name, $surname, $states, $city, $street, $number, $phone, $date, $birthdate);
             if ($stmt2->execute()) {
                 // Redirection vers une autre page après l'inscription réussie
@@ -74,3 +73,4 @@ if (isset($_POST['submit'])) {
         <input type="submit" name="submit" value="S'inscrire">
     </form>
 </section>
+<?php require '../templates/footer.php'; ?>
