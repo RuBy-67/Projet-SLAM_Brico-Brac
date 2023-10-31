@@ -8,13 +8,13 @@ require './dbadmin.php';
 ///$user = $_SESSION['username'];
 ///$usergroup = $_SESSION['group'];
 /// if ($usergroup != "admin") {
- /// header('Location: ../error/error.php');
-  ////exit();
+/// header('Location: ../error/error.php');
+////exit();
 ///}
 ?>
 <!-- Slogan -->
 <section class="bg-top-banner h-[678px] flex items-center mb-8">
-    <h2 class="container w-1/2 text-white text-center">Connexion</h2>
+    <h2 class="container w-1/2 text-white text-center">Gestion des articles</h2>
 </section>
 <?php
 // Gérer la mise à jour d'un article
@@ -28,7 +28,7 @@ if (isset($_POST['update'])) {
     $nouveaute = $_POST['nouveaute'];
 
     $updateArticleSql = "UPDATE articles 
-                        SET nom = ?, references = ?, prixHT = ?, TVA = ?, pourcentagePromotion = ?, nouveaute = ?
+                        SET nom = ?, `references` = ?, prixHT = ?, TVA = ?, pourcentagePromotion = ?, nouveaute = ?
                         WHERE articlesId = ?";
     $stmt = $mysqli->prepare($updateArticleSql);
     $stmt->bind_param("ssdddsi", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $articleId);
@@ -53,6 +53,27 @@ if (isset($_POST['delete'])) {
     }
 }
 
+// Ajout articles
+$nom = $_POST['nom'];
+$references = $_POST['references'];
+$prixHT = $_POST['prixHT'];
+$TVA = $_POST['TVA'];
+$pourcentagePromotion = $_POST['pourcentagePromotion'];
+$nouveaute = $_POST['nouveaute'];
+
+// Préparation de la requête SQL
+$insertArticleSql = "INSERT INTO articles (nom, `references`, prixHT, TVA, pourcentagePromotion, nouveaute) VALUES (?, ?, ?, ?, ?, ?)";
+$stmt = $mysqli->prepare($insertArticleSql);
+$stmt->bind_param("sssiii", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute);
+
+// Exécution de la requête
+if ($stmt->execute()) {
+    // Article inséré avec succès
+} else {
+    // Une erreur s'est produite lors de l'insertion de l'article
+    // Gérez l'erreur ou un message d'erreur
+}
+
 // Récupérez tous les articles de la table "Articles"
 $selectArticlesSql = "SELECT * FROM articles";
 $result = $mysqli->query($selectArticlesSql);
@@ -70,7 +91,22 @@ if ($result) {
         echo '<th>Nouveauté</th>';
         echo '<th>Actions</th>';
         echo '</tr>';
-
+        ?>
+        <section>
+            <form method="post" action="ajouter_article.php">
+                <input type="text" name="nom" placeholder="Nom">
+                <input type="text" name="references" placeholder="Références">
+                <input type="number" name="prixHT" placeholder="Prix HT">
+                <input type="number" name="TVA" value="20">
+                <input type="number" name="pourcentagePromotion" placeholder="Pourcentage de promotion">
+                <select name="nouveaute">
+                    <option value="oui">Oui</option>
+                    <option value="non">Non</option>
+                </select>
+                <input type="submit" value="Ajouter l'article">
+            </form>
+        </section>
+        <?php
         while ($row = $result->fetch_assoc()) {
             echo '<tr>';
             echo '<td><input type="text" name="nom" value="' . $row['nom'] . '"></td>';
