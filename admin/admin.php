@@ -1,8 +1,8 @@
 <?php
-session_start();
+///session_start();
 
-$user = $_SESSION['username'];
-$usergroup = $_SESSION['group'];
+///$user = $_SESSION['username'];
+///$usergroup = $_SESSION['group'];
 /// if ($usergroup != "admin") {
  /// header('Location: ../error/error.php');
   ////exit();
