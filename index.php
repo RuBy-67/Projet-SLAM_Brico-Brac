@@ -1,22 +1,31 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="../dev/dist/output.css" rel="stylesheet">
-    <link rel="icon" type="image/png" href="../dev/assets/favicon.png" />
-    <title>Brico'brac</title>
-</head>
-    <body>
-        <?php require './templates/header.php'; ?>
-        <!-- Slogan -->
-        <section class="bg-top-banner  h-[678px] flex items-center">
-            <h2 class="container w-1/2 text-white text-center">
-                Bienvenue sur Brico’brac ! <br />
-                La référence du magasin de bricolage près de chez vous !
-            </h2>
+<?php
+require './php/db.php';
+ $promotion = $mysqli->query('SELECT * FROM articles WHERE nouveaute = 1');
+?>
+<?php require './templates/header.php'; ?>
+    <!-- Slogan -->
+    <section class="bg-top-banner  h-[678px] flex items-center mb-8">
+        <h2 class="container w-1/2 text-white text-center">
+            Bienvenue sur Brico’brac ! <br />
+            La référence du magasin de bricolage près de chez vous !
+        </h2>
+    </section>
+    <?php if ($promotion->num_rows > 0) { ?>
+        <section id="promotion-product" class="splide container" aria-label="Splide Basic HTML Example">
+            <div class="splide__track">
+                <ul class="splide__list">
+                   <?php foreach ($promotion as $row) {?>
+                    <li>
+                        <div class="flex">
+                            <h5><?= $row['nom'];?></h5>
+                            <h5><?= calculedPriceWithTva($row['prixHT'],$row['TVA']);?>€ TTC</h5>
+                        </div>
+                       
+                
+                </li>
+                <?php } ?>
+                </ul>
+            </div>
         </section>
-        <?php require './templates/footer.php'; ?>
-    </body>
-</html>
+    <?php } ?>
+<?php require './templates/footer.php'; ?>

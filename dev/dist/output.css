@@ -586,6 +586,10 @@ video {
   display: flex;
 }
 
+.grid {
+  display: grid;
+}
+
 .h-\[678px\] {
   height: 678px;
 }
@@ -663,6 +667,8 @@ video {
   color: rgb(243 243 243 / var(--tw-text-opacity));
 }
 
+/* splide */
+
 /* Font */
 
 h1,
@@ -673,8 +679,20 @@ h5,
 h6 {
   font-family: Barlow, sans-serif;
   font-weight: 700;
+}
+
+h1,
+h2 {
   --tw-text-opacity: 1;
   color: rgb(243 243 243 / var(--tw-text-opacity));
+}
+
+h3,
+h4,
+h5,
+h6 {
+  --tw-text-opacity: 1;
+  color: rgb(18 70 90 / var(--tw-text-opacity));
 }
 
 h1 {
@@ -691,6 +709,12 @@ h3 {
 
 h4 {
   font-size: 32px;
+}
+
+h5 {
+  font-size: 24px;
+  --tw-text-opacity: 1;
+  color: rgb(34 34 34 / var(--tw-text-opacity));
 }
 
 p,
