@@ -52,26 +52,26 @@ if (isset($_POST['delete'])) {
         // Erreur lors de la suppression
     }
 }
+if (isset($_POST['add'])) {
+    // Récupération des données du formulaire
+    $nom = $_POST['nom'];
+    $references = $_POST['references'];
+    $prixHT = $_POST['prixHT'];
+    $TVA = $_POST['TVA'];
+    $pourcentagePromotion = $_POST['pourcentagePromotion'];
+    $nouveaute = $_POST['nouveaute'];
 
-// Ajout articles
-$nom = $_POST['nom'];
-$references = $_POST['references'];
-$prixHT = $_POST['prixHT'];
-$TVA = $_POST['TVA'];
-$pourcentagePromotion = $_POST['pourcentagePromotion'];
-$nouveaute = $_POST['nouveaute'];
+    // Préparation de la requête SQL
+    $insertArticleSql = "INSERT INTO articles (nom, `references`, prixHT, TVA, pourcentagePromotion, nouveaute) VALUES (?, ?, ?, ?, ?, ?)";
+    $stmt = $mysqli->prepare($insertArticleSql);
+    $stmt->bind_param("ssiiis", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute);
 
-// Préparation de la requête SQL
-$insertArticleSql = "INSERT INTO articles (nom, `references`, prixHT, TVA, pourcentagePromotion, nouveaute) VALUES (?, ?, ?, ?, ?, ?)";
-$stmt = $mysqli->prepare($insertArticleSql);
-$stmt->bind_param("sssiii", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute);
-
-// Exécution de la requête
-if ($stmt->execute()) {
-    // Article inséré avec succès
-} else {
-    // Une erreur s'est produite lors de l'insertion de l'article
-    // Gérez l'erreur ou un message d'erreur
+    // Exécution de la requête
+    if ($stmt->execute()) {
+        echo "L'article a été ajouté avec succès.";
+    } else {
+        echo "Une erreur s'est produite lors de l'ajout de l'article.";
+    }
 }
 
 // Récupérez tous les articles de la table "Articles"
@@ -103,7 +103,7 @@ if ($result) {
                     <option value="oui">Oui</option>
                     <option value="non">Non</option>
                 </select>
-                <input type="submit" value="Ajouter l'article">
+                <input type="submit" value="Ajouter l'article" name='add'>
             </form>
         </section>
         <?php
