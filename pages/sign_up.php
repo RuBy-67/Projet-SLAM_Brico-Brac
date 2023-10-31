@@ -75,7 +75,7 @@ if (isset($_POST['submit'])) {
         <input type="text" name="nom" required placeholder="Nom"><br><br>
         <input type="text" name="prenom" required placeholder="Prénom"><br><br>
         <input type="email" name="mail" required placeholder="Adresse@e-mail"><br><br>
-        <input type="tel" name="tel" placeholder="Téléphone"><br><br>
+        <input type="tel" name="tel" placeholder="Téléphone" maxlength="10"><br><br>
         <input type="password" name="mdp" required placeholder="Mot de passe"><br><br>
         <input type="password" name="mdp_confirm" required placeholder="Confirmez le mot de passe"><br><br>
         <input type="text" name="states" required placeholder="Pays"><br><br>
