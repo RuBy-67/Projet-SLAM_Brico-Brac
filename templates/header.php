@@ -1,3 +1,12 @@
+   <?php $current_page = basename($_SERVER['PHP_SELF']);
+
+        if ($current_page === 'index.php') {
+           $baseTemplate = "./";
+        } else { 
+            $baseTemplate = "../";
+        }; ?>
+       
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -18,30 +27,16 @@
     <title>Brico'brac</title>
 </head>
     <body>
-        <?php $current_page = basename($_SERVER['PHP_SELF']);
-
-        if ($current_page === 'index.php') {?>
-            <!-- ?check if you are on hp or not -->
-            <?php require './php/function.php'; ?>
-            <header class="z-10 absolute w-full rounded-md">
-                <div class="container flex lg:flex-row flex-col items-center justify-between py-4 border-b border-opacity-60">
-                    <a href="./index.php"><img src="./dev/assets/logo.png" alt="Brico'brac"/></a>
-                    <div class="flex items-center">
-                        <?php require './templates/menu-nav.php'; ?>
-                        <a class="btn">Se connnecter</a>
-                    </div>
-                </div>
-            </header>
-        <?php } else { ?>
-            <?php require '../php/function.php'; ?>
-            <header class="z-10 absolute w-full rounded-md">
-                <div class="container flex lg:flex-row flex-col items-center justify-between py-4 border-b border-opacity-60">
-                    <a href="../index.php"><img src="../dev/assets/logo.png" alt="Brico'brac"/></a>
-                    <div class="flex items-center">
-                        <?php require '../templates/menu-nav.php'; ?>
-                        <a class="btn">Se connnecter</a>
-                    </div>
-                </div>
-            </header>
-       <?php } ?>
+        
+    <?php require $baseTemplate."php/function.php"; ?>
+    <header class="z-10 absolute w-full rounded-md">
+        <div class="container flex lg:flex-row flex-col items-center justify-between py-4 border-b border-opacity-60">
+            <a href="<?=$baseTemplate;?>index.php"><img src="<?=$baseTemplate;?>dev/assets/logo.png" alt="Brico'brac"/></a>
+            <div class="flex items-center">
+                <?php require $baseTemplate."templates/menu-nav.php"; ?>
+                <a class="btn">Se connnecter</a>
+            </div>
+        </div>
+    </header>
+     
        
