@@ -39,9 +39,9 @@ if (isset($_POST['submit'])) {
         $stmt->bind_param("ss", $mail, $hashed_password);
         if ($stmt->execute()) {
             $userId = $stmt->insert_id;
-
+            
             // Insertion des informations supplémentaires dans la table "userInfos"
-            $insertUserInfoSql = "INSERT INTO userInfos (usersInfosId, name, surname, states, city, street, number, phone, accountCreation, birthdate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $insertUserInfoSql = "INSERT INTO usersInfos (usersInfosId, name, surname, states, city, street, number, phone, accountCreation, birthdate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt2 = $mysqli->prepare($insertUserInfoSql);
             $stmt2->bind_param("isssssssss", $userId, $name, $surname, $states, $city, $street, $number, $phone, $date, $birthdate);
             if ($stmt2->execute()) {
