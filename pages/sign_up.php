@@ -1,8 +1,7 @@
 <?php
 session_start();
 require '../php/db.php';
-require '../templates/header.php'; 
-require './templates/footer.php'; 
+require '../templates/header.php';
 ?>
 
 <!-- Slogan -->
@@ -74,3 +73,4 @@ if (isset($_POST['submit'])) {
         <input type="submit" name="submit" value="S'inscrire">
     </form>
 </section>
+<?php require '../templates/footer.php'; ?>
