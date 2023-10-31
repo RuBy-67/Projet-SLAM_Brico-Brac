@@ -29,7 +29,7 @@ if (isset($_POST['update'])) {
 
     $updateArticleSql = "UPDATE articles 
                         SET nom = ?, references = ?, prixHT = ?, TVA = ?, pourcentagePromotion = ?, nouveaute = ?
-                        WHERE articleId = ?";
+                        WHERE articlesId = ?";
     $stmt = $mysqli->prepare($updateArticleSql);
     $stmt->bind_param("ssdddsi", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $articleId);
     if ($stmt->execute()) {
@@ -43,7 +43,7 @@ if (isset($_POST['update'])) {
 if (isset($_POST['delete'])) {
     $articleIdToDelete = $_POST['article_id_to_delete'];
 
-    $deleteArticleSql = "DELETE FROM articles WHERE articleId = ?";
+    $deleteArticleSql = "DELETE FROM articles WHERE articlesId = ?";
     $stmt = $mysqli->prepare($deleteArticleSql);
     $stmt->bind_param("i", $articleIdToDelete);
     if ($stmt->execute()) {
@@ -85,10 +85,10 @@ if ($result) {
             echo '</select>';
             echo '</td>';
             echo '<td>';
-            echo '<input type="hidden" name="article_id" value="' . $row['articleId'] . '">';
+            echo '<input type="hidden" name="article_id" value="' . $row['articlesId'] . '">';
             echo '<button type="submit" name="update">Update</button>';
             echo '<button type="submit" name="delete">Delete</button>';
-            echo '<input type="hidden" name="article_id_to_delete" value="' . $row['articleId'] . '">'; // Pour la suppression
+            echo '<input type="hidden" name="article_id_to_delete" value="' . $row['articlesId'] . '">'; // Pour la suppression
             echo '</td>';
             echo '</tr>';
         }
