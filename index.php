@@ -20,8 +20,6 @@ require './php/db.php';
                             <h5><?= $row['nom'];?></h5>
                             <h5><?= calculedPriceWithTva($row['prixHT'],$row['TVA']);?>€ TTC</h5>
                         </div>
-                       
-                
                 </li>
                 <?php } ?>
                 </ul>
