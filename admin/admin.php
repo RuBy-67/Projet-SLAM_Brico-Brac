@@ -19,19 +19,19 @@ ini_set('display_startup_errors', 1);
         <div class="container">
             <div class="flex flex-wrap">
                 <div class="w-full md:w-1/2 lg:w-1/3 p-2">
-                    <a href="./admin/articles.php" class="bg-white shadow-md rounded-md block p-4">
+                    <a href="./articles.php" class="bg-white shadow-md rounded-md block p-4">
                         <h3 class="text-xl font-bold mb-2">Gestion des articles</h3>
                         <p class="text-gray-600">Ajouter, modifier ou supprimer des articles.</p>
                     </a>
                 </div>
                 <div class="w-full md:w-1/2 lg:w-1/3 p-2">
-                    <a href="./admin/users.php" class="bg-white shadow-md rounded-md block p-4">
+                    <a href="./users.php" class="bg-white shadow-md rounded-md block p-4">
                         <h3 class="text-xl font-bold mb-2">Gestion des utilisateurs</h3>
                         <p class="text-gray-600">Ajouter, modifier ou supprimer des utilisateurs.</p>
                     </a>
                 </div>
                 <div class="w-full md:w-1/2 lg:w-1/3 p-2">
-                    <a href="./admin/commands.php" class="bg-white shadow-md rounded-md block p-4">
+                    <a href="./commands.php" class="bg-white shadow-md rounded-md block p-4">
                         <h3 class="text-xl font-bold mb-2">Gestion des commandes</h3>
                         <p class="text-gray-600">Ajouter, modifier ou supprimer des commandes.</p>
                     </a>

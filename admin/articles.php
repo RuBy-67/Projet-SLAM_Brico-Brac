@@ -1,5 +1,6 @@
 <?php
 session_start();
+require '../php/dbadmin.php';
 ///$user = $_SESSION['username'];
 ///$usergroup = $_SESSION['group'];
 /// if ($usergroup != "admin") {
