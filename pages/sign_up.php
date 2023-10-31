@@ -27,24 +27,25 @@ if (isset($_POST['submit'])) {
     /// verification mdp
     if (!isStrongPassword($mdp)) {
         echo "Le mot de passe ne respecte pas les exigences.";
-        exit(); 
+        exit();
     } elseif ($mdp !== $mdp_confirm) {
         echo "Les mots de passe ne correspondent pas.";
-        exit(); 
+        exit();
     } else {
         //hachage de mot du passe
         $hashed_password = password_hash($mdp, PASSWORD_DEFAULT);
 
-        // Vérification que le mail n'est pas déjà utilisé
-        $checkEmailSql = "SELECT * FROM users WHERE mail = ?";
-        $stmtCheckEmail = $mysqli->prepare($checkEmailSql);
-        $stmtCheckEmail->bind_param("s", $mail);
-        $stmtCheckEmail->execute();
-        $resultCheckEmail = $stmtCheckEmail->get_result();
-        if ($resultCheckEmail->num_rows > 0) {
-            echo "L'adresse e-mail est déjà utilisée.";
-            exit(); 
+        // Vérification que l'adresse e-mail ou le numéro de téléphone ne sont pas déjà utilisés
+        $checkEmailPhoneSql = "SELECT * FROM users WHERE mail = ? OR usersId IN (SELECT usersInfosId FROM usersInfos WHERE phone = ?)";
+        $stmtCheckEmailPhone = $mysqli->prepare($checkEmailPhoneSql);
+        $stmtCheckEmailPhone->bind_param("ss", $mail, $phone);
+        $stmtCheckEmailPhone->execute();
+        $resultCheckEmailPhone = $stmtCheckEmailPhone->get_result();
+        if ($resultCheckEmailPhone->num_rows > 0) {
+            echo "L'adresse e-mail ou le numéro de téléphone est déjà utilisé.";
+            exit();
         }
+
 
         $insertUserSql = "INSERT INTO users (mail, password) VALUES (?, ?)";
         $stmt = $mysqli->prepare($insertUserSql);
