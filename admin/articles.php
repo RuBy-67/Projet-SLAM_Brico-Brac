@@ -1,5 +1,9 @@
 <?php
 session_start();
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+require '../templates/header.php';
 require '../php/dbadmin.php';
 ///$user = $_SESSION['username'];
 ///$usergroup = $_SESSION['group'];
@@ -7,6 +11,12 @@ require '../php/dbadmin.php';
  /// header('Location: ../error/error.php');
   ////exit();
 ///}
+?>
+<!-- Slogan -->
+<section class="bg-top-banner h-[678px] flex items-center mb-8">
+    <h2 class="container w-1/2 text-white text-center">Connexion</h2>
+</section>
+<?php
 // Gérer la mise à jour d'un article
 if (isset($_POST['update'])) {
     $articleId = $_POST['article_id'];
