@@ -27,7 +27,7 @@ if (isset($_POST['update'])) {
     $pourcentagePromotion = $_POST['pourcentagePromotion'];
     $nouveaute = $_POST['nouveaute'];
 
-    $updateArticleSql = "UPDATE Articles 
+    $updateArticleSql = "UPDATE articles 
                         SET nom = ?, references = ?, prixHT = ?, TVA = ?, pourcentagePromotion = ?, nouveaute = ?
                         WHERE articleId = ?";
     $stmt = $mysqli->prepare($updateArticleSql);
@@ -43,7 +43,7 @@ if (isset($_POST['update'])) {
 if (isset($_POST['delete'])) {
     $articleIdToDelete = $_POST['article_id_to_delete'];
 
-    $deleteArticleSql = "DELETE FROM Articles WHERE articleId = ?";
+    $deleteArticleSql = "DELETE FROM articles WHERE articleId = ?";
     $stmt = $mysqli->prepare($deleteArticleSql);
     $stmt->bind_param("i", $articleIdToDelete);
     if ($stmt->execute()) {
@@ -54,7 +54,7 @@ if (isset($_POST['delete'])) {
 }
 
 // Récupérez tous les articles de la table "Articles"
-$selectArticlesSql = "SELECT * FROM Articles";
+$selectArticlesSql = "SELECT * FROM articles";
 $result = $mysqli->query($selectArticlesSql);
 
 if ($result) {
