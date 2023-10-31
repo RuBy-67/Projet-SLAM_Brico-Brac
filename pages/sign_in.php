@@ -1,9 +1,10 @@
 <?php
 session_start();
 require '../php/db.php';
+require '../templates/header.php';
+require '../templates/footer.php'; 
 ?>
 
-<?php require '../templates/header.php'; ?>
 <!-- Slogan -->
 <section class="bg-top-banner h-[678px] flex items-center mb-8">
     <h2 class="container w-1/2 text-white text-center">Connexion</h2>
@@ -51,4 +52,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="submit" value="Se connecter">
     </form>
 </section>
-<?php require '../templates/footer.php'; ?>
