@@ -6,7 +6,7 @@ session_start();
  /// header('Location: ../error/error.php');
   ////exit();
 ///}
-require '../php/dbadmin.php';
+require './dbadmin.php';
 require '../templates/header.php';
 ?>
 <!-- Slogan -->

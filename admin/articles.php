@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require '../templates/header.php';
-require '../php/dbadmin.php';
+require './dbadmin.php';
 ///$user = $_SESSION['username'];
 ///$usergroup = $_SESSION['group'];
 /// if ($usergroup != "admin") {
