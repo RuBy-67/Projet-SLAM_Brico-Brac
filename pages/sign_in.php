@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["mdp"];
 
     $sql = "SELECT * FROM users WHERE mail=?";
-    $stmt = $conn->prepare($sql);
+    $stmt = $mysqli->prepare($sql);
     $stmt->bind_param("s", $mail);
     $stmt->execute();
     $result = $stmt->get_result();
