@@ -5,6 +5,8 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require '../templates/header.php';
 require './dbadmin.php';
+// Activer le débogage des requêtes SQL
+mysqli_debug("d:t:O,/var/log/mysql-query.log");
 ///$user = $_SESSION['username'];
 ///$usergroup = $_SESSION['group'];
 /// if ($usergroup != "admin") {
@@ -33,8 +35,11 @@ if (isset($_POST['update'])) {
     $stmt = $mysqli->prepare($updateArticleSql);
     $stmt->bind_param("siiiiii", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $articleId);
     if ($stmt->execute()) {
+        exit();
+
         // Mise à jour réussie, vous pouvez rediriger ou afficher un message de succès ici
     } else {
+        exit();
         // Erreur lors de la mise à jour
     }
 }
@@ -46,9 +51,12 @@ if (isset($_POST['delete'])) {
     $deleteArticleSql = "DELETE FROM articles WHERE articlesId = ?";
     $stmt = $mysqli->prepare($deleteArticleSql);
     $stmt->bind_param("i", $articleIdToDelete);
-    if ($stmt->execute()) {
+        if ($stmt->execute()) {
+        exit();
         // Suppression réussie, vous pouvez rediriger ou afficher un message de succès ici
     } else {
+        exit();
+
         // Erreur lors de la suppression
     }
 }
@@ -61,7 +69,7 @@ if (isset($_POST['add'])) {
     $pourcentagePromotion = $_POST['pourcentagePromotion'];
     $nouveaute = $_POST['nouveaute'];
 
-    // Préparation de la requête SQL
+    // Ajout articles
     $insertArticleSql = "INSERT INTO articles (nom, `references`, prixHT, TVA, pourcentagePromotion, nouveaute) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $mysqli->prepare($insertArticleSql);
     $stmt->bind_param("siiiii", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute);
@@ -69,8 +77,10 @@ if (isset($_POST['add'])) {
     // Exécution de la requête
     if ($stmt->execute()) {
         echo "L'article a été ajouté avec succès.";
+        exit();
     } else {
         echo "Une erreur s'est produite lors de l'ajout de l'article.";
+        exit();
     }
 }
 
@@ -93,7 +103,7 @@ if ($result) {
         echo '</tr>';
         ?>
         <section>
-            <form method="post" action="ajouter_article.php">
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                 <input type="text" name="nom" placeholder="Nom">
                 <input type="text" name="references" placeholder="Références">
                 <input type="number" name="prixHT" placeholder="Prix HT">
