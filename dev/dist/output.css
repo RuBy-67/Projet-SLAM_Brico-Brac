@@ -606,10 +606,6 @@ video {
   display: flex;
 }
 
-.grid {
-  display: grid;
-}
-
 .h-\[678px\] {
   height: 678px;
 }
