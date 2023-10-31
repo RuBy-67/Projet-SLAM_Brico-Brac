@@ -7,8 +7,11 @@
  /// header('Location: ../error/error.php');
   ////exit();
 ///}
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
 ?>
-<?php require './templates/header.php'; ?>
+<?php require '../templates/header.php'; ?>
     <!-- Slogan -->
     <section class="bg-top-banner  h-[678px] flex items-center mb-8">
         <h2 class="container w-1/2 text-white text-center">
@@ -44,4 +47,4 @@
 
 
 
-<?php require './templates/footer.php'; ?>
+<?php require '../templates/footer.php'; ?>
