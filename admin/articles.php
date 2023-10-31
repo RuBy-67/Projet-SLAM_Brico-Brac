@@ -77,65 +77,67 @@ if (isset($_POST['add'])) {
 // Récupérez tous les articles de la table "Articles"
 $selectArticlesSql = "SELECT * FROM articles";
 $result = $mysqli->query($selectArticlesSql);
-?>
-<section>
-    <form method="post" action="ajouter_article.php" class="mb-4">
-        <input type="text" name="nom" placeholder="Nom" class="border p-2 rounded-md mr-2">
-        <input type="text" name="references" placeholder="Références" class="border p-2 rounded-md mr-2">
-        <input type="number" name="prixHT" placeholder="Prix HT" class="border p-2 rounded-md mr-2">
-        <input type="number" name="TVA" value="20" class="border p-2 rounded-md mr-2">
-        <input type="number" name="pourcentagePromotion" placeholder="Pourcentage de promotion" class="border p-2 rounded-md mr-2">
-        <select name="nouveaute" class="border p-2 rounded-md mr-2">
-            <option value="oui">Oui</option>
-            <option value="non">Non</option>
-        </select>
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Ajouter l'article</button>
-    </form>
-    <?php
-    if ($result) {
-        if ($result->num_rows > 0) {
-            echo '<form method="post" action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '">';
-            echo '<table class="table-auto w-full">';
-            echo '<thead>';
-            echo '<tr>';
-            echo '<th class="px-4 py-2">Nom</th>';
-            echo '<th class="px-4 py-2">Références</th>';
-            echo '<th class="px-4 py-2">Prix HT</th>';
-            echo '<th class="px-4 py-2">TVA</th>';
-            echo '<th class="px-4 py-2">Pourcentage Promotion</th>';
-            echo '<th class="px-4 py-2">Nouveauté</th>';
-            echo '<th class="px-4 py-2">Actions</th>';
-            echo '</tr>';
-            echo '</thead>';
-            echo '<tbody>';
-            while ($row = $result->fetch_assoc()) {
-                echo '<tr>';
-                echo '<td class="px-4 py-2"><input type="text" name="nom" value="' . $row['nom'] . '"></td>';
-                echo '<td class="px-4 py-2"><input type="text" name="references" value="' . $row['references'] . '"></td>';
-                echo '<td class="px-4 py-2"><input type="text" name="prixHT" value="' . $row['prixHT'] . '"></td>';
-                echo '<td class="px-4 py-2"><input type="text" name="TVA" value="' . $row['TVA'] . '"></td>';
-                echo '<td class="px-4 py-2"><input type="text" name="pourcentagePromotion" value="' . $row['pourcentagePromotion'] . '"></td>';
-                echo '<td class="px-4 py-2">';
-                echo '<select name="nouveaute">';
-                echo '<option value="1"' . ($row['nouveaute'] == 1 ? ' selected' : '') . '>Oui</option>';
-                echo '<option value="0"' . ($row['nouveaute'] == 0 ? ' selected' : '') . '>Non</option>';
-                echo '</select>';
-                echo '</td>';
-                echo '<td class="px-4 py-2">';
-                echo '<input type="hidden" name="article_id" value="' . $row['articlesId'] . '">';
-                echo '<button type="submit" name="update" class="bg-blue-500 text-white px-2 py-1 rounded-md mr-2">Update</button>';
-                echo '<button type="submit" name="delete" class="bg-red-500 text-white px-2 py-1 rounded-md">Delete</button>';
-                echo '<input type="hidden" name="article_id_to_delete" value="' . $row['articlesId'] . '">';
-                echo '</td>';
-                echo '</tr>';
-            }
-            echo '</tbody>';
-            echo '</table>';
-            echo '</form>';
-        }
-    }
-    ?>
-</section>
 
+if ($result) {
+    if ($result->num_rows > 0) {
+        echo '<form method="post" action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '">';
+        echo '<table>';
+        echo '<tr>';
+        echo '<th>Nom</th>';
+        echo '<th>Références</th>';
+        echo '<th>Prix HT</th>';
+        echo '<th>TVA</th>';
+        echo '<th>Pourcentage Promotion</th>';
+        echo '<th>Nouveauté</th>';
+        echo '<th>Actions</th>';
+        echo '</tr>';
+        ?>
+        <section>
+            <form method="post" action="ajouter_article.php">
+                <input type="text" name="nom" placeholder="Nom">
+                <input type="text" name="references" placeholder="Références">
+                <input type="number" name="prixHT" placeholder="Prix HT">
+                <input type="number" name="TVA" value="20">
+                <input type="number" name="pourcentagePromotion" placeholder="Pourcentage de promotion">
+                <select name="nouveaute">
+                    <option value="oui">Oui</option>
+                    <option value="non">Non</option>
+                </select>
+                <input type="submit" value="Ajouter l'article" name='add'>
+            </form>
+        </section>
+        <?php
+        while ($row = $result->fetch_assoc()) {
+            echo '<tr>';
+            echo '<td><input type="text" name="nom" value="' . $row['nom'] . '"></td>';
+            echo '<td><input type="text" name="references" value="' . $row['references'] . '"></td>';
+            echo '<td><input type="text" name="prixHT" value="' . $row['prixHT'] . '"></td>';
+            echo '<td><input type="text" name="TVA" value="' . $row['TVA'] . '"></td>';
+            echo '<td><input type="text" name="pourcentagePromotion" value="' . $row['pourcentagePromotion'] . '"></td>';
+            echo '<td>';
+            echo '<select name="nouveaute">';
+            echo '<option value="1"' . ($row['nouveaute'] == 1 ? ' selected' : '') . '>Oui</option>';
+            echo '<option value="0"' . ($row['nouveaute'] == 0 ? ' selected' : '') . '>Non</option>';
+            echo '</select>';
+            echo '</td>';
+            echo '<td>';
+            echo '<input type="hidden" name="article_id" value="' . $row['articlesId'] . '">';
+            echo '<button type="submit" name="update">Update</button>';
+            echo '<button type="submit" name="delete">Delete</button>';
+            echo '<input type="hidden" name="article_id_to_delete" value="' . $row['articlesId'] . '">'; // Pour la suppression
+            echo '</td>';
+            echo '</tr>';
+        }
+
+        echo '</table>';
+        echo '</form>';
+    } else {
+        echo "Aucun article n'a été trouvé.";
+    }
+} else {
+    echo "Une erreur s'est produite lors de la récupération des articles.";
+}
+
+?>
 
 <?php require '../templates/footer.php';
