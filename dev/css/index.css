@@ -47,6 +47,10 @@ h5 {
     @apply text-h5
     text-black;
 }
+h6 {
+    @apply text-h6
+    text-black;
+}
 p,
 a {
     @apply text-base

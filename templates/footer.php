@@ -1,6 +1,6 @@
         <footer class="bg-darkGrey py-8">
             <div class="container">
-                <div class="flex justify-between items-center mb-8">
+                <div class="flex  sm:flex-row flex-col justify-between items-center mb-8">
                 <img src="../dev/assets/logo.png" alt="Brico'brac"/>
                     <div class="flex gap-8">
                         <a
@@ -23,7 +23,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="flex justify-between">
+                <div class="flex sm:flex-row flex-col justify-between items-center">
                     <p class="text-xs text-lightGrey">© Brico'Brac, 2011-2023. All rights reserved</p>
                     <div class="flex gap-8">
                         <p class="text-xs text-lightGrey">Connect to FileShare</p>
@@ -33,5 +33,6 @@
                 </div>
             </div>
         </footer>
+        <script type="text/javascript" src="../dev/js/slider.js"></script>
     </body>
 </html>
