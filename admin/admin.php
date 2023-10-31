@@ -14,13 +14,9 @@ ini_set('display_startup_errors', 1);
 <?php require '../templates/header.php'; ?>
     <!-- Slogan -->
     <section class="bg-top-banner  h-[678px] flex items-center mb-8">
-        <h2 class="container w-1/2 text-white text-center">
-            Bienvenue sur Brico’brac ! <br />
-            La référence du magasin de bricolage près de chez vous !
-        </h2>
+        <h2 class="container w-1/2 text-white text-center">Administration</h2>
     </section>
         <div class="container">
-            <h2 class="text-3xl font-bold mb-4">Administration</h2>
             <div class="flex flex-wrap">
                 <div class="w-full md:w-1/2 lg:w-1/3 p-2">
                     <a href="./admin/admin.php" class="bg-white shadow-md rounded-md block p-4">
@@ -43,8 +39,5 @@ ini_set('display_startup_errors', 1);
             </div>
         </div>
     </section>
-
-
-
 
 <?php require '../templates/footer.php'; ?>
