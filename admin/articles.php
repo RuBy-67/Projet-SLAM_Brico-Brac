@@ -31,7 +31,7 @@ if (isset($_POST['update'])) {
                         SET nom = ?, `references` = ?, prixHT = ?, TVA = ?, pourcentagePromotion = ?, nouveaute = ?
                         WHERE articlesId = ?";
     $stmt = $mysqli->prepare($updateArticleSql);
-    $stmt->bind_param("ssdddsi", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $articleId);
+    $stmt->bind_param("siiiiii", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $articleId);
     if ($stmt->execute()) {
         // Mise à jour réussie, vous pouvez rediriger ou afficher un message de succès ici
     } else {
@@ -64,7 +64,7 @@ if (isset($_POST['add'])) {
     // Préparation de la requête SQL
     $insertArticleSql = "INSERT INTO articles (nom, `references`, prixHT, TVA, pourcentagePromotion, nouveaute) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $mysqli->prepare($insertArticleSql);
-    $stmt->bind_param("ssiiis", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute);
+    $stmt->bind_param("siiiii", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute);
 
     // Exécution de la requête
     if ($stmt->execute()) {
