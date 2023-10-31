@@ -1,5 +1,5 @@
 <div class="card">
-    <img src="" alt="" class="w-full h-[248px]">
+    <img src="<?=$baseTemplate?>dev/assets/products/<?=$product['references']?>.jpg" alt="" class="w-full h-[248px]">
     <div class="flex justify-between">
         <p><?= $product['nom']?></p>
         <div class="flex items-start ">
