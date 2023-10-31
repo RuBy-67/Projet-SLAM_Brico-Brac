@@ -1,5 +1,4 @@
 // splide
-
 if (document.getElementById("promotion-slider")) {
     var splide = new Splide("#promotion-slider", {
         type: "loop",
