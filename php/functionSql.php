@@ -151,7 +151,7 @@ function updateUsers($mysqli, $userId, $nom, $prenom, $group, $mail, $pays, $num
 
     // Mettre à jour la table "usersInfos" 
     $updateUsersInfosSql = "UPDATE usersInfos
-                            SET name = ?, surname = ?, states = ?, numbers = ?, street = ?, city = ?, phone = ?
+                            SET name = ?, surname = ?, states = ?, number = ?, street = ?, city = ?, phone = ?
                             WHERE usersInfosId = ?";
     $stmtUsersInfos = $mysqli->prepare($updateUsersInfosSql);
     $stmtUsersInfos->bind_param("sssisssi", $nom, $prenom, $pays, $numeros, $rue, $ville, $telephone, $userId);
