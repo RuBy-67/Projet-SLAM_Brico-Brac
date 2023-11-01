@@ -13,6 +13,49 @@ require './dbadmin.php';
 
 <?php
 // Récupérer tous les articles de la table "Articles"
+if (isset($_POST['add'])) {
+    $nom = $_POST['nom'];
+    $references = $_POST['references'];
+    $prixHT = $_POST['prixHT'];
+    $TVA = $_POST['TVA'];
+    $pourcentagePromotion = $_POST['pourcentagePromotion'];
+    $nouveaute = $_POST['nouveaute'];
+
+    // Appel de la fonction d'ajout
+    if (addArticle($mysqli, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute)) {
+        echo '<p>Article ajouté</p>';
+    } else {
+        echo '<p>Erreur lors de l\'ajout de l\'article</p>';
+    }
+}
+
+if (isset($_POST['update'])) {
+    $article_id = $_POST['article_id'];
+    $nom = $_POST['nom'];
+    $references = $_POST['references'];
+    $prixHT = $_POST['prixHT'];
+    $TVA = $_POST['TVA'];
+    $pourcentagePromotion = $_POST['pourcentagePromotion'];
+    $nouveaute = $_POST['nouveaute'];
+
+    // Appel de la fonction de mise à jour
+    if (updateArticle($mysqli, $article_id, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute)) {
+        echo "Mise à jour effectuée avec succès !";
+    } else {
+        echo "Erreur lors de la mise à jour : " . $stmt->error;
+    }
+}
+
+if (isset($_POST['delete'])) {
+    $article_id_to_delete = $_POST['article_id_to_delete'];
+
+    // Appel de la fonction de suppression
+    if (deleteArticle($mysqli, $article_id_to_delete)) {
+        echo "Ligne supprimée avec succès.";
+    } else {
+        echo "Échec lors de la suppression : " . $stmt->error;
+    }
+}
 $selectArticlesSql = "SELECT * FROM articles";
 $result = $mysqli->query($selectArticlesSql);
 
@@ -79,49 +122,6 @@ if ($result) {
     }
 } else {
     echo "Une erreur s'est produite lors de la récupération des articles.";
-}
-if (isset($_POST['add'])) {
-    $nom = $_POST['nom'];
-    $references = $_POST['references'];
-    $prixHT = $_POST['prixHT'];
-    $TVA = $_POST['TVA'];
-    $pourcentagePromotion = $_POST['pourcentagePromotion'];
-    $nouveaute = $_POST['nouveaute'];
-
-    // Appel de la fonction d'ajout
-    if (addArticle($mysqli, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute)) {
-        echo '<p>Article ajouté</p>';
-    } else {
-        echo '<p>Erreur lors de l\'ajout de l\'article</p>';
-    }
-}
-
-if (isset($_POST['update'])) {
-    $article_id = $_POST['article_id'];
-    $nom = $_POST['nom'];
-    $references = $_POST['references'];
-    $prixHT = $_POST['prixHT'];
-    $TVA = $_POST['TVA'];
-    $pourcentagePromotion = $_POST['pourcentagePromotion'];
-    $nouveaute = $_POST['nouveaute'];
-
-    // Appel de la fonction de mise à jour
-    if (updateArticle($mysqli, $article_id, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute)) {
-        echo "Mise à jour effectuée avec succès !";
-    } else {
-        echo "Erreur lors de la mise à jour : " . $stmt->error;
-    }
-}
-
-if (isset($_POST['delete'])) {
-    $article_id_to_delete = $_POST['article_id_to_delete'];
-
-    // Appel de la fonction de suppression
-    if (deleteArticle($mysqli, $article_id_to_delete)) {
-        echo "Ligne supprimée avec succès.";
-    } else {
-        echo "Échec lors de la suppression : " . $stmt->error;
-    }
 }
 
 require '../templates/footer.php';
