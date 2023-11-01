@@ -21,12 +21,12 @@ require './dbadmin.php';
 // Gérer la mise à jour d'un article
 if (isset($_POST['update'])) {
     $articleId = $_POST['article_id'];
-    $nom = $_POST['nom'][$articleId];
-    $references = $_POST['references'][$articleId];
-    $prixHT = $_POST['prixHT'][$articleId];
-    $TVA = $_POST['TVA'][$articleId];
-    $pourcentagePromotion = $_POST['pourcentagePromotion'][$articleId];
-    $nouveaute = $_POST['nouveaute'][$articleId];
+    $nom = $_POST['nom'];
+    $references = $_POST['references'];
+    $prixHT = $_POST['prixHT'];
+    $TVA = $_POST['TVA'];
+    $pourcentagePromotion = $_POST['pourcentagePromotion'];
+    $nouveaute = $_POST['nouveaute'];
 
     $updateArticleSql = "UPDATE articles 
                         SET nom = ?, `references` = ?, prixHT = ?, TVA = ?, pourcentagePromotion = ?, nouveaute = ?
@@ -96,21 +96,21 @@ if ($result) {
 
                 while ($row = $result->fetch_assoc()) {
                     echo '<tr>';
-                    echo '<td><input type="text" name="nom[' . $row['articlesId'] . ']" value="' . $row['nom'] . '"></td>';
-                    echo '<td><input type="text" name="references[' . $row['articlesId'] . ']" value="' . $row['references'] . '"></td>';
-                    echo '<td><input type="text" name="prixHT[' . $row['articlesId'] . ']" value="' . $row['prixHT'] . '"></td>';
-                    echo '<td><input type="text" name="TVA[' . $row['articlesId'] . ']" value="' . $row['TVA'] . '"></td>';
-                    echo '<td><input type="text" name="pourcentagePromotion[' . $row['articlesId'] . ']" value="' . $row['pourcentagePromotion'] . '"></td>';
+                    echo '<td><input type="text" name="nom" value="' . $row['nom'] . '"></td>';
+                    echo '<td><input type="text" name="references" value="' . $row['references'] . ' readonly"></td>';
+                    echo '<td><input type="text" name="prixHT" value="' . $row['prixHT'] . '"></td>';
+                    echo '<td><input type="text" name="TVA" value="' . $row['TVA'] . '"></td>';
+                    echo '<td><input type="text" name="pourcentagePromotion" value="' . $row['pourcentagePromotion'] . '"></td>';
                     echo '<td>';
-                    echo '<select name="nouveaute[' . $row['articlesId'] . ']">';
+                    echo '<select name="nouveaute">';
                     echo '<option value="1" ' . ($row['nouveaute'] == 1 ? 'selected' : '') . '>Oui</option>';
                     echo '<option value="0" ' . ($row['nouveaute'] == 0 ? 'selected' : '') . '>Non</option>';
                     echo '</select>';
                     echo '</td>';
                     echo '<td>';
-                    echo '<input name="article_id" value="' . $row['articlesId'] . '">';
+                    echo '<input type="text" name="article_id" value="' . $row['articlesId'] . '">';/// Pour update
                     echo '<button type="submit" name="update">Update</button>';
-                    echo '<input type="hidden" name="article_id_to_delete" value="' . $row['articlesId'] . '">';
+                    echo '<input type="hidden" name="article_id_to_delete" value="' . $row['articlesId'] . '">'; //pour supression
                     echo '<button type="submit" name="delete">Delete</button>';
                     echo '</td>';
                     echo '</tr>';
