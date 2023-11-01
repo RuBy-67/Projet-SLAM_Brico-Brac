@@ -161,7 +161,7 @@ require '../php/functionSql.php';
             <input type="text" name="prenom" placeholder="Prenoms" required>
             <td>
               <select name="group">
-                <option value="1">Users</option>
+                <option value="0">Users</option>
                 <option value="1">Vendeurs</option>
                 <option value="2">Admin</option>
               </select>
