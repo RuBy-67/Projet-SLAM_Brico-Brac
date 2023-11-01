@@ -29,7 +29,7 @@ if (isset($_POST['update'])) {
     $nouveaute = $_POST['nouveaute'][$articleId];
 
     $updateArticleSql = "UPDATE articles 
-                        SET nom = ?, references = ?, prixHT = ?, TVA = ?, pourcentagePromotion = ?, nouveaute = ?
+                        SET nom = ?, `references` = ?, prixHT = ?, TVA = ?, pourcentagePromotion = ?, nouveaute = ?
                         WHERE articlesId = ?";
     $stmt = $mysqli->prepare($updateArticleSql);
     $stmt->bind_param("siiiiii", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $articleId);
@@ -63,7 +63,7 @@ if (isset($_POST['add'])) {
     $pourcentagePromotion = $_POST['pourcentagePromotion'];
     $nouveaute = $_POST['nouveaute'];
 
-    $insertArticleSql = "INSERT INTO articles (nom, references, prixHT, TVA, pourcentagePromotion, nouveaute) VALUES (?, ?, ?, ?, ?, ?)";
+    $insertArticleSql = "INSERT INTO articles (nom, `references`, prixHT, TVA, pourcentagePromotion, nouveaute) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $mysqli->prepare($insertArticleSql);
     $stmt->bind_param("siiiii", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute);
 
@@ -117,7 +117,7 @@ if ($result) {
                 ?>
             </table>
             <div>
-                <h2>Ajouter un nouvel article</h2>
+                <h3>Ajouter un nouvel article</h3>
                 <div>
                     <input type="text" name="nom" placeholder="Nom">
                     <input type="text" name="references" placeholder="Références">
