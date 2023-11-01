@@ -34,7 +34,8 @@
             <a href="<?=$baseTemplate;?>index.php"><img src="<?=$baseTemplate;?>dev/assets/logo.png" alt="Brico'brac"/></a>
             <div class="flex items-center">
                 <?php require $baseTemplate."templates/menu-nav.php"; ?>
-                <a class="btn">Se connnecter</a>
+                <a href="../pages/sign_in.php" class="btn">Se connnecter</a>
+                <a href="../pages/sign_up.php" class="btn">Crée un compte</a>
             </div>
         </div>
     </header>
