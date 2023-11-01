@@ -2,6 +2,7 @@
 session_start();
 require '../php/db.php';
 require '../templates/header.php';
+$group=1;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -39,34 +40,31 @@ require '../templates/header.php';
         $date = date("Y-m-d H:i:s");
 
 
-        /// verification mdp
-        if (!isStrongPassword($mdp)) {
-            echo "Le mot de passe ne respecte pas les exigences.";
-            exit();
-        } elseif ($mdp !== $mdp_confirm) {
-            echo "Les mots de passe ne correspondent pas.";
-            exit();
-        } else {
-            //hachage de mot du passe
-            $hashed_password = password_hash($mdp, PASSWORD_DEFAULT);
+    /// verification mdp
+    if (!isStrongPassword($mdp)) {
+        echo "Le mot de passe ne respecte pas les exigences.";
+    } elseif ($mdp !== $mdp_confirm) {
+        echo "Les mots de passe ne correspondent pas.";
+    } else {
+        //hachage de mot du passe
+        $hashed_password = password_hash($mdp, PASSWORD_DEFAULT);
 
-            // Vérification que l'adresse e-mail ou le numéro de téléphone ne sont pas déjà utilisés
-            $checkEmailPhoneSql = "SELECT * FROM users WHERE mail = ? OR usersId IN (SELECT usersInfosId FROM usersInfos WHERE phone = ?)";
-            $stmtCheckEmailPhone = $mysqli->prepare($checkEmailPhoneSql);
-            $stmtCheckEmailPhone->bind_param("ss", $mail, $phone);
-            $stmtCheckEmailPhone->execute();
-            $resultCheckEmailPhone = $stmtCheckEmailPhone->get_result();
-            if ($resultCheckEmailPhone->num_rows > 0) {
-                echo "L'adresse e-mail ou le numéro de téléphone est déjà utilisé.";
-                exit();
-            }
+        // Vérification que l'adresse e-mail ou le numéro de téléphone ne sont pas déjà utilisés
+        $checkEmailPhoneSql = "SELECT * FROM users WHERE mail = ? OR usersId IN (SELECT usersInfosId FROM usersInfos WHERE phone = ?)";
+        $stmtCheckEmailPhone = $mysqli->prepare($checkEmailPhoneSql);
+        $stmtCheckEmailPhone->bind_param("ss", $mail, $phone);
+        $stmtCheckEmailPhone->execute();
+        $resultCheckEmailPhone = $stmtCheckEmailPhone->get_result();
+        if ($resultCheckEmailPhone->num_rows > 0) {
+            echo "L'adresse e-mail ou le numéro de téléphone est déjà utilisé.";
+            
+        }
 
-
-            $insertUserSql = "INSERT INTO users (mail, password) VALUES (?, ?)";
-            $stmt = $mysqli->prepare($insertUserSql);
-            $stmt->bind_param("ss", $mail, $hashed_password);
-            if ($stmt->execute()) {
-                $userId = $stmt->insert_id;
+        $insertUserSql = "INSERT INTO users (mail, password, group) VALUES (?, ?, ?)";
+        $stmt = $mysqli->prepare($insertUserSql);
+        $stmt->bind_param("ssi", $mail, $hashed_password, $group);
+        if ($stmt->execute()) {
+            $userId = $stmt->insert_id;
 
                 // Insertion des informations supplémentaires dans la table "userInfos"
                 $insertUserInfoSql = "INSERT INTO usersInfos (usersInfosId, name, surname, states, city, street, number, phone, accountCreation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
