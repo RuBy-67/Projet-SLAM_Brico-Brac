@@ -47,9 +47,9 @@ if ($result) {
                 echo '</td>';
                 echo '<td>';
                 echo '<input type="text" name="article_id" value="' . $row['articlesId'] . '">'; /// Pour update
-                echo '<button type="submit" name="update">Update</button>';
+                echo '<button type="submit" name="update">🪄</button>';
                 echo '<input type="hidden" name="article_id_to_delete" value="' . $row['articlesId'] . '">'; //pour suppression
-                echo '<button type="submit" name="delete">Delete</button>';
+                echo '<button type="submit" name="delete">🗑️</button>';
                 echo '</td>';
                 echo '</form>';
                 echo '</tr>';
@@ -69,7 +69,7 @@ if ($result) {
                         <option value="1">Oui</option>
                         <option value="0">Non</option>
                     </select>
-                    <button type="submit" name="add">Ajouter</button>
+                    <button type="submit" name="add">➕</button>
                 </div>
             </form>
         </div>
@@ -80,68 +80,6 @@ if ($result) {
 } else {
     echo "Une erreur s'est produite lors de la récupération des articles.";
 }
-
-foreach ($_POST as $key => $value) {
-
-    if (strpos($key, 'update') === 0) {
-        $article_id = $_POST['article_id'];
-        $nom = $_POST['nom'];
-        $references = $_POST['references'];
-        $prixHT = $_POST['prixHT'];
-        $TVA = $_POST['TVA'];
-        $pourcentagePromotion = $_POST['pourcentagePromotion'];
-        $nouveaute = $_POST['nouveaute'];
-
-        $sql = "UPDATE articles SET nom=?, `references`=?, prixHT=?, TVA=?, pourcentagePromotion=?, nouveaute=? WHERE articlesId=?";
-        $stmt = $mysqli->prepare($sql);
-        $stmt->bind_param("siiiiii", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $article_id);
-
-        if ($stmt->execute()) {
-            echo "Mise à jour effectuée avec succès !";
-        } else {
-            echo "Erreur lors de la mise à jour : " . $stmt->error;
-        }
-    }
-
-
-    if (strpos($key, 'delete') === 0) {
-        $article_id_to_delete = $_POST['article_id_to_delete'];
-
-        $sql = "DELETE FROM articles WHERE articlesId = ?";
-        $stmt = $mysqli->prepare($sql);
-        $stmt->bind_param("i", $article_id_to_delete);
-
-        if ($stmt->execute()) {
-            echo "Ligne supprimée avec succès.";
-        } else {
-            echo "Échec lors de la suppression : " . $stmt->error;
-        }
-    }
-
-
-    if (strpos($key, 'update_') === 0) {
-        $articleId = $_POST['article_id'];
-        $nom = $_POST['nom'];
-        $references = $_POST['references'];
-        $prixHT = $_POST['prixHT'];
-        $TVA = $_POST['TVA'];
-        $pourcentagePromotion = $_POST['pourcentagePromotion'];
-        $nouveaute = $_POST['nouveaute'];
-
-        $updateArticleSql = "UPDATE articles 
-                            SET nom = ?, `references` = ?, prixHT = ?, TVA = ?, pourcentagePromotion = ?, nouveaute = ?
-                            WHERE articlesId = ?";
-        $stmt = $mysqli->prepare($updateArticleSql);
-        $stmt->bind_param("siiiiii", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $articleId);
-        if ($stmt->execute()) {
-            echo '<p>Mise à jours réussis</p>';
-        } else {
-            echo '<p>Erreur lors de la mise à jour</p>';
-        }
-    }
-}
-
-// Gérer l'ajout d'un article
 if (isset($_POST['add'])) {
     $nom = $_POST['nom'];
     $references = $_POST['references'];
@@ -150,14 +88,39 @@ if (isset($_POST['add'])) {
     $pourcentagePromotion = $_POST['pourcentagePromotion'];
     $nouveaute = $_POST['nouveaute'];
 
-    $insertArticleSql = "INSERT INTO articles (nom, `references`, prixHT, TVA, pourcentagePromotion, nouveaute) VALUES (?, ?, ?, ?, ?, ?)";
-    $stmt = $mysqli->prepare($insertArticleSql);
-    $stmt->bind_param("siiiii", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute);
-
-    if ($stmt->execute()) {
+    // Appel de la fonction d'ajout
+    if (addArticle($mysqli, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute)) {
         echo '<p>Article ajouté</p>';
     } else {
         echo '<p>Erreur lors de l\'ajout de l\'article</p>';
+    }
+}
+
+if (isset($_POST['update'])) {
+    $article_id = $_POST['article_id'];
+    $nom = $_POST['nom'];
+    $references = $_POST['references'];
+    $prixHT = $_POST['prixHT'];
+    $TVA = $_POST['TVA'];
+    $pourcentagePromotion = $_POST['pourcentagePromotion'];
+    $nouveaute = $_POST['nouveaute'];
+
+    // Appel de la fonction de mise à jour
+    if (updateArticle($mysqli, $article_id, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute)) {
+        echo "Mise à jour effectuée avec succès !";
+    } else {
+        echo "Erreur lors de la mise à jour : " . $stmt->error;
+    }
+}
+
+if (isset($_POST['delete'])) {
+    $article_id_to_delete = $_POST['article_id_to_delete'];
+
+    // Appel de la fonction de suppression
+    if (deleteArticle($mysqli, $article_id_to_delete)) {
+        echo "Ligne supprimée avec succès.";
+    } else {
+        echo "Échec lors de la suppression : " . $stmt->error;
     }
 }
 
