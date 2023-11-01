@@ -108,7 +108,7 @@ if ($result) {
                     echo '</select>';
                     echo '</td>';
                     echo '<td>';
-                    echo '<input type="hidden" name="article_id" value="' . $row['articlesId'] . '">';
+                    echo '<input name="article_id" value="' . $row['articlesId'] . '">';
                     echo '<button type="submit" name="update">Update</button>';
                     echo '<input type="hidden" name="article_id_to_delete" value="' . $row['articlesId'] . '">';
                     echo '<button type="submit" name="delete">Delete</button>';
