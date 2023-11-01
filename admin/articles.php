@@ -97,7 +97,7 @@ if ($result) {
                 while ($row = $result->fetch_assoc()) {
                     echo '<tr>';
                     echo '<td><input type="text" name="nom" value="' . $row['nom'] . '"></td>';
-                    echo '<td><input type="text" name="references" value="' . $row['references'] . ' readonly"></td>';
+                    echo '<td><input type="text" name="references" value="' . $row['references'] . '" readonly></td>';
                     echo '<td><input type="text" name="prixHT" value="' . $row['prixHT'] . '"></td>';
                     echo '<td><input type="text" name="TVA" value="' . $row['TVA'] . '"></td>';
                     echo '<td><input type="text" name="pourcentagePromotion" value="' . $row['pourcentagePromotion'] . '"></td>';
