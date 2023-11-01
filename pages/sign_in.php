@@ -65,8 +65,8 @@ require ($_SERVER['DOCUMENT_ROOT'].'/templates/header.php');
         method="post" 
         action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
         >
-            <input class="mb-8 border-primary" type="text" name="mail" required placeholder="adresse-mail@email.com">
-            <input  class="mb-8 border-primary" type="password" name="mdp" required placeholder="Mot de passe">
+            <input class="mb-8 border-primary" type="text" name="mail" require_one placeholder="adresse-mail@email.com">
+            <input  class="mb-8 border-primary" type="password" name="mdp" require_one placeholder="Mot de passe">
             <input 
                 type="submit" 
                 class="block bg-primary text-white px-8 py-4 flex align-center justify-center rounded" 

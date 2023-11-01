@@ -45,7 +45,7 @@ require '../php/functionSql.php';
     if (addUsers($mysqli, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, $ville, $telephone, $hashedPassword, $date)) {
       echo '<p>Utilisateurs ajouté(e) le mots de passe est :' . $password . '</p>';
     } else {
-      echo '<p>Erreur lors de l\'ajout de l\'Utilisateurs</p>';
+      echo '<p>L\'adresse e-mail ou le numéro de téléphone est déjà utilisé.</p>';
     }
   }
 
@@ -103,6 +103,30 @@ require '../php/functionSql.php';
   if ($result) {
     if ($result->num_rows > 0) {
       ?>
+         <div>
+        <h4>Ajouter un nouvel Users</h4>
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+          <div>
+            <input type="text" name="nom" placeholder="Nom" require_one>
+            <input type="text" name="prenom" placeholder="Prenoms" require_one>
+            <td>
+              <select name="group">
+                <option value="0">Users</option>
+                <option value="1">Vendeurs</option>
+                <option value="2">Admin</option>
+              </select>
+            </td>
+            <input type="text" name="mail" placeholder="mail" require_one >
+            <input type="text" name="numeros" placeholder="nombre" require_one >
+            <input type="text" name="rue" placeholder="rue" require_one >
+            <input type="text" name="ville" placeholder="ville" require_one >
+            <input type="text" name="pays" placeholder="Pays" require_one >
+            <input type="text" name="telephone" placeholder="Telephone" require_one >
+            <button type="submit" name="add">➕</button>
+          </div>
+        </form>
+      </div>
+      <h4>Liste des utilisateurs</h4>
       <table>
         <tr>
           <th>Noms</th>
@@ -110,7 +134,7 @@ require '../php/functionSql.php';
           <th>groupe</th>
           <th>mails</th>
           <th>pays</th>
-          <th>numèros</th>
+          <th>numéros</th>
           <th>rue</th>
           <th>ville</th>
           <th>Téléphone</th>
@@ -153,29 +177,6 @@ require '../php/functionSql.php';
         ?>
 
       </table>
-      <div>
-        <h3>Ajouter un nouvel Users</h3>
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-          <div>
-            <input type="text" name="nom" placeholder="Nom" required>
-            <input type="text" name="prenom" placeholder="Prenoms" required>
-            <td>
-              <select name="group">
-                <option value="0">Users</option>
-                <option value="1">Vendeurs</option>
-                <option value="2">Admin</option>
-              </select>
-            </td>
-            <input type="text" name="mail" placeholder="mail" required>
-            <input type="text" name="numeros" placeholder="nombre" required>
-            <input type="text" name="rue" placeholder="rue" required>
-            <input type="text" name="ville" placeholder="ville" required>
-            <input type="text" name="pays" placeholder="Pays" required>
-            <input type="text" name="telephone" placeholder="Telephone" required>
-            <button type="submit" name="add">➕</button>
-          </div>
-        </form>
-      </div>
       <?php
     } else {
       echo "Aucun utilisateurs n'a été trouvé.";

@@ -12,7 +12,71 @@ function deleteRecord($mysqli, $table, $idField, $recordId) {
         return false; // Échec de la suppression
     }
 }
+function checkEmailPhoneExists($mysqli, $mail, $phone) {
+    // Requête SQL pour vérifier si l'adresse e-mail ou le numéro de téléphone sont déjà utilisés
+    $checkEmailPhoneSql = "SELECT * FROM users WHERE mail = ? OR usersId IN (SELECT usersInfosId FROM usersInfos WHERE phone = ?)";
+    $stmtCheckEmailPhone = $mysqli->prepare($checkEmailPhoneSql);
+    $stmtCheckEmailPhone->bind_param("ss", $mail, $phone);
+    $stmtCheckEmailPhone->execute();
+    $resultCheckEmailPhone = $stmtCheckEmailPhone->get_result();
 
+    if ($resultCheckEmailPhone->num_rows > 0) {
+        return true; // L'adresse e-mail ou le numéro de téléphone est déjà utilisé
+    } else {
+        return false; // Aucune correspondance trouvée, c'est donc OK
+    }
+}
+
+/**
+ * Ajoute un nouvel utilisateur à la base de données.
+ *
+ * @param  $mysqli Une instance de la connexion MySQLi à la base de données.
+ * @param string $nom Le nom de l'utilisateur à ajouter.
+ * @param string $prenom Le prénom de l'utilisateur à ajouter.
+ * @param int $group La valeur de groupe de l'utilisateur à ajouter.
+ * @param string $mail L'adresse e-mail de l'utilisateur à ajouter.
+ * @param string $pays Le pays de l'utilisateur à ajouter.
+ * @param string $numeros Le numéro de rue de l'utilisateur à ajouter.
+ * @param string $rue La rue de l'utilisateur à ajouter.
+ * @param string $ville La ville de l'utilisateur à ajouter.
+ * @param string $telephone Le numéro de téléphone de l'utilisateur à ajouter.
+ *
+ * @return bool Retourne true en cas de succès de l'ajout, sinon retourne false.
+ */
+function addUsers($mysqli, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, $ville, $telephone, $hashedpassword,$date) {
+    if (checkEmailPhoneExists($mysqli, $mail, $numeros)) {
+        return false;
+    }
+    
+    // Requête SQL pour insérer un nouvel utilisateur dans la table "users" (contenant group, mail)
+    $insertUsersSql = "INSERT INTO users (`group`, mail, password) VALUES (?, ?,?)";
+    $stmtUsers = $mysqli->prepare($insertUsersSql);
+    $stmtUsers->bind_param("iss", $group, $mail,  $hashedpassword);
+
+    // Exécutez la première insertion dans la table "users"
+    $successUsers = $stmtUsers->execute();
+
+    if ($successUsers) {
+        $userId = $stmtUsers->insert_id;
+
+        // Requête SQL pour insérer le reste des informations de l'utilisateur dans la table "usersInfos"
+        $insertUsersInfosSql = "INSERT INTO usersInfos (usersInfosId, name, surname, states, number, street, city, phone, accountCreation) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
+        $stmtUsersInfos = $mysqli->prepare($insertUsersInfosSql);
+        $stmtUsersInfos->bind_param("isssissss", $userId, $nom, $prenom, $pays, $numeros, $rue, $ville, $telephone,$date);
+
+        // Exécutez la deuxième insertion dans la table "usersInfos"
+        $successUsersInfos = $stmtUsersInfos->execute();
+
+        if ($successUsersInfos) {
+            return true; 
+        } else {
+            return false; // Échec de l'ajout dans la table "usersInfos"
+        }
+    } else {
+        return false; // Échec de l'ajout dans la table "users"
+    }
+}
+// --------------------------------SQL ARTICLES------------------------------------- //
 /**
  * Ajoute un nouvel article à la base de données.
  *
@@ -78,51 +142,6 @@ function updateArticle($mysqli, $articleId, $nom, $references, $prixHT, $TVA, $p
  */
 
 ///----------------------- SQL USERS---------------------------------///
-/**
- * Ajoute un nouvel utilisateur à la base de données.
- *
- * @param  $mysqli Une instance de la connexion MySQLi à la base de données.
- * @param string $nom Le nom de l'utilisateur à ajouter.
- * @param string $prenom Le prénom de l'utilisateur à ajouter.
- * @param int $group La valeur de groupe de l'utilisateur à ajouter.
- * @param string $mail L'adresse e-mail de l'utilisateur à ajouter.
- * @param string $pays Le pays de l'utilisateur à ajouter.
- * @param string $numeros Le numéro de rue de l'utilisateur à ajouter.
- * @param string $rue La rue de l'utilisateur à ajouter.
- * @param string $ville La ville de l'utilisateur à ajouter.
- * @param string $telephone Le numéro de téléphone de l'utilisateur à ajouter.
- *
- * @return bool Retourne true en cas de succès de l'ajout, sinon retourne false.
- */
-function addUsers($mysqli, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, $ville, $telephone, $hashedpassword,$date) {
-    // Requête SQL pour insérer un nouvel utilisateur dans la table "users" (contenant group, mail)
-    $insertUsersSql = "INSERT INTO users (`group`, mail, password) VALUES (?, ?,?)";
-    $stmtUsers = $mysqli->prepare($insertUsersSql);
-    $stmtUsers->bind_param("iss", $group, $mail,  $hashedpassword);
-
-    // Exécutez la première insertion dans la table "users"
-    $successUsers = $stmtUsers->execute();
-
-    if ($successUsers) {
-        $userId = $stmtUsers->insert_id;
-
-        // Requête SQL pour insérer le reste des informations de l'utilisateur dans la table "usersInfos"
-        $insertUsersInfosSql = "INSERT INTO usersInfos (usersInfosId, name, surname, states, number, street, city, phone, accountCreation) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
-        $stmtUsersInfos = $mysqli->prepare($insertUsersInfosSql);
-        $stmtUsersInfos->bind_param("isssissss", $userId, $nom, $prenom, $pays, $numeros, $rue, $ville, $telephone,$date);
-
-        // Exécutez la deuxième insertion dans la table "usersInfos"
-        $successUsersInfos = $stmtUsersInfos->execute();
-
-        if ($successUsersInfos) {
-            return true; 
-        } else {
-            return false; // Échec de l'ajout dans la table "usersInfos"
-        }
-    } else {
-        return false; // Échec de l'ajout dans la table "users"
-    }
-}
 
 /**
  * Met à jour les informations de l'utilisateur dans la base de données en utilisant son ID.

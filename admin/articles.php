@@ -74,7 +74,7 @@ require '../php/functionSql.php';
 
     if (isset($_POST['delete'])) {
         $article_id_to_delete = $_POST['article_id_to_delete'];
-    
+
         // Appel de la fonction de suppression en spécifiant la table "articles" et le champ "articlesId"
         if (deleteRecord($mysqli, 'articles', 'articlesId', $article_id_to_delete)) {
             echo "Article supprimé avec succès.";
@@ -84,7 +84,26 @@ require '../php/functionSql.php';
     }
     $selectArticlesSql = "SELECT * FROM articles";
     $result = $mysqli->query($selectArticlesSql);
-
+    ?>
+    <div>
+        <h4>Ajouter un nouvel article</h4>
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            <div>
+                <input type="text" name="nom" placeholder="Nom" require_one >
+                <input type="text" name="references" placeholder="Références" require_one >
+                <input type="text" name="prixHT" placeholder="Prix HT" require_one >
+                <input type="text" name="TVA" value="20" require_one >
+                <input type="text" name="pourcentagePromotion" placeholder="Pourcentage de promotion" require_one >
+                <select name="nouveaute">
+                    <option value="1">Oui</option>
+                    <option value="0">Non</option>
+                </select>
+                <button type="submit" name="add">➕</button>
+            </div>
+        </form>
+    </div>
+    <h4>Liste Articles </h4>
+    <?php
     if ($result) {
         if ($result->num_rows > 0) {
             ?>
@@ -128,23 +147,6 @@ require '../php/functionSql.php';
                 ?>
 
             </table>
-            <div>
-                <h3>Ajouter un nouvel article</h3>
-                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                    <div>
-                        <input type="text" name="nom" placeholder="Nom" required>
-                        <input type="text" name="references" placeholder="Références" required>
-                        <input type="text" name="prixHT" placeholder="Prix HT" required>
-                        <input type="text" name="TVA" value="20" required>
-                        <input type="text" name="pourcentagePromotion" placeholder="Pourcentage de promotion" required>
-                        <select name="nouveaute">
-                            <option value="1">Oui</option>
-                            <option value="0">Non</option>
-                        </select>
-                        <button type="submit" name="add">➕</button>
-                    </div>
-                </form>
-            </div>
             <?php
         } else {
             echo "Aucun article n'a été trouvé.";
