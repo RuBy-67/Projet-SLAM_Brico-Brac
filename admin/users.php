@@ -126,7 +126,7 @@ require '../php/functionSql.php';
             <input type="text" name="rue" placeholder="rue" require_one >
             <input type="text" name="ville" placeholder="ville" require_one >
             <input type="text" name="pays" placeholder="Pays" require_one >
-            <input type="text" name="telephone" placeholder="Telephone" require_one >
+            <input type="text" name="telephone" placeholder="Telephone" maxlength="10" require_one >
             <button type="submit" name="add">➕</button>
           </div>
         </form>
@@ -164,7 +164,7 @@ require '../php/functionSql.php';
               <td><input type="text" name="numeros" value="<?= $row['number']; ?>"></td>
               <td><input type="text" name="rue" value="<?= $row['street']; ?>"></td>
               <td><input type="text" name="ville" value="<?= $row['city']; ?>"></td>
-              <td><input type="text" name="telephone" value="<?= $row['phone']; ?>"></td>
+              <td><input type="text" name="telephone" value="<?= $row['phone']; ?>"maxlength="10"></td>
               <td><input type="text" name="accountCreation" value="<?= $row['accountCreation']; ?>" readonly></td>
 
               <td>

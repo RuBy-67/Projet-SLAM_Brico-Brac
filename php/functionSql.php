@@ -1,5 +1,16 @@
 <?php
 ///----------------------- SQL ARTICLES ---------------------------------///
+/**
+ * Supprime un enregistrement d'une table spécifiée en utilisant l'ID.
+ *
+ * @param $mysqli Une instance de la connexion MySQLi à la base de données.
+ * @param string $table Le nom de la table à partir de laquelle supprimer l'enregistrement.
+ * @param string $idField Le nom du champ d'ID de la table.
+ * @param int $recordId L'ID de l'enregistrement à supprimer.
+ *
+ * @return bool Retourne true en cas de succès de la suppression, sinon retourne false.
+ */
+
 function deleteRecord($mysqli, $table, $idField, $recordId)
 {
     // Requête SQL pour supprimer l'enregistrement de la table spécifiée en utilisant l'ID
@@ -13,6 +24,17 @@ function deleteRecord($mysqli, $table, $idField, $recordId)
         return false; // Échec de la suppression
     }
 }
+
+/**
+ * Vérifie si une adresse e-mail ou un numéro de téléphone est déjà utilisé par un utilisateur, en excluant un utilisateur spécifique (le cas échéant).
+ *
+ * @param $mysqli Une instance de la connexion MySQLi à la base de données.
+ * @param string $mail L'adresse e-mail à vérifier.
+ * @param string $phone Le numéro de téléphone à vérifier.
+ * @param int|null $excludeUserId (Facultatif) L'ID de l'utilisateur à exclure de la vérification.
+ *
+ * @return bool Retourne true si l'adresse e-mail ou le numéro de téléphone est déjà utilisé par un autre utilisateur (sauf si exclu), sinon retourne false.
+ */
 function checkEmailPhoneExists($mysqli, $mail, $phone, $excludeUserId = null)
 {
     // Requête SQL pour vérifier si l'adresse e-mail ou le numéro de téléphone sont déjà utilisés
@@ -49,6 +71,8 @@ function checkEmailPhoneExists($mysqli, $mail, $phone, $excludeUserId = null)
  * @param string $rue La rue de l'utilisateur à ajouter.
  * @param string $ville La ville de l'utilisateur à ajouter.
  * @param string $telephone Le numéro de téléphone de l'utilisateur à ajouter.
+ * @param string $hashedpassword Le mot de passe haché de l'utilisateur.
+ * @param string $date La date de création du compte de l'utilisateur.
  *
  * @return bool Retourne true en cas de succès de l'ajout, sinon retourne false.
  */
@@ -100,7 +124,6 @@ function addUsers($mysqli, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, 
  *
  * @return bool Retourne true en cas de succès de l'ajout, sinon retourne false.
  */
-
 function addArticle($mysqli, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute)
 {
     $insertArticleSql = "INSERT INTO articles (nom, `references`, prixHT, TVA, pourcentagePromotion, nouveaute) VALUES (?, ?, ?, ?, ?, ?)";
