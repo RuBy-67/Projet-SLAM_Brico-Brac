@@ -86,7 +86,7 @@ if ($result) {
                 <th>Actions</th>
             </tr>
             <?php
-            while ($row = $result->fetch_assoc()) {
+            while ($row = $result->fetch_assoc()):
                 ?>
                 <tr>
                     <form method="post" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
@@ -111,9 +111,8 @@ if ($result) {
                     </form>
                 </tr>
                 <?php
-            }
+            endwhile;
             ?>
-
 
         </table>
         <div>

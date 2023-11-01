@@ -74,42 +74,41 @@ if ($result) {
         <th>Membre depuis</th>
       </tr>
       <?php
-      while ($row = $result->fetch_assoc()) {
-        ?>
-        <tr>
-          <form method="post" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+while ($row = $result->fetch_assoc()) {
+?>
+    <tr>
+        <form method="post" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <td><input type="text" name="nom" value="<?= $row['name']; ?>"></td>
             <td><input type="text" name="prenom" value="<?= $row['surname']; ?>"></td>
             <td>
-              <select name="group">
-                <option value="0" <?= ($row['group'] == 0 ? 'selected' : ''); ?>>Users</option>
-                <option value="1" <?= ($row['group'] == 1 ? 'selected' : ''); ?>>Vendeurs</option>
-                <option value="2" <?= ($row['group'] == 2 ? 'selected' : ''); ?>>Admin</option>
-              </select>
+                <select name="group">
+                    <option value="0" <?= ($row['group'] == 0 ? 'selected' : ''); ?>>Users</option>
+                    <option value="1" <?= ($row['group'] == 1 ? 'selected' : ''); ?>>Vendeurs</option>
+                    <option value="2" <?= ($row['group'] == 2 ? 'selected' : ''); ?>>Admin</option>
+                </select>
             </td>
             <td><input type="text" name="mail" value="<?= $row['mail']; ?>"></td>
             <td><input type="text" name="prenom" value="<?= $row['surname']; ?>"></td>
             <td><input type="text" name="pays" value="<?= $row['states']; ?>"></td>
-            <td><input type="text" name="adresse" value="<?= $row['number'] . ' ' . $row['street'] . ' ' . $row['city']; ?>">
-            </td>
+            <td><input type="text" name="adresse" value="<?= $row['number'] . ' ' . $row['street'] . ' ' . $row['city']; ?>"></td>
             <td><input type="text" name="telephone" value="<?= $row['phone']; ?>"></td>
             <td><input type="text" name="accountCreation" value="<?= $row['accountCreation']; ?>" readonly></td>
 
             <td>
-              <input type="text" name="article_id" value="<?= $row['usersId']; ?>"> <!-- Pour update -->
-              <button type="submit" name="update">🪄</button>
-              <input type="hidden" name="article_id_to_delete" value="<?= $row['usersId']; ?>"> <!-- Pour suppression -->
-              <button type="submit" name="delete">🗑️</button>
-              <input type="hidden" name="mdp to reset" value="<?= $row['usersId']; ?>"> <!-- Pour reset -->
-              <button type="submit" name="mdp">Réinitialiser le mot de passe</button>
+                <input type="text" name="article_id" value="<?= $row['usersId']; ?>"> <!-- Pour update -->
+                <button type="submit" name="update">🪄</button>
+                <input type="hidden" name="article_id_to_delete" value="<?= $row['usersId']; ?>"> <!-- Pour suppression -->
+                <button type="submit" name="delete">🗑️</button>
+                <input type="hidden" name="mdp to reset" value="<?= $row['usersId']; ?>"> <!-- Pour reset -->
+                <button type="submit" name="mdp">Réinitialiser le mot de passe</button>
             </td>
-          </form>
-        </tr>
-        <?php
-      }
-      ?>
+        </form>
+    </tr>
+<?php
+}
+?>
 
-    </table>
+    </table> 
     <div>
       <h3>Ajouter un nouvel Users</h3>
       <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
