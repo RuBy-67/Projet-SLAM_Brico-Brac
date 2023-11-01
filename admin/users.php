@@ -61,41 +61,18 @@ require '../php/functionSql.php';
     $ville = $_POST['ville'];
     $telephone = $_POST['telephone'];
 
-    if (checkEmailPhoneExists($mysqli, $mail, $phone)) {
-      // Requête pour obtenir l'ID à partir de l'e-mail
-      $getEmailIdSql = "SELECT usersId FROM users WHERE mail = ?";
-      $stmtEmailId = $mysqli->prepare($getEmailIdSql);
-      $stmtEmailId->bind_param("s", $mail);
-      $stmtEmailId->execute();
-      $resultEmailId = $stmtEmailId->get_result();
-      $userIdFromEmail = $resultEmailId->fetch_assoc()['usersId'];
-  
-      // Requête pour obtenir l'ID à partir du numéro de téléphone
-      $getPhoneIdSql = "SELECT usersInfosId FROM usersInfos WHERE phone = ?";
-      $stmtPhoneId = $mysqli->prepare($getPhoneIdSql);
-      $stmtPhoneId->bind_param("s", $phone);
-      $stmtPhoneId->execute();
-      $resultPhoneId = $stmtPhoneId->get_result();
-      $userIdFromPhone = $resultPhoneId->fetch_assoc()['usersInfosId'];
-  
-      if ($userIdFromEmail === $userIdFromPhone) {
-          if (updateUsers($mysqli, $userId, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, $ville, $telephone)) {
-              echo "Mise à jour effectuée avec succès !";
-          } else {
-              echo "Erreur lors de la mise à jour : " . $stmt->error;
-          }
-      } else {
-          echo "Les informations de l'utilisateur existe déjà impossible d'effectuer cette mise à jours";
-      }
-  } else {
-      if (updateUsers($mysqli, $userId, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, $ville, $telephone)) {
-          echo "Mise à jour effectuée avec succès !";
-      } else {
-          echo "Erreur lors de la mise à jour : " . $stmt->error;
-      }
-  }
+    $excludeUserId = $userId; // Exclure l'utilisateur actuel de la vérification
+
+    if (checkEmailPhoneExists($mysqli, $mail, $telephone, $excludeUserId)) {
+        echo "Les informations de l'utilisateur existent déjà, impossible d'effectuer cette mise à jour.";
+    } else {
+        if (updateUsers($mysqli, $userId, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, $ville, $telephone)) {
+            echo "Mise à jour effectuée avec succès !";
+        } else {
+            echo "Erreur lors de la mise à jour : " . $stmt->error;
+        }
+    }
 }
-  
 
   if (isset($_POST['delete'])) {
     $userIdToDelete = $_POST['userIdToDelete'];

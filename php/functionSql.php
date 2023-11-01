@@ -13,12 +13,19 @@ function deleteRecord($mysqli, $table, $idField, $recordId)
         return false; // Échec de la suppression
     }
 }
-function checkEmailPhoneExists($mysqli, $mail, $phone)
+function checkEmailPhoneExists($mysqli, $mail, $phone, $excludeUserId = null)
 {
     // Requête SQL pour vérifier si l'adresse e-mail ou le numéro de téléphone sont déjà utilisés
-    $checkEmailPhoneSql = "SELECT * FROM users WHERE mail = ? OR usersId IN (SELECT usersInfosId FROM usersInfos WHERE phone = ?)";
+    $checkEmailPhoneSql = "SELECT * FROM users WHERE (mail = ? OR usersId IN (SELECT usersInfosId FROM usersInfos WHERE phone = ?))";
+    if ($excludeUserId !== null) {
+        $checkEmailPhoneSql .= " AND usersId != ?"; /// exclure un id spécifique de la vérification
+    }
     $stmtCheckEmailPhone = $mysqli->prepare($checkEmailPhoneSql);
-    $stmtCheckEmailPhone->bind_param("ss", $mail, $phone);
+    if ($excludeUserId !== null) {
+        $stmtCheckEmailPhone->bind_param("ssi", $mail, $phone, $excludeUserId);
+    } else {
+        $stmtCheckEmailPhone->bind_param("ss", $mail, $phone);
+    }
     $stmtCheckEmailPhone->execute();
     $resultCheckEmailPhone = $stmtCheckEmailPhone->get_result();
 
