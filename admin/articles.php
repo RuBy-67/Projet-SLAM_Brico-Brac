@@ -6,7 +6,6 @@ error_reporting(E_ALL);
 require '../templates/header.php';
 require './dbadmin.php';
 // Activer le débogage des requêtes SQL
-mysqli_debug("d:t:O,/var/log/mysql-query.log");
 ///$user = $_SESSION['username'];
 ///$usergroup = $_SESSION['group'];
 /// if ($usergroup != "admin") {
@@ -22,25 +21,22 @@ mysqli_debug("d:t:O,/var/log/mysql-query.log");
 // Gérer la mise à jour d'un article
 if (isset($_POST['update'])) {
     $articleId = $_POST['article_id'];
-    $nom = $_POST['nom'];
-    $references = $_POST['references'];
-    $prixHT = $_POST['prixHT'];
-    $TVA = $_POST['TVA'];
-    $pourcentagePromotion = $_POST['pourcentagePromotion'];
-    $nouveaute = $_POST['nouveaute'];
+    $nom = $_POST['nom'][$articleId];
+    $references = $_POST['references'][$articleId];
+    $prixHT = $_POST['prixHT'][$articleId];
+    $TVA = $_POST['TVA'][$articleId];
+    $pourcentagePromotion = $_POST['pourcentagePromotion'][$articleId];
+    $nouveaute = $_POST['nouveaute'][$articleId];
 
     $updateArticleSql = "UPDATE articles 
-                        SET nom = ?, `references` = ?, prixHT = ?, TVA = ?, pourcentagePromotion = ?, nouveaute = ?
+                        SET nom = ?, references = ?, prixHT = ?, TVA = ?, pourcentagePromotion = ?, nouveaute = ?
                         WHERE articlesId = ?";
     $stmt = $mysqli->prepare($updateArticleSql);
     $stmt->bind_param("siiiiii", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $articleId);
     if ($stmt->execute()) {
-        exit();
-
-        // Mise à jour réussie, vous pouvez rediriger ou afficher un message de succès ici
+        echo '<p>Mise à jours réussis</p>';
     } else {
-        exit();
-        // Erreur lors de la mise à jour
+        echo '<p>Erreur lors de la mise à jour</p>';
     }
 }
 
@@ -51,17 +47,15 @@ if (isset($_POST['delete'])) {
     $deleteArticleSql = "DELETE FROM articles WHERE articlesId = ?";
     $stmt = $mysqli->prepare($deleteArticleSql);
     $stmt->bind_param("i", $articleIdToDelete);
-        if ($stmt->execute()) {
-        exit();
-        // Suppression réussie, vous pouvez rediriger ou afficher un message de succès ici
+    if ($stmt->execute()) {
+        echo '<p>Supression réussis</p>';
     } else {
-        exit();
-
-        // Erreur lors de la suppression
+        echo '<p>Echec Supression</p>';
     }
 }
+
+// Gérer l'ajout d'un article
 if (isset($_POST['add'])) {
-    // Récupération des données du formulaire
     $nom = $_POST['nom'];
     $references = $_POST['references'];
     $prixHT = $_POST['prixHT'];
@@ -69,22 +63,18 @@ if (isset($_POST['add'])) {
     $pourcentagePromotion = $_POST['pourcentagePromotion'];
     $nouveaute = $_POST['nouveaute'];
 
-    // Ajout articles
-    $insertArticleSql = "INSERT INTO articles (nom, `references`, prixHT, TVA, pourcentagePromotion, nouveaute) VALUES (?, ?, ?, ?, ?, ?)";
+    $insertArticleSql = "INSERT INTO articles (nom, references, prixHT, TVA, pourcentagePromotion, nouveaute) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $mysqli->prepare($insertArticleSql);
     $stmt->bind_param("siiiii", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute);
 
-    // Exécution de la requête
     if ($stmt->execute()) {
-        echo "L'article a été ajouté avec succès.";
-        exit();
+        echo '<p>article ajouté</p>';
     } else {
-        echo "Une erreur s'est produite lors de l'ajout de l'article.";
-        exit();
+        echo '<p>Erreurs lors de l\'ajout</p>';
     }
 }
 
-// Récupérez tous les articles de la table "Articles"
+// Récupérer tous les articles de la table "Articles"
 $selectArticlesSql = "SELECT * FROM articles";
 $result = $mysqli->query($selectArticlesSql);
 
@@ -101,33 +91,18 @@ if ($result) {
         echo '<th>Nouveauté</th>';
         echo '<th>Actions</th>';
         echo '</tr>';
-        ?>
-        <section>
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                <input type="text" name="nom" placeholder="Nom">
-                <input type="text" name="references" placeholder="Références">
-                <input type="number" name="prixHT" placeholder="Prix HT">
-                <input type="number" name="TVA" value="20">
-                <input type="number" name="pourcentagePromotion" placeholder="Pourcentage de promotion">
-                <select name="nouveaute">
-                    <option value="oui">Oui</option>
-                    <option value="non">Non</option>
-                </select>
-                <input type="submit" value="Ajouter l'article" name='add'>
-            </form>
-        </section>
-        <?php
+
         while ($row = $result->fetch_assoc()) {
             echo '<tr>';
-            echo '<td><input type="text" name="nom" value="' . $row['nom'] . '"></td>';
-            echo '<td><input type="text" name="references" value="' . $row['references'] . '"></td>';
-            echo '<td><input type="text" name="prixHT" value="' . $row['prixHT'] . '"></td>';
-            echo '<td><input type="text" name="TVA" value="' . $row['TVA'] . '"></td>';
-            echo '<td><input type="text" name="pourcentagePromotion" value="' . $row['pourcentagePromotion'] . '"></td>';
+            echo '<td><input type="text" name="nom[' . $row['articlesId'] . ']" value="' . $row['nom'] . '"></td>';
+            echo '<td><input type="text" name="references[' . $row['articlesId'] . ']" value="' . $row['references'] . '"></td>';
+            echo '<td><input type="text" name="prixHT[' . $row['articlesId'] . ']" value="' . $row['prixHT'] . '"></td>';
+            echo '<td><input type="text" name="TVA[' . $row['articlesId'] . ']" value="' . $row['TVA'] . '"></td>';
+            echo '<td><input type="text" name="pourcentagePromotion[' . $row['articlesId'] . ']" value="' . $row['pourcentagePromotion'] . '"></td>';
             echo '<td>';
-            echo '<select name="nouveaute">';
-            echo '<option value="1"' . ($row['nouveaute'] == 1 ? ' selected' : '') . '>Oui</option>';
-            echo '<option value="0"' . ($row['nouveaute'] == 0 ? ' selected' : '') . '>Non</option>';
+            echo '<select name="nouveaute[' . $row['articlesId'] . ']">';
+            echo '<option value="1" ' . ($row['nouveaute'] == 1 ? 'selected' : '') . '>Oui</option>';
+            echo '<option value="0" ' . ($row['nouveaute'] == 0 ? 'selected' : '') . '>Non</option>';
             echo '</select>';
             echo '</td>';
             echo '<td>';
@@ -141,6 +116,26 @@ if ($result) {
 
         echo '</table>';
         echo '</form>';
+        echo '<form method="post" action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '">';
+        echo '<tr>';
+        echo '<td><input type="text" name="nom" placeholder="Nom"></td>';
+        echo '<td><input type="text" name="references" placeholder="Références"></td>';
+        echo '<td><input type="text" name="prixHT" placeholder="Prix HT"></td>';
+        echo '<td><input type="text" name="TVA" value="20"></td>';
+        echo '<td><input type="text" name="pourcentagePromotion" placeholder="Pourcentage de promotion"></td>';
+        echo '<td>';
+        echo '<select name="nouveaute">';
+        echo '<option value="oui">Oui</option>';
+        echo '<option value="non">Non</option>';
+        echo '</select>';
+        echo '</td>';
+        echo '<td>';
+        echo '<input type="hidden" name="add" value="true">'; // Indicateur pour l'ajout
+        echo '<button type="submit">Ajouter</button>';
+        echo '</td>';
+        echo '</tr>';
+        echo '</form>';
+
     } else {
         echo "Aucun article n'a été trouvé.";
     }
@@ -148,6 +143,5 @@ if ($result) {
     echo "Une erreur s'est produite lors de la récupération des articles.";
 }
 
+require '../templates/footer.php';
 ?>
-
-<?php require '../templates/footer.php';
