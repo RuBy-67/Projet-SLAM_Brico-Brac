@@ -21,11 +21,24 @@ if (isset($_POST['add'])) {
     $pourcentagePromotion = $_POST['pourcentagePromotion'];
     $nouveaute = $_POST['nouveaute'];
 
-    // Appel de la fonction d'ajout
-    if (addArticle($mysqli, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute)) {
-        echo '<p>Article ajouté</p>';
+    // Vérifier si la référence existe déjà dans la base de données
+    $checkReferencesSql = "SELECT COUNT(*) FROM articles WHERE references = ?";
+    $stmt = $mysqli->prepare($checkReferencesSql);
+    $stmt->bind_param("i", $references);
+    $stmt->execute();
+    $stmt->bind_result($count);
+    $stmt->fetch();
+    $stmt->close();
+
+    if ($count > 0) {
+        echo '<p>La référence existe déjà. Veuillez en choisir une autre.</p>';
     } else {
-        echo '<p>Erreur lors de l\'ajout de l\'article</p>';
+        // Appel de la fonction d'ajout
+        if (addArticle($mysqli, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute)) {
+            echo '<p>Article ajouté</p>';
+        } else {
+            echo '<p>Erreur lors de l\'ajout de l\'article</p>';
+        }
     }
 }
 

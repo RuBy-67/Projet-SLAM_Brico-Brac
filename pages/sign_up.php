@@ -2,6 +2,7 @@
 session_start();
 require '../php/db.php';
 require '../templates/header.php';
+$group=1;
 ?>
 
 <!-- Slogan -->
@@ -27,10 +28,8 @@ if (isset($_POST['submit'])) {
     /// verification mdp
     if (!isStrongPassword($mdp)) {
         echo "Le mot de passe ne respecte pas les exigences.";
-        exit();
     } elseif ($mdp !== $mdp_confirm) {
         echo "Les mots de passe ne correspondent pas.";
-        exit();
     } else {
         //hachage de mot du passe
         $hashed_password = password_hash($mdp, PASSWORD_DEFAULT);
@@ -43,13 +42,12 @@ if (isset($_POST['submit'])) {
         $resultCheckEmailPhone = $stmtCheckEmailPhone->get_result();
         if ($resultCheckEmailPhone->num_rows > 0) {
             echo "L'adresse e-mail ou le numéro de téléphone est déjà utilisé.";
-            exit();
+            
         }
 
-
-        $insertUserSql = "INSERT INTO users (mail, password) VALUES (?, ?)";
+        $insertUserSql = "INSERT INTO users (mail, password, group) VALUES (?, ?, ?)";
         $stmt = $mysqli->prepare($insertUserSql);
-        $stmt->bind_param("ss", $mail, $hashed_password);
+        $stmt->bind_param("ssi", $mail, $hashed_password, $group);
         if ($stmt->execute()) {
             $userId = $stmt->insert_id;
 

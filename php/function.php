@@ -55,7 +55,7 @@ function isStrongPassword($password) {
 }
 
 
-///----------------------- SQL ---------------------------------///
+///----------------------- SQL ARTICLES ---------------------------------///
 
 function addArticle($mysqli, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute) {
     $insertArticleSql = "INSERT INTO articles (nom, `references`, prixHT, TVA, pourcentagePromotion, nouveaute) VALUES (?, ?, ?, ?, ?, ?)";
@@ -94,3 +94,44 @@ function deleteArticle($mysqli, $articleId) {
         return false;
     }
 }
+
+
+///----------------------- SQL USERS---------------------------------///
+function addUsers($mysqli, ) {
+    $insertArticleSql = "INSERT INTO  VALUES ()";
+    $stmt = $mysqli->prepare($insertArticleSql);
+    $stmt->bind_param("siiiii", );
+
+    if ($stmt->execute()) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function updateUsers($mysqli, ) {
+    $updateArticleSql = "UPDATE 
+                        SET 
+                        WHERE ";
+    $stmt = $mysqli->prepare($updateArticleSql);
+    $stmt->bind_param("siiiiii", );
+
+    if ($stmt->execute()) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function deleteUsers($mysqli, $articleId) {
+    $deleteArticleSql = "DELETE FROM  WHERE ";
+    $stmt = $mysqli->prepare($deleteArticleSql);
+    $stmt->bind_param("i", $articleId);
+
+    if ($stmt->execute()) {
+        return true;
+    } else {
+        return false;
+    }
+}
+///----------------------- SQL ---------------------------------///
