@@ -37,11 +37,17 @@ require '../php/functionSql.php';
     $rue = $_POST['rue'];
     $ville = $_POST['ville'];
     $telephone = $_POST['telephone'];
+
+    $password = generateRandomPassword();
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+
+
     $date = date("Y-m-d H:i:s");
 
     // Appel de la fonction d'ajout
-    if (addUsers($mysqli, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, $ville, $telephone)) {
-      echo '<p>Utilisateurs ajouté(e)</p>';
+    if (addUsers($mysqli, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, $ville, $telephone, $hashedpassword)) {
+      echo '<p>Utilisateurs ajouté(e) le mots de passe est :' . $password .'</p>';
     } else {
       echo '<p>Erreur lors de l\'ajout de l\'Utilisateurs</p>';
     }
@@ -107,8 +113,10 @@ require '../php/functionSql.php';
           <th>Prénoms</th>
           <th>groupe</th>
           <th>mails</th>
-          <th>Pays</th>
-          <th>Adresse</th>
+          <th>pays</th>
+          <th>numèros</th>
+          <th>rue</th>
+          <th>ville</th>
           <th>Téléphone</th>
           <th>Membre depuis</th>
         </tr>
@@ -168,7 +176,6 @@ require '../php/functionSql.php';
             <input type="text" name="ville" placeholder="ville" required>
             <input type="text" name="pays" placeholder="Pays" required>
             <input type="text" name="telephone" placeholder="Telephone" required>
-            <input type="password" name="mdp" placeholder="Mots de passe" required>
             <button type="submit" name="add">➕</button>
           </div>
         </form>

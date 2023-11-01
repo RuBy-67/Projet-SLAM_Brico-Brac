@@ -69,7 +69,7 @@ function updateArticle($mysqli, $articleId, $nom, $references, $prixHT, $TVA, $p
 /**
  * Supprime un enregistrement d'une table de la base de données en utilisant son ID.
  *
- * @param mysqli $mysqli Une instance de la connexion MySQLi à la base de données.
+ * @param  $mysqli Une instance de la connexion MySQLi à la base de données.
  * @param string $table Le nom de la table cible.
  * @param string $idField Le nom du champ ID dans la table.
  * @param int $recordId L'ID de l'enregistrement à supprimer.
@@ -94,11 +94,11 @@ function updateArticle($mysqli, $articleId, $nom, $references, $prixHT, $TVA, $p
  *
  * @return bool Retourne true en cas de succès de l'ajout, sinon retourne false.
  */
-function addUsers($mysqli, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, $ville, $telephone) {
+function addUsers($mysqli, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, $ville, $telephone, $hashedpassword) {
     // Requête SQL pour insérer un nouvel utilisateur dans la table "users" (contenant group, mail)
-    $insertUsersSql = "INSERT INTO users (`group`, mail) VALUES (?, ?)";
+    $insertUsersSql = "INSERT INTO users (`group`, mail, password) VALUES (?, ?,?)";
     $stmtUsers = $mysqli->prepare($insertUsersSql);
-    $stmtUsers->bind_param("is", $group, $mail);
+    $stmtUsers->bind_param("iss", $group, $mail,  $hashedpassword);
 
     // Exécutez la première insertion dans la table "users"
     $successUsers = $stmtUsers->execute();
@@ -109,7 +109,7 @@ function addUsers($mysqli, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, 
         // Requête SQL pour insérer le reste des informations de l'utilisateur dans la table "usersInfos"
         $insertUsersInfosSql = "INSERT INTO usersInfos (usersInfosId, name, surname, states, number, street, city, phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmtUsersInfos = $mysqli->prepare($insertUsersInfosSql);
-        $stmtUsersInfos->bind_param("isssisss", $userId, $nom, $prenom, $pays, $numeros, $rue, $ville, $telephone);
+        $stmtUsersInfos->bind_param("isssissss", $userId, $nom, $prenom, $pays, $numeros, $rue, $ville, $telephone);
 
         // Exécutez la deuxième insertion dans la table "usersInfos"
         $successUsersInfos = $stmtUsersInfos->execute();
