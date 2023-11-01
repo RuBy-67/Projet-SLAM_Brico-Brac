@@ -37,16 +37,12 @@ require '../php/functionSql.php';
     $rue = $_POST['rue'];
     $ville = $_POST['ville'];
     $telephone = $_POST['telephone'];
-
     $password = generateRandomPassword();
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-
-
     $date = date("Y-m-d H:i:s");
 
     // Appel de la fonction d'ajout
-    if (addUsers($mysqli, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, $ville, $telephone, $hashedpassword)) {
+    if (addUsers($mysqli, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, $ville, $telephone, $hashedPassword )) {
       echo '<p>Utilisateurs ajouté(e) le mots de passe est :' . $password .'</p>';
     } else {
       echo '<p>Erreur lors de l\'ajout de l\'Utilisateurs</p>';
