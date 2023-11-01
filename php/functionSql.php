@@ -94,7 +94,7 @@ function updateArticle($mysqli, $articleId, $nom, $references, $prixHT, $TVA, $p
  *
  * @return bool Retourne true en cas de succès de l'ajout, sinon retourne false.
  */
-function addUsers($mysqli, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, $ville, $telephone, $hashedpassword) {
+function addUsers($mysqli, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, $ville, $telephone, $hashedpassword,$date) {
     // Requête SQL pour insérer un nouvel utilisateur dans la table "users" (contenant group, mail)
     $insertUsersSql = "INSERT INTO users (`group`, mail, password) VALUES (?, ?,?)";
     $stmtUsers = $mysqli->prepare($insertUsersSql);
@@ -107,9 +107,9 @@ function addUsers($mysqli, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, 
         $userId = $stmtUsers->insert_id;
 
         // Requête SQL pour insérer le reste des informations de l'utilisateur dans la table "usersInfos"
-        $insertUsersInfosSql = "INSERT INTO usersInfos (usersInfosId, name, surname, states, number, street, city, phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $insertUsersInfosSql = "INSERT INTO usersInfos (usersInfosId, name, surname, states, number, street, city, phone, accountCreation) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
         $stmtUsersInfos = $mysqli->prepare($insertUsersInfosSql);
-        $stmtUsersInfos->bind_param("isssisss", $userId, $nom, $prenom, $pays, $numeros, $rue, $ville, $telephone);
+        $stmtUsersInfos->bind_param("isssissss", $userId, $nom, $prenom, $pays, $numeros, $rue, $ville, $telephone,$date);
 
         // Exécutez la deuxième insertion dans la table "usersInfos"
         $successUsersInfos = $stmtUsersInfos->execute();
