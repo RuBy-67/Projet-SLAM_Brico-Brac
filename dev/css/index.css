@@ -20,10 +20,10 @@ h6 {
     font-title;
 }
 
-h1,
-h2 {
+h1 {
     @apply text-white;
 }
+h2,
 h3,
 h4,
 h5,
@@ -32,19 +32,24 @@ h6 {
 }
 
 h1 {
-    @apply text-h1;
+    @apply md:text-h1
+    text-h2;
 }
 h2 {
-    @apply text-h2;
+    @apply md:text-h2
+    text-h3;
 }
 h3 {
-    @apply text-h3;
+    @apply md:text-h3
+    text-h4;
 }
 h4 {
-    @apply text-h4;
+    @apply md:text-h4
+    text-h5;
 }
 h5 {
-    @apply text-h5
+    @apply md:text-h5
+    text-h6
     text-black;
 }
 h6 {
@@ -66,7 +71,20 @@ a {
     rounded-md;
 }
 
-.bnt-footer {
+.btn-footer {
     @apply w-14
     h-14;
+}
+
+.card {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.card .img-container {
+    background: #ededed;
+}
+.card img {
+    mix-blend-mode: multiply;
 }
