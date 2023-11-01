@@ -114,7 +114,7 @@ require '../templates/header.php';
                                 </select>
                             </td>
                             <td>
-                                <input type="text" name="article_id" value="<?= $row['articlesId']; ?>"> <!-- Pour update -->
+                                <input type="hidden" name="article_id" value="<?= $row['articlesId']; ?>"> <!-- Pour update -->
                                 <button type="submit" name="update">🪄</button>
                                 <input type="hidden" name="article_id_to_delete" value="<?= $row['articlesId']; ?>">
                                 <!-- Pour suppression -->
