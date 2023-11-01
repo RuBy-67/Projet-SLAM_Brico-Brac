@@ -1,2 +1,3 @@
 php/db.php
 node_modules
+admin/dbadmin.php

@@ -38,3 +38,44 @@ function isStrongPassword($password) {
 
     return true;
 }
+
+
+///----------------------- SQL ---------------------------------///
+
+function addArticle($mysqli, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute) {
+    $insertArticleSql = "INSERT INTO articles (nom, `references`, prixHT, TVA, pourcentagePromotion, nouveaute) VALUES (?, ?, ?, ?, ?, ?)";
+    $stmt = $mysqli->prepare($insertArticleSql);
+    $stmt->bind_param("siiiii", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute);
+
+    if ($stmt->execute()) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function updateArticle($mysqli, $articleId, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute) {
+    $updateArticleSql = "UPDATE articles 
+                        SET nom = ?, `references` = ?, prixHT = ?, TVA = ?, pourcentagePromotion = ?, nouveaute = ?
+                        WHERE articlesId = ?";
+    $stmt = $mysqli->prepare($updateArticleSql);
+    $stmt->bind_param("siiiiii", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $articleId);
+
+    if ($stmt->execute()) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function deleteArticle($mysqli, $articleId) {
+    $deleteArticleSql = "DELETE FROM articles WHERE articlesId = ?";
+    $stmt = $mysqli->prepare($deleteArticleSql);
+    $stmt->bind_param("i", $articleId);
+
+    if ($stmt->execute()) {
+        return true;
+    } else {
+        return false;
+    }
+}
