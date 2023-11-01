@@ -12,6 +12,7 @@ module.exports = {
                 lightGrey: "#616161",
                 darkGrey: "#2C2C2C",
                 primary: "#12465A",
+                secondary: "#F0972D",
             },
             fontSize: {
                 h1: "56px",
