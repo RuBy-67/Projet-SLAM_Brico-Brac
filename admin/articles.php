@@ -5,7 +5,13 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require '../templates/header.php';
 require './dbadmin.php';
+?>
+<!-- Slogan -->
+<section class="bg-top-banner h-[678px] flex items-center mb-8">
+    <h2 class="container w-1/2 text-white text-center">Connexion</h2>
+</section>
 
+<?php
 // Récupérer tous les articles de la table "Articles"
 $selectArticlesSql = "SELECT * FROM articles";
 $result = $mysqli->query($selectArticlesSql);
@@ -40,7 +46,7 @@ if ($result) {
                 echo '</select>';
                 echo '</td>';
                 echo '<td>';
-                echo '<input type="text" name="article_id" value="' . $row['articlesId'] . '">';/// Pour update
+                echo '<input type="text" name="article_id" value="' . $row['articlesId'] . '">'; /// Pour update
                 echo '<button type="submit" name="update">Update</button>';
                 echo '<input type="hidden" name="article_id_to_delete" value="' . $row['articlesId'] . '">'; //pour suppression
                 echo '<button type="submit" name="delete">Delete</button>';
@@ -85,33 +91,33 @@ foreach ($_POST as $key => $value) {
         $TVA = $_POST['TVA'];
         $pourcentagePromotion = $_POST['pourcentagePromotion'];
         $nouveaute = $_POST['nouveaute'];
-    
+
         $sql = "UPDATE articles SET nom=?, `references`=?, prixHT=?, TVA=?, pourcentagePromotion=?, nouveaute=? WHERE articlesId=?";
         $stmt = $mysqli->prepare($sql);
         $stmt->bind_param("siiiiii", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $article_id);
-    
+
         if ($stmt->execute()) {
             echo "Mise à jour effectuée avec succès !";
         } else {
             echo "Erreur lors de la mise à jour : " . $stmt->error;
         }
     }
-    
+
 
     if (strpos($key, 'delete') === 0) {
         $article_id_to_delete = $_POST['article_id_to_delete'];
-    
+
         $sql = "DELETE FROM articles WHERE articlesId = ?";
         $stmt = $mysqli->prepare($sql);
         $stmt->bind_param("i", $article_id_to_delete);
-    
+
         if ($stmt->execute()) {
             echo "Ligne supprimée avec succès.";
         } else {
             echo "Échec lors de la suppression : " . $stmt->error;
         }
     }
-    
+
 
     if (strpos($key, 'update_') === 0) {
         $articleId = $_POST['article_id'];
@@ -121,7 +127,7 @@ foreach ($_POST as $key => $value) {
         $TVA = $_POST['TVA'];
         $pourcentagePromotion = $_POST['pourcentagePromotion'];
         $nouveaute = $_POST['nouveaute'];
-    
+
         $updateArticleSql = "UPDATE articles 
                             SET nom = ?, `references` = ?, prixHT = ?, TVA = ?, pourcentagePromotion = ?, nouveaute = ?
                             WHERE articlesId = ?";
