@@ -119,11 +119,11 @@ if ($result) {
             <h3>Ajouter un nouvel article</h3>
             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                 <div>
-                    <input type="text" name="nom" placeholder="Nom">
-                    <input type="text" name="references" placeholder="Références">
-                    <input type="text" name="prixHT" placeholder="Prix HT">
-                    <input type="text" name="TVA" value="20">
-                    <input type="text" name="pourcentagePromotion" placeholder="Pourcentage de promotion">
+                    <input type="text" name="nom" placeholder="Nom" required>
+                    <input type="text" name="references" placeholder="Références"required>
+                    <input type="text" name="prixHT" placeholder="Prix HT"required>
+                    <input type="text" name="TVA" value="20"required>
+                    <input type="text" name="pourcentagePromotion" placeholder="Pourcentage de promotion"required>
                     <select name="nouveaute">
                         <option value="1">Oui</option>
                         <option value="0">Non</option>
