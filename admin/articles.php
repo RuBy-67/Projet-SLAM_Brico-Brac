@@ -86,31 +86,35 @@ if ($result) {
                 <th>Actions</th>
             </tr>
             <?php
-
             while ($row = $result->fetch_assoc()) {
-                echo '<tr>';
-                echo '<form method="post" action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '">';
-                echo '<td><input type="text" name="nom" value="' . $row['nom'] . '"></td>';
-                echo '<td><input type="text" name="references" value="' . $row['references'] . '" readonly></td>';
-                echo '<td><input type="text" name="prixHT" value="' . $row['prixHT'] . '"></td>';
-                echo '<td><input type="text" name="TVA" value="' . $row['TVA'] . '"></td>';
-                echo '<td><input type="text" name="pourcentagePromotion" value="' . $row['pourcentagePromotion'] . '"></td>';
-                echo '<td>';
-                echo '<select name="nouveaute">';
-                echo '<option value="1" ' . ($row['nouveaute'] == 1 ? 'selected' : '') . '>Oui</option>';
-                echo '<option value="0" ' . ($row['nouveaute'] == 0 ? 'selected' : '') . '>Non</option>';
-                echo '</select>';
-                echo '</td>';
-                echo '<td>';
-                echo '<input type="text" name="article_id" value="' . $row['articlesId'] . '">'; /// Pour update
-                echo '<button type="submit" name="update">🪄</button>';
-                echo '<input type="hidden" name="article_id_to_delete" value="' . $row['articlesId'] . '">'; //pour suppression
-                echo '<button type="submit" name="delete">🗑️</button>';
-                echo '</td>';
-                echo '</form>';
-                echo '</tr>';
+                ?>
+                <tr>
+                    <form method="post" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                        <td><input type="text" name="nom" value="<?= $row['nom']; ?>"></td>
+                        <td><input type="text" name="references" value="<?= $row['references']; ?>" readonly></td>
+                        <td><input type="text" name="prixHT" value="<?= $row['prixHT']; ?>"></td>
+                        <td><input type="text" name="TVA" value="<?= $row['TVA']; ?>"></td>
+                        <td><input type="text" name="pourcentagePromotion" value="<?= $row['pourcentagePromotion']; ?>"></td>
+                        <td>
+                            <select name="nouveaute">
+                                <option value="1" <?= ($row['nouveaute'] == 1 ? 'selected' : ''); ?>>Oui</option>
+                                <option value="0" <?= ($row['nouveaute'] == 0 ? 'selected' : ''); ?>>Non</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="text" name="article_id" value="<?= $row['articlesId']; ?>"> <!-- Pour update -->
+                            <button type="submit" name="update">🪄</button>
+                            <input type="hidden" name="article_id_to_delete" value="<?= $row['articlesId']; ?>">
+                            <!-- Pour suppression -->
+                            <button type="submit" name="delete">🗑️</button>
+                        </td>
+                    </form>
+                </tr>
+                <?php
             }
             ?>
+
+
         </table>
         <div>
             <h3>Ajouter un nouvel article</h3>

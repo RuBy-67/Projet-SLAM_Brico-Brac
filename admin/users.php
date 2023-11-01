@@ -74,40 +74,42 @@ if ($result) {
         <th>Membre depuis</th>
       </tr>
       <?php
-
       while ($row = $result->fetch_assoc()) {
-        echo '<tr>';
-        echo '<form method="post" action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '">';
-        echo '<td><input type="text" name="nom" value="' . $row['name'] . '"></td>';
-        echo '<td><input type="text" name="prenom" value="' . $row['surname'] . '"></td>';
-        echo '<td>';
-        echo '<select name="group">';
-        echo '<option value="0" ' . ($row['group'] == 0 ? 'Users' : '') . '>Users</option>';
-        echo '<option value="1" ' . ($row['group'] == 1 ? 'vendeurs' : '') . '>Vendeurs</option>';
-        echo '<option value="2" ' . ($row['group'] == 2 ? 'Admin' : '') . '>Admin</option>';
-        echo '</select>';
-        echo '</td>';
-        echo '<td><input type="text" name="mail" value="' . $row['mail'] . '"></td>';
-        echo '<td><input type="text" name="prenom" value="' . $row['surname'] . '"></td>';
-        echo '<td><input type="text" name="pays" value="' . $row['states'] . '"></td>';
-        echo '<td><input type="text" name="adresse" value="' . $row['number'] . ' ' . $row['street'] . ' ' . $row['city'] . '"></td>';
-        echo '<td><input type="text" name="telephone" value="' . $row['phone'] . '"></td>';
-        echo '<td><input type="text" name="accountCreation" value="' . $row['accountCreation'] . '" readonly ></td>';
+        ?>
+        <tr>
+          <form method="post" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            <td><input type="text" name="nom" value="<?= $row['name']; ?>"></td>
+            <td><input type="text" name="prenom" value="<?= $row['surname']; ?>"></td>
+            <td>
+              <select name="group">
+                <option value="0" <?= ($row['group'] == 0 ? 'selected' : ''); ?>>Users</option>
+                <option value="1" <?= ($row['group'] == 1 ? 'selected' : ''); ?>>Vendeurs</option>
+                <option value="2" <?= ($row['group'] == 2 ? 'selected' : ''); ?>>Admin</option>
+              </select>
+            </td>
+            <td><input type="text" name="mail" value="<?= $row['mail']; ?>"></td>
+            <td><input type="text" name="prenom" value="<?= $row['surname']; ?>"></td>
+            <td><input type="text" name="pays" value="<?= $row['states']; ?>"></td>
+            <td><input type="text" name="adresse" value="<?= $row['number'] . ' ' . $row['street'] . ' ' . $row['city']; ?>">
+            </td>
+            <td><input type="text" name="telephone" value="<?= $row['phone']; ?>"></td>
+            <td><input type="text" name="accountCreation" value="<?= $row['accountCreation']; ?>" readonly></td>
 
-
-        echo '<td>';
-        echo '<input type="text" name="article_id" value="' . $row['usersId'] . '">'; /// Pour update
-        echo '<button type="submit" name="update">🪄</button>';
-        echo '<input type="hidden" name="article_id_to_delete" value="' . $row['usersId'] . '">'; //pour suppression
-        echo '<button type="submit" name="delete">🗑️</button>';
-        echo '<input type="hidden" name="mdp to reset" value="' . $row['usersId'] . '">'; //pour reset
-        echo '<button type="submit" name="mdp">Reinitialiser le mdp</button>';
-        echo '</td>';
-        echo '</form>';
-        echo '</tr>';
+            <td>
+              <input type="text" name="article_id" value="<?= $row['usersId']; ?>"> <!-- Pour update -->
+              <button type="submit" name="update">🪄</button>
+              <input type="hidden" name="article_id_to_delete" value="<?= $row['usersId']; ?>"> <!-- Pour suppression -->
+              <button type="submit" name="delete">🗑️</button>
+              <input type="hidden" name="mdp to reset" value="<?= $row['usersId']; ?>"> <!-- Pour reset -->
+              <button type="submit" name="mdp">Réinitialiser le mot de passe</button>
+            </td>
+          </form>
+        </tr>
+        <?php
       }
       ?>
-    </table> 
+
+    </table>
     <div>
       <h3>Ajouter un nouvel Users</h3>
       <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
