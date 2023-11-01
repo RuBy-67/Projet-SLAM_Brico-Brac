@@ -10,6 +10,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/php/function.php')
         <div class="flex lg:flex-row flex-col items-center">
                 <div class="flex items-center sm:mb-0 mb-4">
                 <?php require($_SERVER['DOCUMENT_ROOT'].'/templates/menu-nav.php') ?>
+                <a href="/pages/cart.php"><span class="material-symbols-outlined">shopping_cart</span></a>
             </div>
             <div class="flex sm:flex-row flex-col items-center">
                 <a href="/pages/sign_in.php" class="btn sm:mr-4 sm:mb-0 mb-4">Se connnecter</a>
