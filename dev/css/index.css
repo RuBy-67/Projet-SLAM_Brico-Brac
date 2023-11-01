@@ -88,3 +88,8 @@ a {
 .card img {
     mix-blend-mode: multiply;
 }
+
+input {
+    border: 1px solid gray;
+    @apply p-4 rounded;
+}

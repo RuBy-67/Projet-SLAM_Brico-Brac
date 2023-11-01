@@ -18,11 +18,11 @@ $products = $mysqli->query('SELECT * FROM articles');
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <title>Brico'brac - Produits</title>
 </head>
-    <body>
+<body>
     <?php require '../templates/header.php'; ?>
         <!-- Slogan -->
         <section class="bg-top-banner  h-[400px] flex items-center mb-16">
-            <h2 class="container w-1/2 text-white text-center mt-20">Nos Produits</h2>
+            <h2 class="container sm:w-1/2 text-white text-center sm:mt-20 mt-52">Nos Produits</h2>
         </section>
         <?php if ($products->num_rows > 0) : ?>
             <section class="container grid gap-x-2.5 gap-y-8 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 mb-16 justify-items-center" >

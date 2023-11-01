@@ -32,14 +32,14 @@ $promotions = $mysqli->query('SELECT * FROM articles WHERE pourcentagePromotion 
     <?php require($_SERVER['DOCUMENT_ROOT'].'/templates/header.php') ?>
     <!-- Slogan -->
     <section class="bg-top-banner  h-[678px] flex items-center mb-8">
-        <h1 class="container lg:w-1/2 text-white text-center xl:mt-0 md:mt-18 mt-28">
+        <h1 class="container lg:w-1/2 text-white text-center xl:mt-0 md:mt-18 mt-52">
             Bienvenue sur Brico’brac ! <br />
             La référence du magasin de bricolage près de chez vous !
         </h1>
     </section>
     <?php if ($new_product->num_rows > 0) { ?>
         <section class="mb-16 container flex flex-col items-center">
-            <h2>Les nouveautés</h2>
+            <h2 class="mb-8">Les nouveautés</h2>
             <div id="new-slider" class="splide container" aria-label="Splide Basic HTML Example">
                 <div class="splide__track">
                     <ul class="splide__list">
@@ -55,7 +55,7 @@ $promotions = $mysqli->query('SELECT * FROM articles WHERE pourcentagePromotion 
     <?php }; ?>
     <?php if ($promotions->num_rows > 3) { ?> 
         <section class="mb-28 container flex flex-col items-center">
-            <h2>Les nouveautés</h2>
+            <h2 class="mb-8">Les incontournables</h2>
             <div id="promotion-slider" class="splide container" aria-label="Splide Basic HTML Example">
                 <div class="splide__track">
                     <ul class="splide__list">
