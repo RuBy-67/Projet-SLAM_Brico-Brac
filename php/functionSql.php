@@ -107,7 +107,7 @@ function addUsers($mysqli, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, 
         $userId = $stmtUsers->insert_id;
 
         // Requête SQL pour insérer le reste des informations de l'utilisateur dans la table "usersInfos"
-        $insertUsersInfosSql = "INSERT INTO usersInfos (userId, nom, prenom, pays, numeros, rue, ville, telephone) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $insertUsersInfosSql = "INSERT INTO usersInfos (usersInfosId, nom, prenom, pays, numeros, rue, ville, telephone) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmtUsersInfos = $mysqli->prepare($insertUsersInfosSql);
         $stmtUsersInfos->bind_param("isssisss", $userId, $nom, $prenom, $pays, $numeros, $rue, $ville, $telephone);
 
@@ -152,7 +152,7 @@ function updateUsers($mysqli, $userId, $nom, $prenom, $group, $mail, $pays, $num
     // Mettre à jour la table "usersInfos" 
     $updateUsersInfosSql = "UPDATE usersInfos
                             SET nom = ?, prenom = ?, pays = ?, numeros = ?, rue = ?, ville = ?, telephone = ?
-                            WHERE userId = ?";
+                            WHERE usersInfosId = ?";
     $stmtUsersInfos = $mysqli->prepare($updateUsersInfosSql);
     $stmtUsersInfos->bind_param("sssisssi", $nom, $prenom, $pays, $numeros, $rue, $ville, $telephone, $userId);
 

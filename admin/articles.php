@@ -2,6 +2,7 @@
 session_start();
 require './dbadmin.php';
 require '../templates/header.php';
+require '../php/functionSql.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
