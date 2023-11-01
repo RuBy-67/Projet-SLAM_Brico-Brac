@@ -2,7 +2,7 @@
 session_start();
 require '../php/db.php';
 require '../templates/header.php';
-$group=1;
+$group=0;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
