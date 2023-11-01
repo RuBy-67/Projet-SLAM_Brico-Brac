@@ -109,7 +109,7 @@ function addUsers($mysqli, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, 
         // Requête SQL pour insérer le reste des informations de l'utilisateur dans la table "usersInfos"
         $insertUsersInfosSql = "INSERT INTO usersInfos (usersInfosId, name, surname, states, number, street, city, phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmtUsersInfos = $mysqli->prepare($insertUsersInfosSql);
-        $stmtUsersInfos->bind_param("isssiss", $userId, $nom, $prenom, $pays, $numeros, $rue, $ville, $telephone);
+        $stmtUsersInfos->bind_param("isssisss", $userId, $nom, $prenom, $pays, $numeros, $rue, $ville, $telephone);
 
         // Exécutez la deuxième insertion dans la table "usersInfos"
         $successUsersInfos = $stmtUsersInfos->execute();
