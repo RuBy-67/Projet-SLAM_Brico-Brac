@@ -1,6 +1,7 @@
 <?php
 ///----------------------- SQL ARTICLES ---------------------------------///
-function deleteRecord($mysqli, $table, $idField, $recordId) {
+function deleteRecord($mysqli, $table, $idField, $recordId)
+{
     // Requête SQL pour supprimer l'enregistrement de la table spécifiée en utilisant l'ID
     $deleteSql = "DELETE FROM $table WHERE $idField = ?";
     $stmt = $mysqli->prepare($deleteSql);
@@ -12,7 +13,8 @@ function deleteRecord($mysqli, $table, $idField, $recordId) {
         return false; // Échec de la suppression
     }
 }
-function checkEmailPhoneExists($mysqli, $mail, $phone) {
+function checkEmailPhoneExists($mysqli, $mail, $phone)
+{
     // Requête SQL pour vérifier si l'adresse e-mail ou le numéro de téléphone sont déjà utilisés
     $checkEmailPhoneSql = "SELECT * FROM users WHERE mail = ? OR usersId IN (SELECT usersInfosId FROM usersInfos WHERE phone = ?)";
     $stmtCheckEmailPhone = $mysqli->prepare($checkEmailPhoneSql);
@@ -43,15 +45,16 @@ function checkEmailPhoneExists($mysqli, $mail, $phone) {
  *
  * @return bool Retourne true en cas de succès de l'ajout, sinon retourne false.
  */
-function addUsers($mysqli, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, $ville, $telephone, $hashedpassword,$date) {
+function addUsers($mysqli, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, $ville, $telephone, $hashedpassword, $date)
+{
     if (checkEmailPhoneExists($mysqli, $mail, $numeros)) {
         return false;
     }
-    
+
     // Requête SQL pour insérer un nouvel utilisateur dans la table "users" (contenant group, mail)
     $insertUsersSql = "INSERT INTO users (`group`, mail, password) VALUES (?, ?,?)";
     $stmtUsers = $mysqli->prepare($insertUsersSql);
-    $stmtUsers->bind_param("iss", $group, $mail,  $hashedpassword);
+    $stmtUsers->bind_param("iss", $group, $mail, $hashedpassword);
 
     // Exécutez la première insertion dans la table "users"
     $successUsers = $stmtUsers->execute();
@@ -62,13 +65,13 @@ function addUsers($mysqli, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, 
         // Requête SQL pour insérer le reste des informations de l'utilisateur dans la table "usersInfos"
         $insertUsersInfosSql = "INSERT INTO usersInfos (usersInfosId, name, surname, states, number, street, city, phone, accountCreation) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
         $stmtUsersInfos = $mysqli->prepare($insertUsersInfosSql);
-        $stmtUsersInfos->bind_param("isssissss", $userId, $nom, $prenom, $pays, $numeros, $rue, $ville, $telephone,$date);
+        $stmtUsersInfos->bind_param("isssissss", $userId, $nom, $prenom, $pays, $numeros, $rue, $ville, $telephone, $date);
 
         // Exécutez la deuxième insertion dans la table "usersInfos"
         $successUsersInfos = $stmtUsersInfos->execute();
 
         if ($successUsersInfos) {
-            return true; 
+            return true;
         } else {
             return false; // Échec de l'ajout dans la table "usersInfos"
         }
@@ -91,7 +94,8 @@ function addUsers($mysqli, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, 
  * @return bool Retourne true en cas de succès de l'ajout, sinon retourne false.
  */
 
-function addArticle($mysqli, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute) {
+function addArticle($mysqli, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute)
+{
     $insertArticleSql = "INSERT INTO articles (nom, `references`, prixHT, TVA, pourcentagePromotion, nouveaute) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $mysqli->prepare($insertArticleSql);
     $stmt->bind_param("siiiii", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute);
@@ -117,7 +121,8 @@ function addArticle($mysqli, $nom, $references, $prixHT, $TVA, $pourcentagePromo
  *
  * @return bool Retourne true en cas de succès de la mise à jour, sinon retourne false.
  */
-function updateArticle($mysqli, $articleId, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute) {
+function updateArticle($mysqli, $articleId, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute)
+{
     $updateArticleSql = "UPDATE articles 
                         SET nom = ?, `references` = ?, prixHT = ?, TVA = ?, pourcentagePromotion = ?, nouveaute = ?
                         WHERE articlesId = ?";
@@ -160,7 +165,8 @@ function updateArticle($mysqli, $articleId, $nom, $references, $prixHT, $TVA, $p
  *
  * @return bool Retourne true en cas de succès de la mise à jour, sinon retourne false.
  */
-function updateUsers($mysqli, $userId, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, $ville, $telephone) {
+function updateUsers($mysqli, $userId, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, $ville, $telephone)
+{
     // Mettre à jour la table "users" 
     $updateUsersSql = "UPDATE users
                       SET `group` = ?, mail = ?
@@ -194,11 +200,12 @@ function updateUsers($mysqli, $userId, $nom, $prenom, $group, $mail, $pays, $num
  *
  * @return mixed Retourne le nouveau mot de passe en clair s'il a été réinitialisé avec succès, sinon retourne false en cas d'échec.
  */
-function resetMdp($mysqli, $userId) {
+function resetMdp($mysqli, $userId)
+{
     $nouveauMdp = generateRandomPassword();
     $hashedMdp = password_hash($nouveauMdp, PASSWORD_DEFAULT);
     $query = "UPDATE users SET password = ? WHERE usersId = ?";
-    
+
     if ($stmt = $mysqli->prepare($query)) {
         $stmt->bind_param("si", $hashedMdp, $userId);
         if ($stmt->execute()) {
@@ -209,7 +216,7 @@ function resetMdp($mysqli, $userId) {
             return false;
         }
     }
-    
+
     return false;
 }
 ///----------------------- SQL ---------------------------------///
