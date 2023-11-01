@@ -8,7 +8,7 @@ require './dbadmin.php';
 ?>
 <!-- Slogan -->
 <section class="bg-top-banner h-[678px] flex items-center mb-8">
-    <h2 class="container w-1/2 text-white text-center">Connexion</h2>
+    <h2 class="container w-1/2 text-white text-center">Gestion des Articles</h2>
 </section>
 
 <?php
