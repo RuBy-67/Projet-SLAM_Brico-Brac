@@ -96,7 +96,7 @@ function updateArticle($mysqli, $articleId, $nom, $references, $prixHT, $TVA, $p
  */
 function addUsers($mysqli, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, $ville, $telephone) {
     // Requête SQL pour insérer un nouvel utilisateur dans la table "users" (contenant group, mail)
-    $insertUsersSql = "INSERT INTO users (group, mail) VALUES (?, ?)";
+    $insertUsersSql = "INSERT INTO users (`group`, mail) VALUES (?, ?)";
     $stmtUsers = $mysqli->prepare($insertUsersSql);
     $stmtUsers->bind_param("is", $group, $mail);
 

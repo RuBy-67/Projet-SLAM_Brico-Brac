@@ -60,7 +60,7 @@ $group=0;
             
         }
 
-        $insertUserSql = "INSERT INTO users (mail, password, group) VALUES (?, ?, ?)";
+        $insertUserSql = "INSERT INTO users (mail, password, `group`) VALUES (?, ?, ?)";
         $stmt = $mysqli->prepare($insertUserSql);
         $stmt->bind_param("ssi", $mail, $hashed_password, $group);
         if ($stmt->execute()) {
