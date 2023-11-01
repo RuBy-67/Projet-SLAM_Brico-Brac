@@ -80,61 +80,60 @@ $result = $mysqli->query($selectArticlesSql);
 
 if ($result) {
     if ($result->num_rows > 0) {
-        echo '<form method="post" action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '">';
-        echo '<table>';
-        echo '<tr>';
-        echo '<th>Nom</th>';
-        echo '<th>Références</th>';
-        echo '<th>Prix HT</th>';
-        echo '<th>TVA</th>';
-        echo '<th>Pourcentage Promotion</th>';
-        echo '<th>Nouveauté</th>';
-        echo '<th>Actions</th>';
-        echo '</tr>';
+        ?>
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            <table>
+                <tr>
+                    <th>Nom</th>
+                    <th>Références</th>
+                    <th>Prix HT</th>
+                    <th>TVA</th>
+                    <th>Pourcentage Promotion</th>
+                    <th>Nouveauté</th>
+                    <th>Actions</th>
+                </tr>
+                <?php
 
-        while ($row = $result->fetch_assoc()) {
-            echo '<tr>';
-            echo '<td><input type="text" name="nom[' . $row['articlesId'] . ']" value="' . $row['nom'] . '"></td>';
-            echo '<td><input type="text" name="references[' . $row['articlesId'] . ']" value="' . $row['references'] . '"></td>';
-            echo '<td><input type="text" name="prixHT[' . $row['articlesId'] . ']" value="' . $row['prixHT'] . '"></td>';
-            echo '<td><input type="text" name="TVA[' . $row['articlesId'] . ']" value="' . $row['TVA'] . '"></td>';
-            echo '<td><input type="text" name="pourcentagePromotion[' . $row['articlesId'] . ']" value="' . $row['pourcentagePromotion'] . '"></td>';
-            echo '<td>';
-            echo '<select name="nouveaute[' . $row['articlesId'] . ']">';
-            echo '<option value="1" ' . ($row['nouveaute'] == 1 ? 'selected' : '') . '>Oui</option>';
-            echo '<option value="0" ' . ($row['nouveaute'] == 0 ? 'selected' : '') . '>Non</option>';
-            echo '</select>';
-            echo '</td>';
-            echo '<td>';
-            echo '<input type="hidden" name="article_id" value="' . $row['articlesId'] . '">';
-            echo '<button type="submit" name="update">Update</button>';
-            echo '<button type="submit" name="delete">Delete</button>';
-            echo '<input type="hidden" name="article_id_to_delete" value="' . $row['articlesId'] . '">'; // Pour la suppression
-            echo '</td>';
-            echo '</tr>';
-        }
+                while ($row = $result->fetch_assoc()) {
+                    echo '<tr>';
+                    echo '<td><input type="text" name="nom[' . $row['articlesId'] . ']" value="' . $row['nom'] . '"></td>';
+                    echo '<td><input type="text" name="references[' . $row['articlesId'] . ']" value="' . $row['references'] . '"></td>';
+                    echo '<td><input type="text" name="prixHT[' . $row['articlesId'] . ']" value="' . $row['prixHT'] . '"></td>';
+                    echo '<td><input type="text" name="TVA[' . $row['articlesId'] . ']" value="' . $row['TVA'] . '"></td>';
+                    echo '<td><input type="text" name="pourcentagePromotion[' . $row['articlesId'] . ']" value="' . $row['pourcentagePromotion'] . '"></td>';
+                    echo '<td>';
+                    echo '<select name="nouveaute[' . $row['articlesId'] . ']">';
+                    echo '<option value="1" ' . ($row['nouveaute'] == 1 ? 'selected' : '') . '>Oui</option>';
+                    echo '<option value="0" ' . ($row['nouveaute'] == 0 ? 'selected' : '') . '>Non</option>';
+                    echo '</select>';
+                    echo '</td>';
+                    echo '<td>';
+                    echo '<input type="hidden" name="article_id" value="' . $row['articlesId'] . '">';
+                    echo '<button type="submit" name="update">Update</button>';
+                    echo '<button type="submit" name="delete">Delete</button>';
+                    echo '</td>';
+                    echo '</tr>';
+                }
+                ?>
+            </table>
+            <div>
+                <h2>Ajouter un nouvel article</h2>
+                <div>
+                    <input type="text" name="nom" placeholder="Nom">
+                    <input type="text" name="references" placeholder="Références">
+                    <input type="text" name="prixHT" placeholder="Prix HT">
+                    <input type="text" name="TVA" value="20">
+                    <input type="text" name="pourcentagePromotion" placeholder="Pourcentage de promotion">
+                    <select name="nouveaute">
+                        <option value="1">Oui</option>
+                        <option value="0">Non</option>
+                    </select>
+                    <button type="submit" name="add">Ajouter</button>
+                </div>
+            </div>
+        </form>
 
-        echo '</table>';
-        echo '</form>';
-        echo '<form method="post" action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '">';
-        echo '<tr>';
-        echo '<td><input type="text" name="nom" placeholder="Nom"></td>';
-        echo '<td><input type="text" name="references" placeholder="Références"></td>';
-        echo '<td><input type="text" name="prixHT" placeholder="Prix HT"></td>';
-        echo '<td><input type="text" name="TVA" value="20"></td>';
-        echo '<td><input type="text" name="pourcentagePromotion" placeholder="Pourcentage de promotion"></td>';
-        echo '<td>';
-        echo '<select name="nouveaute">';
-        echo '<option value="oui">Oui</option>';
-        echo '<option value="non">Non</option>';
-        echo '</select>';
-        echo '</td>';
-        echo '<td>';
-        echo '<input type="hidden" name="add" value="true">'; // Indicateur pour l'ajout
-        echo '<button type="submit">Ajouter</button>';
-        echo '</td>';
-        echo '</tr>';
-        echo '</form>';
+        <?php
 
     } else {
         echo "Aucun article n'a été trouvé.";
