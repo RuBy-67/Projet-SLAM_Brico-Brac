@@ -2,7 +2,8 @@
 session_start();
 require './dbadmin.php';
 require '../templates/header.php';
-$group = 1;
+$group = 0;
+require '../php/functionSql.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -75,7 +76,7 @@ $group = 1;
     } else {
       echo "Échec lors de la suppression de l'utilisateur : " . $stmt->error;
     }
-}
+  }
 
 
   if (isset($_POST['mdp'])) {
