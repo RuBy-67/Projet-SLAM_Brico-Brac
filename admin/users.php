@@ -4,14 +4,15 @@ if (!session_id()) {
 }
 $user = $_SESSION['user'];
 $usergroup = $_SESSION['group'];
-require_once $_SERVER['DOCUMENT_ROOT'].'admin/dbadmin.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/templates/header.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/php/functionSql.php';
-
- if ($usergroup != "2") {
-header('Location: ../admin/admin.php');
-exit();
+if ($usergroup != "2") {
+  header('Location: ../admin/admin.php');
+  exit();
 }
+require_once $_SERVER['DOCUMENT_ROOT'] . 'admin/dbadmin.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
+
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -142,77 +143,81 @@ exit();
         </form>
       </section>
       <h4 class="text-lg font-bold mb-4">Liste des utilisateurs</h4>
-<table class="border-collapse w-full m-2">
-  <thead>
-    <tr class="bg-gray-200">
-      <th class="p-2">Noms</th>
-      <th class="p-2">Prénoms</th>
-      <th class="p-2">Groupe</th>
-      <th class="p-2">Mails</th>
-      <th class="p-2">Pays</th>
-      <th class="p-2">Numéros</th>
-      <th class="p-2">Rue</th>
-      <th class="p-2">Ville</th>
-      <th class="p-2">Téléphone</th>
-      <th class="p-2">Membre depuis</th>
-      <th class="p-2">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php
-    while ($row = $result->fetch_assoc()) {
-    ?>
-      <tr class="border-b border-gray-300">
-        <form method="post" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-          <td class="p-2">
-            <input type="text" name="nom" value="<?= $row['name']; ?>" class="w-full">
-          </td>
-          <td class="p-2">
-            <input type="text" name="prenom" value="<?= $row['surname']; ?>" class="w-full">
-          </td>
-          <td class="p-2">
-            <select name="group" class="w-full">
-              <option value="0" <?= ($row['group'] == 0 ? 'selected' : ''); ?>>Users</option>
-              <option value="1" <?= ($row['group'] == 1 ? 'selected' : ''); ?>>Vendeurs</option>
-              <option value="2" <?= ($row['group'] == 2 ? 'selected' : ''); ?>>Admin</option>
-            </select>
-          </td>
-          <td class="p-2">
-            <input type="text" name="mail" value="<?= $row['mail']; ?>" class="w-full">
-          </td>
-          <td class="p-2">
-            <input type="text" name="pays" value="<?= $row['states']; ?>" class="w-full">
-          </td>
-          <td class="p-2">
-            <input type="text" name="numeros" value="<?= $row['number']; ?>" class="w-full">
-          </td>
-          <td class="p-2">
-            <input type="text" name="rue" value="<?= $row['street']; ?>" class="w-full">
-          </td>
-          <td class="p-2">
-            <input type="text" name="ville" value="<?= $row['city']; ?>" class="w-full">
-          </td>
-          <td class="p-2">
-            <input type="text" name="telephone" value="<?= $row['phone']; ?>" maxlength="10" class="w-full">
-          </td>
-          <td class="p-2">
-            <input type="text" name="accountCreation" value="<?= $row['accountCreation']; ?>" readonly class="w-full">
-          </td>
-          <td class="p-2">
-            <input type="hidden" type="text" name="UsersId" value="<?= $row['usersId']; ?>">
-            <button type="submit" name="update" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark m-2 p-2">🪄 Modifier</button>
-            <input type="hidden" name="userIdToDelete" value="<?= $row['usersId']; ?>">
-            <button type="submit" name="delete" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark m-2 p-2">🗑️ Supprimer</button>
-            <input type="hidden" name="mdpToReset" value="<?= $row['usersId']; ?>">
-            <button type="submit" name="mdp" class="bg-primary text-white rounded hover:bg-primary-dark m-2 p-2">❗Réinitialiser le mot de passe</button>
-          </td>
-        </form>
-      </tr>
-    <?php
-    }
-    ?>
-  </tbody>
-</table>
+      <table class="border-collapse w-full m-2">
+        <thead>
+          <tr class="bg-gray-200">
+            <th class="p-2">Noms</th>
+            <th class="p-2">Prénoms</th>
+            <th class="p-2">Groupe</th>
+            <th class="p-2">Mails</th>
+            <th class="p-2">Pays</th>
+            <th class="p-2">Numéros</th>
+            <th class="p-2">Rue</th>
+            <th class="p-2">Ville</th>
+            <th class="p-2">Téléphone</th>
+            <th class="p-2">Membre depuis</th>
+            <th class="p-2">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          while ($row = $result->fetch_assoc()) {
+            ?>
+            <tr class="border-b border-gray-300">
+              <form method="post" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <td class="p-2">
+                  <input type="text" name="nom" value="<?= $row['name']; ?>" class="w-full">
+                </td>
+                <td class="p-2">
+                  <input type="text" name="prenom" value="<?= $row['surname']; ?>" class="w-full">
+                </td>
+                <td class="p-2">
+                  <select name="group" class="w-full">
+                    <option value="0" <?= ($row['group'] == 0 ? 'selected' : ''); ?>>Users</option>
+                    <option value="1" <?= ($row['group'] == 1 ? 'selected' : ''); ?>>Vendeurs</option>
+                    <option value="2" <?= ($row['group'] == 2 ? 'selected' : ''); ?>>Admin</option>
+                  </select>
+                </td>
+                <td class="p-2">
+                  <input type="text" name="mail" value="<?= $row['mail']; ?>" class="w-full">
+                </td>
+                <td class="p-2">
+                  <input type="text" name="pays" value="<?= $row['states']; ?>" class="w-full">
+                </td>
+                <td class="p-2">
+                  <input type="text" name="numeros" value="<?= $row['number']; ?>" class="w-full">
+                </td>
+                <td class="p-2">
+                  <input type="text" name="rue" value="<?= $row['street']; ?>" class="w-full">
+                </td>
+                <td class="p-2">
+                  <input type="text" name="ville" value="<?= $row['city']; ?>" class="w-full">
+                </td>
+                <td class="p-2">
+                  <input type="text" name="telephone" value="<?= $row['phone']; ?>" maxlength="10" class="w-full">
+                </td>
+                <td class="p-2">
+                  <input type="text" name="accountCreation" value="<?= $row['accountCreation']; ?>" readonly class="w-full">
+                </td>
+                <td class="p-2">
+                  <input type="hidden" type="text" name="UsersId" value="<?= $row['usersId']; ?>">
+                  <button type="submit" name="update"
+                    class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark m-2 p-2">🪄 Modifier</button>
+                  <input type="hidden" name="userIdToDelete" value="<?= $row['usersId']; ?>">
+                  <button type="submit" name="delete"
+                    class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark m-2 p-2">🗑️ Supprimer</button>
+                  <input type="hidden" name="mdpToReset" value="<?= $row['usersId']; ?>">
+                  <button type="submit" name="mdp"
+                    class="bg-primary text-white rounded hover:bg-primary-dark m-2 p-2">❗Réinitialiser le mot de
+                    passe</button>
+                </td>
+              </form>
+            </tr>
+            <?php
+          }
+          ?>
+        </tbody>
+      </table>
 
       <?php
     } else {
