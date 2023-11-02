@@ -1,9 +1,5 @@
 <?php
-if (!session_id()) {
-    session_start();
-}
 $usergroup = $_SESSION['group'];
-
 require_once($_SERVER['DOCUMENT_ROOT'].'/php/cart.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/php/function.php');
 ?>
