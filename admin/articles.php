@@ -79,7 +79,7 @@ require '../php/functionSql.php';
                     $nouveaute = $_POST['nouveaute'];
 
                     // Vérifier si la référence existe déjà dans la base de données
-                    $checkReferencesSql = "SELECT COUNT(*) FROM articles WHERE references = ?";
+                    $checkReferencesSql = "SELECT COUNT(*) FROM articles WHERE `references` = ?";
                     $stmt = $mysqli->prepare($checkReferencesSql);
                     $stmt->bind_param("i", $references);
                     $stmt->execute();
