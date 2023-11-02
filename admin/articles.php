@@ -32,10 +32,16 @@ require '../php/functionSql.php';
         <h2 class="container w-1/2 text-white text-center">Créer un Compte</h2>
     </section>
     <?php
-    if ($_POST['add'] || $_POST['update'] && isset($_FILES['image'])) {
+    if (isset($_POST['add']) || isset($_POST['update']) && isset($_FILES['image'])) {
         $nom = $_POST['nom'];
         $uploadDir = '/dev/assets/product/'; // Dossier de destination
         $uploadFile = $uploadDir . basename($_FILES['image']['name']);
+        $references = $_POST['references'];
+        $prixHT = $_POST['prixHT'];
+        $TVA = $_POST['TVA'];
+        $pourcentagePromotion = $_POST['pourcentagePromotion'];
+        $nouveaute = $_POST['nouveaute'];
+
 
         // Assurez-vous que le fichier a été téléchargé avec succès
         if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
@@ -44,43 +50,46 @@ require '../php/functionSql.php';
             $newFileName = $nom . '.jpg';
             $newFilePath = $uploadDir . $newFileName;
             rename($uploadFile, $newFilePath);
+
+            if (isset($_POST['add'])) {
+
+                $nom = $_POST['nom'];
+                $references = $_POST['references'];
+                $prixHT = $_POST['prixHT'];
+                $TVA = $_POST['TVA'];
+                $pourcentagePromotion = $_POST['pourcentagePromotion'];
+                $nouveaute = $_POST['nouveaute'];
+
+                // Vérifier si la référence existe déjà dans la base de données
+                $checkReferencesSql = "SELECT COUNT(*) FROM articles WHERE references = ?";
+                $stmt = $mysqli->prepare($checkReferencesSql);
+                $stmt->bind_param("i", $references);
+                $stmt->execute();
+                $stmt->bind_result($count);
+                $stmt->fetch();
+                $stmt->close();
+
+                if ($count > 0) {
+                    echo '<p>La référence existe déjà. Veuillez en choisir une autre.</p>';
+                } else {
+                    // Appel de la fonction d'ajout
+                    if (addArticle($mysqli, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $newFileName)) {
+                        echo '<p>Article ajouté</p>';
+                    } else {
+                        echo '<p>Erreur lors de l\'ajout de l\'article</p>';
+                    }
+                }
+            } elseif (isset($_POST['update'])) {
+                // Mettez à jour l'enregistrement existant
+                $articleId = $_POST['articleId']; // Assurez-vous que vous récupérez l'ID de l'article
+                $mysqli->query("UPDATE articles SET imgRef = '$newFileName' WHERE articleId = $articleId");
+            }
         } else {
             echo 'Erreur lors du téléchargement du fichier.';
         }
-        $mysqli->query("INSERT INTO articles (nom_fichier) VALUES ('$newFileName')");
-    } else {
-        echo 'Erreur lors du téléchargement du fichier.';
     }
 
-    if (isset($_POST['add'])) {
 
-        $nom = $_POST['nom'];
-        $references = $_POST['references'];
-        $prixHT = $_POST['prixHT'];
-        $TVA = $_POST['TVA'];
-        $pourcentagePromotion = $_POST['pourcentagePromotion'];
-        $nouveaute = $_POST['nouveaute'];
-
-        // Vérifier si la référence existe déjà dans la base de données
-        $checkReferencesSql = "SELECT COUNT(*) FROM articles WHERE references = ?";
-        $stmt = $mysqli->prepare($checkReferencesSql);
-        $stmt->bind_param("i", $references);
-        $stmt->execute();
-        $stmt->bind_result($count);
-        $stmt->fetch();
-        $stmt->close();
-
-        if ($count > 0) {
-            echo '<p>La référence existe déjà. Veuillez en choisir une autre.</p>';
-        } else {
-            // Appel de la fonction d'ajout
-            if (addArticle($mysqli, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute)) {
-                echo '<p>Article ajouté</p>';
-            } else {
-                echo '<p>Erreur lors de l\'ajout de l\'article</p>';
-            }
-        }
-    }
 
     if (isset($_POST['update'])) {
         $article_id = $_POST['article_id'];
@@ -100,15 +109,34 @@ require '../php/functionSql.php';
     }
 
     if (isset($_POST['delete'])) {
-        $article_id_to_delete = $_POST['article_id_to_delete'];
+        $articleIdToDelete = $_POST['articleIdToDelete'];
+        $file = $_POST['fichierToDelete'];
 
-        // Appel de la fonction de suppression en spécifiant la table "articles" et le champ "articlesId"
-        if (deleteRecord($mysqli, 'articles', 'articlesId', $article_id_to_delete)) {
-            echo "Article supprimé avec succès.";
+        // Supprimer le fichier associé à l'article
+        $filePath = '../dev/assets/product/' . $file;
+        if (file_exists($filePath)) {
+            if (unlink($filePath)) {
+                echo "Fichier supprimé avec succès.";
+                // Appel de la fonction de suppression de l'article en spécifiant la table "articles" et le champ "articlesId"
+                if (deleteRecord($mysqli, 'articles', 'articlesId', $articleIdToDelete)) {
+                    echo "Article supprimé avec succès.";
+                } else {
+                    echo "Échec lors de la suppression de l'article : " . $stmt->error;
+                }
+            } else {
+                echo "Erreur lors de la suppression du fichier.";
+            }
         } else {
-            echo "Échec lors de la suppression de l'article : " . $stmt->error;
+            echo "Le fichier n'existe pas.";
+            // Appel de la fonction de suppression de l'article en spécifiant la table "articles" et le champ "articlesId"
+            if (deleteRecord($mysqli, 'articles', 'articlesId', $articleIdToDelete)) {
+                echo "Article supprimé avec succès.";
+            } else {
+                echo "Échec lors de la suppression de l'article : " . $stmt->error;
+            }
         }
     }
+
     $selectArticlesSql = "SELECT * FROM articles";
     $result = $mysqli->query($selectArticlesSql);
     ?>
@@ -142,8 +170,8 @@ require '../php/functionSql.php';
                     <th>Références</th>
                     <th>Prix HT</th>
                     <th>TVA</th>
-                    <th>refIMG</th>
                     <th>Pourcentage Promotion</th>
+                    <th>refIMG</th>
                     <th>Nouveauté</th>
                     <th>Actions</th>
                 </tr>
@@ -157,7 +185,12 @@ require '../php/functionSql.php';
                             <td><input type="text" name="prixHT" value="<?= $row['prixHT']; ?>"></td>
                             <td><input type="text" name="TVA" value="<?= $row['TVA']; ?>"></td>
                             <td><input type="text" name="pourcentagePromotion" value="<?= $row['pourcentagePromotion']; ?>"></td>
-                            <td><input type="file" name="img" value="<?= $row['imgRef']; ?>"></td>
+                            <td>
+                                <p>"
+                                    <?= $row['imgRef']; ?>"
+                                </p>
+                                <input type="file" name="img">
+                            </td>
                             <td>
                                 <select name="nouveaute">
                                     <option value="1" <?= ($row['nouveaute'] == 1 ? 'selected' : ''); ?>>Oui</option>
@@ -167,9 +200,10 @@ require '../php/functionSql.php';
                             <td>
                                 <input type="hidden" name="article_id" value="<?= $row['articlesId']; ?>"> <!-- Pour update -->
                                 <button type="submit" name="update">🪄</button>
-                                <input type="hidden" name="article_id_to_delete" value="<?= $row['articlesId']; ?>">
-                                <!-- Pour suppression -->
-                                <button type="submit" name="delete">🗑️</button>
+                            <td><input type="hidden" name="fichierToDelete" value="<?= $row['imgRef']; ?>"></td>
+                            <input type="hidden" name="articleIdToDelete" value="<?= $row['articlesId']; ?>">
+                            <!-- Pour suppression -->
+                            <button type="submit" name="delete">🗑️</button>
                             </td>
                         </form>
                     </tr>

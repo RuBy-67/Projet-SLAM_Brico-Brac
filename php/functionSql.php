@@ -124,11 +124,11 @@ function addUsers($mysqli, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, 
  *
  * @return bool Retourne true en cas de succès de l'ajout, sinon retourne false.
  */
-function addArticle($mysqli, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute)
+function addArticle($mysqli, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute,$newFileName)
 {
-    $insertArticleSql = "INSERT INTO articles (nom, `references`, prixHT, TVA, pourcentagePromotion, nouveaute) VALUES (?, ?, ?, ?, ?, ?)";
+    $insertArticleSql = "INSERT INTO articles (nom, `references`, prixHT, TVA, pourcentagePromotion, nouveaute) VALUES (?, ?, ?, ?, ?, ?,?)";
     $stmt = $mysqli->prepare($insertArticleSql);
-    $stmt->bind_param("siiiii", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute);
+    $stmt->bind_param("siiiiis", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute,$newFileName);
 
     if ($stmt->execute()) {
         return true;
