@@ -114,86 +114,104 @@ require '../php/functionSql.php';
   if ($result) {
     if ($result->num_rows > 0) {
       ?>
-      <div>
-        <section class="container w-1/2 flex flex-col items-center my-20">
-          <h4 class="text-lg font-bold mb-4">Ajouter un nouvel Utilisateur</h4>
-          <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
-            class="flex flex-col items-center mb-0">
-            <div>
-              <input type="text" name="nom" placeholder="Nom" required class="mb-8 border-primary">
-              <input type="text" name="prenom" placeholder="Prénoms" required class="mb-8 border-primary">
-              <input type="email" name="mail" placeholder="E-mail" required class="mb-8 border-primary">
-              <input type="number" name="numeros" placeholder="Numéro" required class="mb-8 border-primary">
-              <input type="text" name="rue" placeholder="Rue" required class="mb-8 border-primary">
-              <input type="text" name="ville" placeholder="Ville" required class="mb-8 border-primary">
-              <input type="text" name="pays" placeholder="Pays" required class="mb-8 border-primary">
-              <input type="tel" name="telephone" placeholder="Téléphone" maxlength="10" requiredclass="mb-8 border-primary">
-              <div class="relative">
-                <select name="group" class="mb-8 border-primary">
-                  <option value="0">Utilisateurs</option>
-                  <option value="1">Vendeurs</option>
-                  <option value="2">Admin</option>
-                </select>
-              </div>
+      <section class="container w-1/2 flex flex-col items-center my-20">
+        <h4 class="text-lg font-bold mb-4">Ajouter un nouvel Utilisateur</h4>
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
+          class="flex flex-col items-center mb-0">
+          <div>
+            <input type="text" name="nom" placeholder="Nom" required class="mb-8 border-primary">
+            <input type="text" name="prenom" placeholder="Prénoms" required class="mb-8 border-primary">
+            <input type="email" name="mail" placeholder="E-mail" required class="mb-8 border-primary">
+            <input type="number" name="numeros" placeholder="Numéro" required class="mb-8 border-primary">
+            <input type="text" name="rue" placeholder="Rue" required class="mb-8 border-primary">
+            <input type="text" name="ville" placeholder="Ville" required class="mb-8 border-primary">
+            <input type="text" name="pays" placeholder="Pays" required class="mb-8 border-primary">
+            <input type="tel" name="telephone" placeholder="Téléphone" maxlength="10" requiredclass="mb-8 border-primary">
+            <div class="relative">
+              <select name="group" class="mb-8 border-primary">
+                <option value="0">Utilisateurs</option>
+                <option value="1">Vendeurs</option>
+                <option value="2">Admin</option>
+              </select>
             </div>
-            <button type="submit" name="add"
-              class="block bg-primary text-white px-8 py-4 flex align-center justify-center rounded">Ajouter ➕</button>
-          </form>
-        </section>
+          </div>
+          <button type="submit" name="add"
+            class="block bg-primary text-white px-8 py-4 flex align-center justify-center rounded">Ajouter ➕</button>
+        </form>
+      </section>
+      <h4 class="text-lg font-bold mb-4">Liste des utilisateurs</h4>
+<table class="border-collapse w-full">
+  <thead>
+    <tr class="bg-gray-200">
+      <th class="p-2">Noms</th>
+      <th class="p-2">Prénoms</th>
+      <th class="p-2">Groupe</th>
+      <th class="p-2">Mails</th>
+      <th class="p-2">Pays</th>
+      <th class="p-2">Numéros</th>
+      <th class="p-2">Rue</th>
+      <th class="p-2">Ville</th>
+      <th class="p-2">Téléphone</th>
+      <th class="p-2">Membre depuis</th>
+      <th class="p-2">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    while ($row = $result->fetch_assoc()) {
+    ?>
+      <tr class="border-b border-gray-300">
+        <form method="post" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+          <td class="p-2">
+            <input type="text" name="nom" value="<?= $row['name']; ?>" class="w-full">
+          </td>
+          <td class="p-2">
+            <input type="text" name="prenom" value="<?= $row['surname']; ?>" class="w-full">
+          </td>
+          <td class="p-2">
+            <select name="group" class="w-full">
+              <option value="0" <?= ($row['group'] == 0 ? 'selected' : ''); ?>>Users</option>
+              <option value="1" <?= ($row['group'] == 1 ? 'selected' : ''); ?>>Vendeurs</option>
+              <option value="2" <?= ($row['group'] == 2 ? 'selected' : ''); ?>>Admin</option>
+            </select>
+          </td>
+          <td class="p-2">
+            <input type="text" name="mail" value="<?= $row['mail']; ?>" class="w-full">
+          </td>
+          <td class="p-2">
+            <input type="text" name="pays" value="<?= $row['states']; ?>" class="w-full">
+          </td>
+          <td class="p-2">
+            <input type="text" name="numeros" value="<?= $row['number']; ?>" class="w-full">
+          </td>
+          <td class="p-2">
+            <input type="text" name="rue" value="<?= $row['street']; ?>" class="w-full">
+          </td>
+          <td class="p-2">
+            <input type="text" name="ville" value="<?= $row['city']; ?>" class="w-full">
+          </td>
+          <td class="p-2">
+            <input type="text" name="telephone" value="<?= $row['phone']; ?>" maxlength="10" class="w-full">
+          </td>
+          <td class="p-2">
+            <input type="text" name="accountCreation" value="<?= $row['accountCreation']; ?>" readonly class="w-full">
+          </td>
+          <td class="p-2">
+            <input type="hidden" type="text" name="UsersId" value="<?= $row['usersId']; ?>">
+            <button type="submit" name="update" class="text-blue-500 hover:underline mr-2">Modifier</button>
+            <input type="hidden" name="userIdToDelete" value="<?= $row['usersId']; ?>">
+            <button type="submit" name="delete" class="text-red-500 hover:underline mr-2">Supprimer</button>
+            <input type="hidden" name="mdpToReset" value="<?= $row['usersId']; ?>">
+            <button type="submit" name="mdp" class="text-purple-500 hover:underline">Réinitialiser le mot de passe</button>
+          </td>
+        </form>
+      </tr>
+    <?php
+    }
+    ?>
+  </tbody>
+</table>
 
-
-      </div>
-      <h4>Liste des utilisateurs</h4>
-      <table>
-        <tr>
-          <th>Noms</th>
-          <th>Prénoms</th>
-          <th>groupe</th>
-          <th>mails</th>
-          <th>pays</th>
-          <th>numéros</th>
-          <th>rue</th>
-          <th>ville</th>
-          <th>Téléphone</th>
-          <th>Membre depuis</th>
-        </tr>
-        <?php
-        while ($row = $result->fetch_assoc()) {
-          ?>
-          <tr>
-            <form method="post" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-              <td><input type="text" name="nom" value="<?= $row['name']; ?>"></td>
-              <td><input type="text" name="prenom" value="<?= $row['surname']; ?>"></td>
-              <td>
-                <select name="group">
-                  <option value="0" <?= ($row['group'] == 0 ? 'selected' : ''); ?>>Users</option>
-                  <option value="1" <?= ($row['group'] == 1 ? 'selected' : ''); ?>>Vendeurs</option>
-                  <option value="2" <?= ($row['group'] == 2 ? 'selected' : ''); ?>>Admin</option>
-                </select>
-              </td>
-              <td><input type="text" name="mail" value="<?= $row['mail']; ?>"></td>
-              <td><input type="text" name="pays" value="<?= $row['states']; ?>"></td>
-              <td><input type="text" name="numeros" value="<?= $row['number']; ?>"></td>
-              <td><input type="text" name="rue" value="<?= $row['street']; ?>"></td>
-              <td><input type="text" name="ville" value="<?= $row['city']; ?>"></td>
-              <td><input type="text" name="telephone" value="<?= $row['phone']; ?>" maxlength="10"></td>
-              <td><input type="text" name="accountCreation" value="<?= $row['accountCreation']; ?>" readonly></td>
-
-              <td>
-                <input type="hidden" type="text" name="UsersId" value="<?= $row['usersId']; ?>"> <!-- Pour update -->
-                <button type="submit" name="update">🪄</button>
-                <input type="hidden" name="userIdToDelete" value="<?= $row['usersId']; ?>"> <!-- Pour suppression -->
-                <button type="submit" name="delete">🗑️</button>
-                <input type="hidden" name="mdpToReset" value="<?= $row['usersId']; ?>"> <!-- Pour reset -->
-                <button type="submit" name="mdp">Réinitialiser le mot de passe</button>
-              </td>
-            </form>
-          </tr>
-          <?php
-        }
-        ?>
-
-      </table>
       <?php
     } else {
       echo "Aucun utilisateurs n'a été trouvé.";
