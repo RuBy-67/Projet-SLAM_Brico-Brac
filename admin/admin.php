@@ -3,18 +3,34 @@
 
 ///$user = $_SESSION['username'];
 ///$usergroup = $_SESSION['group'];
-/// if ($usergroup != "admin") {
+/// if ($usergroup != "2") {
  /// header('Location: ../error/error.php');
   ////exit();
 ///}
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+session_start();
+require './dbadmin.php';
+require '../templates/header.php';
+require '../php/functionSql.php';
 ?>
-<?php require '../templates/header.php'; ?>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../dev/dist/output.css" rel="stylesheet">
+    <link href="<?= $_SERVER['DOCUMENT_ROOT'] ?>/dev/css/splide.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="../dev/assets/favicon.png" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <title>Brico'brac - Administration</title>
+</head>
+
+<body>
     <!-- Slogan -->
-    <section class="bg-top-banner  h-[678px] flex items-center mb-8">
-        <h2 class="container w-1/2 text-white text-center">Administration</h2>
+    <section class="bg-top-banner  h-[400px] flex items-center mb-8">
+        <h2 class="container w-1/2 text-white text-center">Créer un Compte</h2>
     </section>
         <div class="container">
             <div class="flex flex-wrap">

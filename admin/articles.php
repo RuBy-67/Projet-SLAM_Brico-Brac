@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+///$user = $_SESSION['username'];
+///$usergroup = $_SESSION['group'];
+/// if ($usergroup != "2" ||$usergroup != "1") {
+/// header('Location: ../error/error.php');
+////exit();
+///}
 require './dbadmin.php';
 require '../templates/header.php';
 require '../php/functionSql.php';
@@ -25,8 +32,28 @@ require '../php/functionSql.php';
         <h2 class="container w-1/2 text-white text-center">Créer un Compte</h2>
     </section>
     <?php
-    // Récupérer tous les articles de la table "Articles"
+    if ($_POST['add'] || $_POST['update'] && isset($_FILES['image'])) {
+        $nom = $_POST['nom'];
+        $uploadDir = '/dev/assets/product/'; // Dossier de destination
+        $uploadFile = $uploadDir . basename($_FILES['image']['name']);
+
+        // Assurez-vous que le fichier a été téléchargé avec succès
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
+            echo 'Fichier téléchargé avec succès.';
+            // Renommez le fichier avec le nom souhaité (par exemple, "nom.jpg")
+            $newFileName = $nom . '.jpg';
+            $newFilePath = $uploadDir . $newFileName;
+            rename($uploadFile, $newFilePath);
+        } else {
+            echo 'Erreur lors du téléchargement du fichier.';
+        }
+        $mysqli->query("INSERT INTO articles (nom_fichier) VALUES ('$newFileName')");
+    } else {
+        echo 'Erreur lors du téléchargement du fichier.';
+    }
+
     if (isset($_POST['add'])) {
+
         $nom = $_POST['nom'];
         $references = $_POST['references'];
         $prixHT = $_POST['prixHT'];
@@ -87,13 +114,15 @@ require '../php/functionSql.php';
     ?>
     <div>
         <h4>Ajouter un nouvel article</h4>
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
+            enctype="multipart/form-data">
             <div>
-                <input type="text" name="nom" placeholder="Nom" require_one >
-                <input type="text" name="references" placeholder="Références" require_one >
-                <input type="text" name="prixHT" placeholder="Prix HT" require_one >
-                <input type="text" name="TVA" value="20" require_one >
-                <input type="text" name="pourcentagePromotion" placeholder="Pourcentage de promotion" require_one >
+                <input type="text" name="nom" placeholder="Nom" require_one>
+                <input type="text" name="references" placeholder="Références" require_one>
+                <input type="text" name="prixHT" placeholder="Prix HT" require_one>
+                <input type="text" name="TVA" value="20" require_one>
+                <input type="text" name="pourcentagePromotion" placeholder="Pourcentage de promotion" require_one>
+                <input type="file" name="image" placeholder="fichiers" require_one>
                 <select name="nouveaute">
                     <option value="1">Oui</option>
                     <option value="0">Non</option>
@@ -102,7 +131,7 @@ require '../php/functionSql.php';
             </div>
         </form>
     </div>
-    <h4>Liste Articles </h4>
+    <h4>Liste des Articles </h4>
     <?php
     if ($result) {
         if ($result->num_rows > 0) {
@@ -113,6 +142,7 @@ require '../php/functionSql.php';
                     <th>Références</th>
                     <th>Prix HT</th>
                     <th>TVA</th>
+                    <th>refIMG</th>
                     <th>Pourcentage Promotion</th>
                     <th>Nouveauté</th>
                     <th>Actions</th>
@@ -121,12 +151,13 @@ require '../php/functionSql.php';
                 while ($row = $result->fetch_assoc()):
                     ?>
                     <tr>
-                        <form method="post" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                        <form method="post" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
                             <td><input type="text" name="nom" value="<?= $row['nom']; ?>"></td>
                             <td><input type="text" name="references" value="<?= $row['references']; ?>" readonly></td>
                             <td><input type="text" name="prixHT" value="<?= $row['prixHT']; ?>"></td>
                             <td><input type="text" name="TVA" value="<?= $row['TVA']; ?>"></td>
                             <td><input type="text" name="pourcentagePromotion" value="<?= $row['pourcentagePromotion']; ?>"></td>
+                            <td><input type="file" name="img" value="<?= $row['imgRef']; ?>"></td>
                             <td>
                                 <select name="nouveaute">
                                     <option value="1" <?= ($row['nouveaute'] == 1 ? 'selected' : ''); ?>>Oui</option>
