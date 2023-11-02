@@ -574,6 +574,26 @@ video {
   position: absolute;
 }
 
+.relative {
+  position: relative;
+}
+
+.-right-2 {
+  right: -0.5rem;
+}
+
+.-right-2\.5 {
+  right: -0.625rem;
+}
+
+.-top-2 {
+  top: -0.5rem;
+}
+
+.-top-2\.5 {
+  top: -0.625rem;
+}
+
 .left-0 {
   left: 0px;
 }
@@ -584,6 +604,22 @@ video {
 
 .z-10 {
   z-index: 10;
+}
+
+.col-span-2 {
+  grid-column: span 2 / span 2;
+}
+
+.col-start-3 {
+  grid-column-start: 3;
+}
+
+.col-start-5 {
+  grid-column-start: 5;
+}
+
+.col-start-6 {
+  grid-column-start: 6;
 }
 
 .m-2 {
@@ -633,12 +669,20 @@ video {
   margin-left: 2rem;
 }
 
+.mr-4 {
+  margin-right: 1rem;
+}
+
 .mt-4 {
   margin-top: 1rem;
 }
 
 .mt-52 {
   margin-top: 13rem;
+}
+
+.mr-8 {
+  margin-right: 2rem;
 }
 
 .block {
@@ -657,6 +701,10 @@ video {
   display: grid;
 }
 
+.h-5 {
+  height: 1.25rem;
+}
+
 .h-\[248px\] {
   height: 248px;
 }
@@ -673,6 +721,10 @@ video {
   width: 50%;
 }
 
+.w-5 {
+  width: 1.25rem;
+}
+
 .w-full {
   width: 100%;
 }
@@ -687,6 +739,22 @@ video {
 
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-cols-6 {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.flex-row {
+  flex-direction: row;
 }
 
 .flex-col {
@@ -713,6 +781,10 @@ video {
   gap: 2rem;
 }
 
+.gap-4 {
+  gap: 1rem;
+}
+
 .gap-x-2 {
   -moz-column-gap: 0.5rem;
        column-gap: 0.5rem;
@@ -729,6 +801,10 @@ video {
 
 .rounded {
   border-radius: 0.25rem;
+}
+
+.rounded-full {
+  border-radius: 9999px;
 }
 
 .rounded-md {
@@ -752,6 +828,11 @@ video {
 .bg-primary {
   --tw-bg-opacity: 1;
   background-color: rgb(18 70 90 / var(--tw-bg-opacity));
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 243 243 / var(--tw-bg-opacity));
 }
 
 .bg-top-banner {
@@ -796,9 +877,22 @@ video {
   font-size: 11px;
 }
 
+.font-bold {
+  font-weight: 700;
+}
+
+.leading-5 {
+  line-height: 1.25rem;
+}
+
 .text-lightGrey {
   --tw-text-opacity: 1;
   color: rgb(97 97 97 / var(--tw-text-opacity));
+}
+
+.text-primary {
+  --tw-text-opacity: 1;
+  color: rgb(18 70 90 / var(--tw-text-opacity));
 }
 
 .text-secondary {

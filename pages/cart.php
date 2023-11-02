@@ -1,6 +1,12 @@
 <?php
-require($_SERVER['DOCUMENT_ROOT'].'/php/db.php');
 
+if (!session_id()) {
+    session_start();
+}
+require_once($_SERVER['DOCUMENT_ROOT'].'/php/prices.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/php/cart.php');
+
+$cartItems = getCartItems();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -15,18 +21,27 @@ require($_SERVER['DOCUMENT_ROOT'].'/php/db.php');
     />
     <link rel="icon" type="image/png" href="../dev/assets/favicon.png" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <title>Brico'brac - Produits</title>
+    <title>Brico'brac - Panier</title>
 </head>
 <body>
     <?php require '../templates/header.php'; ?>
         <!-- Slogan -->
         <section class="bg-top-banner  h-[400px] flex items-center mb-16">
-            <h2 class="container sm:w-1/2 text-white text-center sm:mt-20 mt-52">Nos Produits</h2>
+            <h1 class="container sm:w-1/2 text-white text-center sm:mt-20 mt-52">Votre panier</h1>
         </section>
         
-            <section class="container grid gap-x-2.5 gap-y-8 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 mb-16 justify-items-center" >
-               Cart containe
-            </section>
+        <section class="container flex flex-col">
+            <ul class="mb-4">
+                <?php foreach($cartItems as $cartItem) :?>
+                    <?php include($_SERVER['DOCUMENT_ROOT'].'/templates/cart_card.php');?>
+                <?php endforeach; ?>
+            </ul>
+            <div class="flex gap-8 mb-16">
+                <p class="font-bold">Total du panier HT : <?= getCartTotalPriceHT($cartItems) ?>€</p>
+                <p class="font-bold mb-16">Total du panier TTC : <?= getCartTotalPriceTTC($cartItems) ?>€</p>
+            </div>
+           
+        </section>
        
     <?php require '../templates/footer.php'; ?>
 </body>

@@ -1,5 +1,5 @@
 <?php
-require($_SERVER['DOCUMENT_ROOT'].'/php/db.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/php/db.php');
 
 $products = $mysqli->query('SELECT * FROM articles');
 ?>
