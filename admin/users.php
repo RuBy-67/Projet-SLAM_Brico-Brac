@@ -2,8 +2,14 @@
 session_start();
 require './dbadmin.php';
 require '../templates/header.php';
-$group = 0;
 require '../php/functionSql.php';
+
+///$user = $_SESSION['username'];
+///$usergroup = $_SESSION['group'];
+/// if ($usergroup != "2") {
+ /// header('Location: ../error/error.php');
+  ////exit();
+///}
 ?>
 <!DOCTYPE html>
 <html lang="fr">

@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+///$user = $_SESSION['username'];
+///$usergroup = $_SESSION['group'];
+/// if ($usergroup != "2") {
+ /// header('Location: ../error/error.php');
+  ////exit();
+///}
 require './dbadmin.php';
 require '../templates/header.php';
 $group=1;
