@@ -65,7 +65,7 @@ if($article['pourcentagePromotion'] != null){
                         <p>Prix TTC :<?= calculedPriceWithTva($article['prixHT'],$article['TVA'])?>€</p>
                     </div>
                 <?php endif; ?>
-                <?php if(isset($article['descriptions'])):?>
+                <?php if(!empty($article['descriptions'])):?>
                     <p class="mb-4"><?=$article['descriptions']?></p>
                 <?php else :?>
                     <p class="mb-4">Il n'y a pas de description pour cet article</p>
