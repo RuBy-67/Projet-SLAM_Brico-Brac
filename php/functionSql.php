@@ -154,7 +154,7 @@ function addArticle($mysqli, $nom, $references, $prixHT, $TVA, $pourcentagePromo
 function updateArticle($mysqli, $articleId, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute,$newFileName, $descritpion)
 {
     $updateArticleSql = "UPDATE articles 
-                        SET nom = ?, `references` = ?, prixHT = ?, TVA = ?, pourcentagePromotion = ?, nouveaute = ?,imgRef=? descriptions = ?
+                        SET nom = ?, `references` = ?, prixHT = ?, TVA = ?, pourcentagePromotion = ?, nouveaute = ?,imgRef=?, descriptions = ?
                         WHERE articlesId = ?";
     $stmt = $mysqli->prepare($updateArticleSql);
     $stmt->bind_param("siiiiiiss", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $articleId,$newFileName, $descritpion);
