@@ -2,6 +2,8 @@
 if (!session_id()) {
     session_start();
 }
+$usergroup = $_SESSION['group'];
+$user = $_SESSION['username'];
 require($_SERVER['DOCUMENT_ROOT'].'/php/db.php');
 
 $new_product = $mysqli->query('SELECT * FROM articles WHERE nouveaute = 1');

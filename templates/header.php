@@ -1,5 +1,5 @@
 <?php
-$usergroup = $_SESSION['group'];
+
 require_once($_SERVER['DOCUMENT_ROOT'].'/php/cart.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/php/function.php');
 ?>
@@ -23,11 +23,11 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/php/function.php');
             </div>
             <div class="flex sm:flex-row flex-col items-center">
                 <?php
-                if (isset($_SESSION['username'])) {
+                if (isset($user)) {
                     // Utilisateur connecté
                     echo '<div class="flex sm:flex-row flex-col items-center">';
-                    echo '<span class="mr-4 mb-4">' . $_SESSION['username'] . '</span>';
-                    if ($_SESSION['group'] === 1 || $_SESSION['group'] === 2) {
+                    echo '<span class="mr-4 mb-4">' . $user. '</span>';
+                    if ($usergroup  === 1 || $usergroup === 2) {
                         // Utilisateur connecté et a un groupe de 1 (Vendeur) ou 2 (Admin)
                         echo '<a href="/pages/sign_in.php" class="btn">Gestion</a>';
                     }
