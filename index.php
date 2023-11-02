@@ -4,7 +4,8 @@ if (!session_id()) {
 }
 $usergroup = $_SESSION['group'];
 $user = $_SESSION['user'];
-require($_SERVER['DOCUMENT_ROOT'].'/php/db.php');
+
+require_once($_SERVER['DOCUMENT_ROOT'].'/php/request.php');
 
 $new_product = getNewArticles();
 $promotions =  getArticlesWithPromotion();

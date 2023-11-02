@@ -1,5 +1,4 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/php/db.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/php/request.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/php/prices.php');
 
