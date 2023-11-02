@@ -126,7 +126,7 @@ function addUsers($mysqli, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, 
  */
 function addArticle($mysqli, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute,$newFileName)
 {
-    $insertArticleSql = "INSERT INTO articles (nom, `references`, prixHT, TVA, pourcentagePromotion, nouveaute) VALUES (?, ?, ?, ?, ?, ?,?)";
+    $insertArticleSql = "INSERT INTO articles (nom, `references`, prixHT, TVA, pourcentagePromotion, nouveaute, imgRef) VALUES (?, ?, ?, ?, ?, ?,?)";
     $stmt = $mysqli->prepare($insertArticleSql);
     $stmt->bind_param("siiiiis", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute,$newFileName);
 
