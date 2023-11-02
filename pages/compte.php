@@ -31,7 +31,6 @@ require($_SERVER['DOCUMENT_ROOT'] . '/php/db.php');
             Bonjour
             <?= $user ?> <br /> - <br /> Votre compte
         </h1>
-</body>
 <?php
 if (isset($_POST['logout'])) {
     // Déconnexion de l'utilisateur en supprimant la session
