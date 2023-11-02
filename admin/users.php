@@ -115,7 +115,7 @@ require '../php/functionSql.php';
     if ($result->num_rows > 0) {
       ?>
       <div>
-        <div class="max-w-xs mx-auto">
+      <div class="mx-auto w-64">
           <h4 class="text-lg font-bold mb-4">Ajouter un nouvel Utilisateur</h4>
           <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="mb-4">
             <div>
@@ -137,8 +137,7 @@ require '../php/functionSql.php';
               <input type="tel" name="telephone" placeholder="Téléphone" maxlength="10" required
                 class="block w-full p-2 border rounded mb-2">
             </div>
-            <button type="submit" name="add"
-              class="block w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-700">➕</button>
+            <button type="submit" name="add" class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-700">➕</button>
           </form>
         </div>
 
