@@ -2,8 +2,13 @@
 if (!session_id()) {
     session_start();
 }
-$usergroup = $_SESSION['group'];
-$user = $_SESSION['user'];
+if (isset($_SESSION['group'])) {
+    $usergroup = $_SESSION['group'];
+}
+
+if (isset($_SESSION['user'])) {
+    $user = $_SESSION['user'];
+}
 require($_SERVER['DOCUMENT_ROOT'].'/php/db.php');
 
 $new_product = getNewArticles();
