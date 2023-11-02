@@ -115,12 +115,20 @@ require '../php/functionSql.php';
     if ($result->num_rows > 0) {
       ?>
       <div>
-      <section class="container w-1/2 flex flex-col items-center my-20">
+        <section class="container w-1/2 flex flex-col items-center my-20">
           <h4 class="text-lg font-bold mb-4">Ajouter un nouvel Utilisateur</h4>
-          <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="flex flex-col items-center mb-0">
+          <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
+            class="flex flex-col items-center mb-0">
             <div>
               <input type="text" name="nom" placeholder="Nom" required lass="mb-8 border-primary">
               <input type="text" name="prenom" placeholder="Prénoms" required lass="mb-8 border-primary">
+              <input type="email" name="mail" placeholder="E-mail" required lass="mb-8 border-primary">
+              <input type="number" name="numeros" placeholder="Numéro" required lass="mb-8 border-primary">
+              <input type="text" name="rue" placeholder="Rue" required lass="mb-8 border-primary">
+              <input type="text" name="ville" placeholder="Ville" required lass="mb-8 border-primary">
+              <input type="text" name="pays" placeholder="Pays" required lass="mb-8 border-primary">
+              <input type="tel" name="telephone" placeholder="Téléphone" maxlength="10" required
+                class="mb-8 border-primary">
               <div class="relative">
                 <select name="group" lass="mb-8 border-primary">
                   <option value="0">Utilisateurs</option>
@@ -128,18 +136,11 @@ require '../php/functionSql.php';
                   <option value="2">Admin</option>
                 </select>
               </div>
-              <input type="email" name="mail" placeholder="E-mail" required lass="mb-8 border-primary">
-              <input type="number" name="numeros" placeholder="Numéro" required
-                lass="mb-8 border-primary">
-              <input type="text" name="rue" placeholder="Rue" required lass="mb-8 border-primary">
-              <input type="text" name="ville" placeholder="Ville" required lass="mb-8 border-primary">
-              <input type="text" name="pays" placeholder="Pays" required lass="mb-8 border-primary">
-              <input type="tel" name="telephone" placeholder="Téléphone" maxlength="10" required
-                lass="mb-8 border-primary">
             </div>
-            <button type="submit" name="add" class="block bg-primary text-white px-8 py-4 flex align-center justify-center rounded">Ajouter ➕</button>
+            <button type="submit" name="add"
+              class="block bg-primary text-white px-8 py-4 flex align-center justify-center rounded">Ajouter ➕</button>
           </form>
-          </section>
+        </section>
 
 
       </div>
