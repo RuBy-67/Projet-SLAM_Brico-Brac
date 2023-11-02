@@ -34,7 +34,7 @@ require '../php/functionSql.php';
     <?php
     if (isset($_POST['add']) || isset($_POST['update']) && isset($_FILES['image'])) {
         $nom = $_POST['nom'];
-        $uploadDir = '/dev/assets/product/'; // Dossier de destination
+        $uploadDir = '/var/www/html/rb-rubydev/Projet-SLAM_Brico-Brac/dev/assets/product/'; // Dossier de destination
         $uploadFile = $uploadDir . basename($_FILES['image']['name']);
         $references = $_POST['references'];
         $prixHT = $_POST['prixHT'];
@@ -113,7 +113,7 @@ require '../php/functionSql.php';
         $file = $_POST['fichierToDelete'];
 
         // Supprimer le fichier associé à l'article
-        $filePath = '../dev/assets/product/' . $file;
+        $filePath = '/var/www/html/rb-rubydev/Projet-SLAM_Brico-Brac/dev/assets/product/' . $file;
         if (file_exists($filePath)) {
             if (unlink($filePath)) {
                 echo "Fichier supprimé avec succès.";
@@ -186,9 +186,7 @@ require '../php/functionSql.php';
                             <td><input type="text" name="TVA" value="<?= $row['TVA']; ?>"></td>
                             <td><input type="text" name="pourcentagePromotion" value="<?= $row['pourcentagePromotion']; ?>"></td>
                             <td>
-                                <p>"
-                                    <?= $row['imgRef']; ?>"
-                                </p>
+                                <p>"<?= $row['imgRef']; ?>"</p>
                                 <input type="file" name="img">
                             </td>
                             <td>
