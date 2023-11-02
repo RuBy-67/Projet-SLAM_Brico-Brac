@@ -35,9 +35,13 @@ require '../php/functionSql.php';
     if (isset($_POST['add']) || isset($_POST['update']) && isset($_FILES['image'])) {
         $nom = $_POST['nom'];
         $newFileName = $nom . '.jpg';
+        echo $newFileName;
         $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/rb-rubydev/Projet-SLAM_Brico-Brac/dev/assets/product/';
+        echo $uploadDir;
         $newFilePath = $uploadDir . $newFileName;
+        echo $newFilePath;
         $uploadFile = $uploadDir . basename($_FILES['image']['name']);
+        echo $uploadFile;
         $references = $_POST['references'];
         $prixHT = $_POST['prixHT'];
         $TVA = $_POST['TVA'];
