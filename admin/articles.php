@@ -69,6 +69,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
                     $references = $_POST['references'];
                     $prixHT = $_POST['prixHT'];
                     $TVA = $_POST['TVA'];
+                    $descritpion = $_POST['description'];
                     $pourcentagePromotion = $_POST['pourcentagePromotion'];
                     $nouveaute = $_POST['nouveaute'];
 
@@ -85,7 +86,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
                         echo '<p>La référence existe déjà. Veuillez en choisir une autre.</p>';
                     } else {
                         // Appel de la fonction d'ajout
-                        if (addArticle($mysqli, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $newFileName)) {
+                        if (addArticle($mysqli, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $newFileName, $descritpion)) {
                             echo '<p>Article ajouté</p>';
                         } else {
                             echo '<p>Erreur lors de l\'ajout de l\'article</p>';
@@ -103,22 +104,23 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
 
 
     if (isset($_POST['update'])) {
-        $article_id = $_POST['article_id'];
+        $articleId = $_POST['article_id'];
         $nom = $_POST['nom'];
         $references = $_POST['references'];
         $prixHT = $_POST['prixHT'];
+        $description = $_POST['description'];
         $fileToUpdate = $_POST['fichierToUpdate'];
         $TVA = $_POST['TVA'];
         $pourcentagePromotion = $_POST['pourcentagePromotion'];
         $nouveaute = $_POST['nouveaute'];
-
+    
+        $newFileName = $fileToUpdate; // Déclarez la variable en dehors de la condition
+    
         // Vérifiez si un nouveau fichier a été téléchargé
         if (isset($_FILES['img']) && $_FILES['img']['error'] === UPLOAD_ERR_OK) {
-            $newFileName = $fileToUpdate; // Le nom du fichier reste le même
-    
             $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/dev/assets/products/';
             $uploadFile = $uploadDir . $newFileName;
-
+    
             // Assurez-vous que le fichier a été téléchargé avec succès
             if (move_uploaded_file($_FILES['img']['tmp_name'], $uploadFile)) {
                 echo 'Nouveau fichier téléchargé avec succès.';
@@ -126,15 +128,17 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
                 echo 'Erreur lors du téléchargement du nouveau fichier.';
             }
         }
-
+    
         // Effectuez la mise à jour des autres champs de l'article
-        if (updateArticle($mysqli, $article_id, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute)) {
+        if (updateArticle($mysqli, $articleId, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $newFileName, $description)) {
             echo "Mise à jour de l'article effectuée avec succès !";
         } else {
             echo "Erreur lors de la mise à jour de l'article : " . $stmt->error;
         }
     }
-
+    
+    
+    
 
     if (isset($_POST['delete'])) {
         $articleIdToDelete = $_POST['articleIdToDelete'];
@@ -234,7 +238,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
                                         class="w-full">
                                 </td>
                                 <td class="p-2"> <input type="text" name="description" value="<?= $row['descriptions']; ?>"
-                                class="w-full"></td>
+                                        class="w-full"></td>
                                 <td class="p-2">
                                     <p>
                                         <?= $row['imgRef']; ?>

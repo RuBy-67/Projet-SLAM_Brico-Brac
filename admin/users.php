@@ -10,7 +10,7 @@ if (isset($_SESSION['user'])) {
   $user = $_SESSION['user'];
 }
 if (isset($_SESSION['surname'])) {
-  $surname =  $_SESSION['surname'];
+  $surname = $_SESSION['surname'];
 }
 if ($usergroup !== 2) {
   header('Location: ../admin/admin.php');
