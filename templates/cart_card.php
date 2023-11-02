@@ -28,18 +28,16 @@ $priceWithReduction = calculedPriceWithPromotion($cartItem['prixHT'],$cartItem['
     <p class="col-start-5">
         Quantités : 
         <a href="/action/removeQuantityCart.php?articlesId=<?= $cartItem['articlesId']?>">
-            <span class="material-symbols-outlined">
-                remove
-            </span>
+            <span class="material-symbols-outlined">remove</span>
         </a>
         <?= $cartItem['quantity']?>
         <a href="/action/addToCart.php?articlesId=<?= $cartItem['articlesId']?>">
-            <span class="material-symbols-outlined">
-                add
-            </span>
+            <span class="material-symbols-outlined">add</span>
         </a>
     </p>
     <div class="col-start-6">
-            BOUTTON
+            <a href="/action/deleteToCart.php?articlesId=<?= $cartItem['articlesId']?>">
+                <span class="material-symbols-outlined">delete</span>
+            </a>
     </div>
 </li>
