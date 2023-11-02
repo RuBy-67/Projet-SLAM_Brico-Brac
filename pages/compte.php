@@ -31,21 +31,21 @@ require($_SERVER['DOCUMENT_ROOT'] . '/php/db.php');
             Bonjour
             <?= $user ?> <br /> - <br /> Votre compte
         </h1>
-        <?php
-        if (isset($_POST['logout'])) {
-            // Déconnexion de l'utilisateur en supprimant la session
-            session_destroy();
-            header('Location: ../index.php');
-            exit();
-        }
-        ?>
-        <!-- Contenu de la page -->
-
-
-        <form method="post">
-            <input type="submit" name="logout" value="Se déconnecter">
-        </form>
     </section>
+    <?php
+    if (isset($_POST['logout'])) {
+        // Déconnexion de l'utilisateur en supprimant la session
+        session_destroy();
+        header('Location: ../index.php');
+        exit();
+    }
+    ?>
+    <!-- Contenu de la page -->
+
+
+    <form method="post">
+        <input class="bg-primary text-white rounded hover:bg-primary-dark m-2 p-2" type="submit" name="logout" value=" ❗Se déconnecter">
+    </form>
     <?php require '../templates/footer.php'; ?>
 </body>
 
