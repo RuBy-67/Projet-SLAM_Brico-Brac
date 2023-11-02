@@ -115,7 +115,7 @@ require '../php/functionSql.php';
     if ($result->num_rows > 0) {
       ?>
       <div>
-      <div class="mx-4">
+      <div class="ml-4">
           <h4 class="text-lg font-bold mb-4">Ajouter un nouvel Utilisateur</h4>
           <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="mb-4 max-w-xs">
             <div>
