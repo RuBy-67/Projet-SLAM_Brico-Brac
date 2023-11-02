@@ -170,7 +170,7 @@ require '../php/functionSql.php';
                 <input type="text" name="nom" placeholder="Nom" required class="mb-8 border-primary">
                 <input type="text" name="references" placeholder="Références" required class="mb-8 border-primary">
                 <input type="text" name="prixHT" placeholder="Prix HT" required class="mb-8 border-primary">
-                <input type="text" name="TVA" value="20" required class="mb-8 border-primary">
+                <input type="text" name="TVA" placeholder="TVA" value="20" required class="mb-8 border-primary">
                 <input type="text" name="pourcentagePromotion" placeholder="Pourcentage de promotion" required
                     class="mb-8 border-primary">
                 <input type="file" name="image" placeholder="Fichier" required class="mb-8 border-primary">
@@ -189,55 +189,66 @@ require '../php/functionSql.php';
     if ($result) {
         if ($result->num_rows > 0) {
             ?>
-            <table>
-                <tr>
-                    <th>Nom</th>
-                    <th>Références</th>
-                    <th>Prix HT</th>
-                    <th>TVA</th>
-                    <th>Pourcentage Promotion</th>
-                    <th>refIMG</th>
-                    <th>Nouveauté</th>
-                    <th>Actions</th>
-                </tr>
-                <?php
-                while ($row = $result->fetch_assoc()):
-                    ?>
-                    <tr>
-                        <form method="post" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
-                            <td><input type="text" name="nom" value="<?= $row['nom']; ?>"></td>
-                            <td><input type="text" name="references" value="<?= $row['references']; ?>" readonly></td>
-                            <td><input type="text" name="prixHT" value="<?= $row['prixHT']; ?>"></td>
-                            <td><input type="text" name="TVA" value="<?= $row['TVA']; ?>"></td>
-                            <td><input type="text" name="pourcentagePromotion" value="<?= $row['pourcentagePromotion']; ?>"></td>
-                            <td>
-                                <p>"
-                                    <?= $row['imgRef']; ?>"
-                                </p>
-                                <input type="file" name="img">
-                            </td>
-                            <td>
-                                <select name="nouveaute">
-                                    <option value="1" <?= ($row['nouveaute'] == 1 ? 'selected' : ''); ?>>Oui</option>
-                                    <option value="0" <?= ($row['nouveaute'] == 0 ? 'selected' : ''); ?>>Non</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="hidden" name="fichierToUpdate" value="<?= $row['imgRef']; ?>">
-                                <input type="hidden" name="article_id" value="<?= $row['articlesId']; ?>"> <!-- Pour update -->
-                                <button type="submit" name="update">🪄</button>
-                                <input type="hidden" name="fichierToDelete" value="<?= $row['imgRef']; ?>">
-                                <input type="hidden" name="articleIdToDelete" value="<?= $row['articlesId']; ?>">
-                                <!-- Pour suppression -->
-                                <button type="submit" name="delete">🗑️</button>
-                            </td>
-                        </form>
-                    </tr>
-                    <?php
-                endwhile;
-                ?>
+            <table class="border-collapse w-full">
+  <thead>
+    <tr class="bg-gray-200">
+      <th class="p-2">Nom</th>
+      <th class="p-2">Références</th>
+      <th class="p-2">Prix HT</th>
+      <th class="p-2">TVA</th>
+      <th class="p-2">Pourcentage Promotion</th>
+      <th class="p-2">Réf. IMG</th>
+      <th class="p-2">Nouveauté</th>
+      <th class="p-2">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    while ($row = $result->fetch_assoc()):
+    ?>
+      <tr class="border-b border-gray-300">
+        <form method="post" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
+          <td class="p-2">
+            <input type="text" name="nom" value="<?= $row['nom']; ?>" class="w-full">
+          </td>
+          <td class="p-2">
+            <input type="text" name="references" value="<?= $row['references']; ?>" readonly class="w-full">
+          </td>
+          <td class="p-2">
+            <input type="text" name="prixHT" value="<?= $row['prixHT']; ?>" class="w-full">
+          </td>
+          <td class="p-2">
+            <input type="text" name="TVA" value="<?= $row['TVA']; ?>" class="w-full">
+          </td>
+          <td class="p-2">
+            <input type="text" name="pourcentagePromotion" value="<?= $row['pourcentagePromotion']; ?>" class="w-full">
+          </td>
+          <td class="p-2">
+            <p><?= $row['imgRef']; ?></p>
+            <input type="file" name="img" class="w-full">
+          </td>
+          <td class="p-2">
+            <select name="nouveaute" class="w-full">
+              <option value="1" <?= ($row['nouveaute'] == 1 ? 'selected' : ''); ?>>Oui</option>
+              <option value="0" <?= ($row['nouveaute'] == 0 ? 'selected' : ''); ?>>Non</option>
+            </select>
+          </td>
+          <td class="p-2">
+            <input type="hidden" name="fichierToUpdate" value="<?= $row['imgRef']; ?>">
+            <input type="hidden" name="article_id" value="<?= $row['articlesId']; ?>">
+            <button type="submit" name="update" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark m-2">🪄</button>
+            <input type="hidden" name="fichierToDelete" value="<?= $row['imgRef']; ?>">
+            <input type="hidden" name="articleIdToDelete" value="<?= $row['articlesId']; ?>">
+            <button type="submit" name="delete" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark m-2">🗑️</button>
+          </td>
+        </form>
+      </tr>
+    <?php
+    endwhile;
+    ?>
+  </tbody>
+</table>
 
-            </table>
             <?php
         } else {
             echo "Aucun article n'a été trouvé.";
