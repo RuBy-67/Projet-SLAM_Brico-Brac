@@ -37,21 +37,34 @@ require '../php/functionSql.php';
         $cleanedFileName = str_replace(' ', '_', $nom);
         $newFileName = $cleanedFileName . '.jpg';
         echo $newFileName . '<br>';
-        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/dev/assets/product/';
+
+        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/dev/assets/products/';
 
         echo $uploadDir . '<br>';
+
         $newFilePath = $uploadDir . $newFileName;
+
         echo $newFilePath . '<br>';
+
         $uploadFile = $uploadDir . basename($_FILES['image']['name']);
+
         echo $uploadFile . '<br>';
+
+
         $references = $_POST['references'];
+
         $prixHT = $_POST['prixHT'];
+
         $TVA = $_POST['TVA'];
+
         $pourcentagePromotion = $_POST['pourcentagePromotion'];
 
         $nouveaute = $_POST['nouveaute'];
+
         if (file_exists($_FILES['image']['tmp_name'])) {
+
             if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
+                
                 echo 'Fichier téléchargé avec succès.';
                 $newFilePath = $uploadDir . $newFileName;
                 rename($uploadFile, $newFilePath);
@@ -121,7 +134,7 @@ require '../php/functionSql.php';
         $file = $_POST['fichierToDelete'];
 
         // Supprimer le fichier associé à l'article
-        $filePath = '../dev/assets/product/' . $file;
+        $filePath = '../dev/assets/products/' . $file;
         if (file_exists($filePath)) {
             if (unlink($filePath)) {
                 echo "Fichier supprimé avec succès.";
