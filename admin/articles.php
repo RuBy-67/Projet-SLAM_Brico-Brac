@@ -105,14 +105,14 @@ require '../php/functionSql.php';
         $TVA = $_POST['TVA'];
         $pourcentagePromotion = $_POST['pourcentagePromotion'];
         $nouveaute = $_POST['nouveaute'];
-    
+
         // Vérifiez si un nouveau fichier a été téléchargé
         if (isset($_FILES['img']) && $_FILES['img']['error'] === UPLOAD_ERR_OK) {
             $newFileName = $fileToUpdate; // Le nom du fichier reste le même
     
             $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/dev/assets/products/';
             $uploadFile = $uploadDir . $newFileName;
-    
+
             // Assurez-vous que le fichier a été téléchargé avec succès
             if (move_uploaded_file($_FILES['img']['tmp_name'], $uploadFile)) {
                 echo 'Nouveau fichier téléchargé avec succès.';
@@ -120,7 +120,7 @@ require '../php/functionSql.php';
                 echo 'Erreur lors du téléchargement du nouveau fichier.';
             }
         }
-    
+
         // Effectuez la mise à jour des autres champs de l'article
         if (updateArticle($mysqli, $article_id, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute)) {
             echo "Mise à jour de l'article effectuée avec succès !";
@@ -128,7 +128,7 @@ require '../php/functionSql.php';
             echo "Erreur lors de la mise à jour de l'article : " . $stmt->error;
         }
     }
-    
+
 
     if (isset($_POST['delete'])) {
         $articleIdToDelete = $_POST['articleIdToDelete'];
@@ -162,25 +162,28 @@ require '../php/functionSql.php';
     $selectArticlesSql = "SELECT * FROM articles";
     $result = $mysqli->query($selectArticlesSql);
     ?>
-    <div>
-        <h4>Ajouter un nouvel article</h4>
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
-            enctype="multipart/form-data">
+    <div class="container w-1/2 flex flex-col items-center my-20">
+        <h4 class="text-lg font-bold mb-4">Ajouter un nouvel article</h4>
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data"
+            class="flex flex-col items-center mb-0">
             <div>
-                <input type="text" name="nom" placeholder="Nom" require_one>
-                <input type="text" name="references" placeholder="Références" require_one>
-                <input type="text" name="prixHT" placeholder="Prix HT" require_one>
-                <input type="text" name="TVA" value="20" require_one>
-                <input type="text" name="pourcentagePromotion" placeholder="Pourcentage de promotion" require_one>
-                <input type="file" name="image" placeholder="fichiers" require_one>
-                <select name="nouveaute">
+                <input type="text" name="nom" placeholder="Nom" required class="mb-8 border-primary">
+                <input type="text" name="references" placeholder="Références" required class="mb-8 border-primary">
+                <input type="text" name="prixHT" placeholder="Prix HT" required class="mb-8 border-primary">
+                <input type="text" name="TVA" value="20" required class="mb-8 border-primary">
+                <input type="text" name="pourcentagePromotion" placeholder="Pourcentage de promotion" required
+                    class="mb-8 border-primary">
+                <input type="file" name="image" placeholder="Fichier" required class="mb-8 border-primary">
+                <select name="nouveaute" class="mb-8 border-primary">
                     <option value="1">Oui</option>
                     <option value="0">Non</option>
                 </select>
-                <button type="submit" name="add">➕</button>
+                <button type="submit" name="add"
+                    class="bg-primary text-white px-8 py-4 flex align-center justify-center rounded">➕ Ajouter</button>
             </div>
         </form>
     </div>
+
     <h4>Liste des Articles </h4>
     <?php
     if ($result) {
