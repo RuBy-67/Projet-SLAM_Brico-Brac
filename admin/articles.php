@@ -34,7 +34,7 @@ require '../php/functionSql.php';
     <?php
     if (isset($_POST['add']) || isset($_POST['update']) && isset($_FILES['image'])) {
         $nom = $_POST['nom'];
-        $uploadDir = '../dev/assets/product/'; // Dossier de destination
+        $uploadDir = '../../var/www/html/rb-rubydev/Projet-SLAM_Brico-Brac/dev/assets/product/'; // Dossier de destination
         $uploadFile = $uploadDir . basename($_FILES['image']['name']);
         $references = $_POST['references'];
         $prixHT = $_POST['prixHT'];
