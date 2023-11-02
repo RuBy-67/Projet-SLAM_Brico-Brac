@@ -2,14 +2,14 @@
 if (!session_id()) {
   session_start();
 }
+$user = $_SESSION['user'];
+$usergroup = $_SESSION['group'];
 require_once $_SERVER['DOCUMENT_ROOT'].'admin/dbadmin.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/templates/header.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/php/functionSql.php';
 
-$user = $_SESSION['username'];
-$usergroup = $_SESSION['group'];
  if ($usergroup != "2") {
-header('Location: ../error/error.php');
+header('Location: ../admin/admin.php');
 exit();
 }
 ?>

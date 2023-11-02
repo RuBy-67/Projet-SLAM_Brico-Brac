@@ -2,10 +2,10 @@
 if (!session_id()) {
     session_start();
 }
-$user = $_SESSION['username'];
+$user = $_SESSION['user'];
 $usergroup = $_SESSION['group'];
 if ($usergroup != "2" || $usergroup != "1") {
-    header('Location: ../error/error.php');
+    header('Location: ../admin/admin.php');
     exit();
 }
 require_once $_SERVER['DOCUMENT_ROOT'].'admin/dbadmin.php';

@@ -26,10 +26,10 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/php/function.php');
                 if (isset($user)) {
                     // Utilisateur connecté
                     echo '<div class="flex sm:flex-row flex-col items-center">';
-                    echo '<span class="mr-4 mb-4">' . $user. '</span>';
+                    echo '<a href="/pages/compte.php" class="btn">Mon Compte</a>';
                     if ($usergroup  === 1 || $usergroup === 2) {
                         // Utilisateur connecté et a un groupe de 1 (Vendeur) ou 2 (Admin)
-                        echo '<a href="/pages/sign_in.php" class="btn">Gestion</a>';
+                        echo '<a href="/admin/admin.php" class="btn">Gestion</a>';
                     }
                     echo '</div>';
                 } else {

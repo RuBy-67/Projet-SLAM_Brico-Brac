@@ -1,5 +1,9 @@
 <?php
-session_start();
+if (!session_id()) {
+    session_start();
+}
+$user = $_SESSION['user'];
+$usergroup = $_SESSION['group'];
 require '../php/db.php';
 require '../templates/header.php';
 require '../php/functionSql.php';

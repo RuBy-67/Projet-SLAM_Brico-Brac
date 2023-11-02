@@ -2,13 +2,19 @@
 if (!session_id()) {
     session_start();
 }
-
-$user = $_SESSION['username'];
+$user = $_SESSION['user'];
 $usergroup = $_SESSION['group'];
  if ($usergroup != "2") {
-  header('Location: ../error/error.php');
+  header('Location: ../admin/admin.php');
   exit();
 }
+
+if ($usergroup) {
+    header('Location: ../index.php');
+    exit();
+}
+
+
 require_once $_SERVER['DOCUMENT_ROOT'].'admin/dbadmin.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/templates/header.php';
 $group=1;

@@ -2,7 +2,7 @@
 if (!session_id()) {
     session_start();
 }
-$user = $_SESSION['username'];
+$user = $_SESSION['user'];
 $usergroup = $_SESSION['group'];
 if ($usergroup != "2" || $usergroup != "1") {
     header('Location: ../error/error.php');

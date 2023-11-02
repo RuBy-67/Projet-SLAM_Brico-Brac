@@ -1,5 +1,9 @@
 <?php
-session_start();
+if (!session_id()) {
+    session_start();
+}
+$user = $_SESSION['user'];
+$usergroup = $_SESSION['group'];
 require_once($_SERVER['DOCUMENT_ROOT'].'/php/db.php');
 
 $products = $mysqli->query('SELECT * FROM articles');
