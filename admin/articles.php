@@ -233,8 +233,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
                                     <input type="text" name="pourcentagePromotion" value="<?= $row['pourcentagePromotion']; ?>"
                                         class="w-full">
                                 </td>
-                                <td> <input type="text" name="description" value="<?= $row['descriptions']; ?>"
-                                    class="mb-8 border-primary"></td>
+                                <tdclass="p-2"> <input type="text" name="description" value="<?= $row['descriptions']; ?>"
+                                class="w-full"></td>
                                 <td class="p-2">
                                     <p>
                                         <?= $row['imgRef']; ?>
