@@ -115,32 +115,33 @@ require '../php/functionSql.php';
     if ($result->num_rows > 0) {
       ?>
       <div>
-        <h4 class="text-lg font-bold mb-4">Ajouter un nouvel Utilisateur</h4>
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
-          class="mb-4 grid grid-cols-2 gap-4">
-          <div>
-            <input type="text" name="nom" placeholder="Nom" required class="p-2 border rounded mb-2">
-            <input type="text" name="prenom" placeholder="Prénoms" required class="p-2 border rounded mb-2">
-            <div class="relative">
-              <select name="group" class="p-2 border rounded mb-2">
-                <option value="0">Utilisateurs</option>
-                <option value="1">Vendeurs</option>
-                <option value="2">Admin</option>
-              </select>
+        <div class="max-w-xs mx-auto">
+          <h4 class="text-lg font-bold mb-4">Ajouter un nouvel Utilisateur</h4>
+          <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="mb-4">
+            <div>
+              <input type="text" name="nom" placeholder="Nom" required class="block w-full p-2 border rounded mb-2">
+              <input type="text" name="prenom" placeholder="Prénoms" required class="block w-full p-2 border rounded mb-2">
+              <div class="relative">
+                <select name="group" class="block w-full p-2 border rounded mb-2">
+                  <option value="0">Utilisateurs</option>
+                  <option value="1">Vendeurs</option>
+                  <option value="2">Admin</option>
+                </select>
+              </div>
+              <input type="email" name="mail" placeholder="E-mail" required class="block w-full p-2 border rounded mb-2">
+              <input type="number" name="numeros" placeholder="Numéro" required
+                class="block w-full p-2 border rounded mb-2">
+              <input type="text" name="rue" placeholder="Rue" required class="block w-full p-2 border rounded mb-2">
+              <input type="text" name="ville" placeholder="Ville" required class="block w-full p-2 border rounded mb-2">
+              <input type="text" name="pays" placeholder="Pays" required class="block w-full p-2 border rounded mb-2">
+              <input type="tel" name="telephone" placeholder="Téléphone" maxlength="10" required
+                class="block w-full p-2 border rounded mb-2">
             </div>
-          </div>
-          <div>
-            <input type="email" name="mail" placeholder="E-mail" required class="p-2 border rounded mb-2">
-            <input type="number" name="numeros" placeholder="Numéro" required class="p-2 border rounded mb-2">
-            <input type="text" name="rue" placeholder="Rue" required class="p-2 border rounded mb-2">
-            <input type="text" name "ville" placeholder="Ville" required class="p-2 border rounded mb-2">
-            <input type="text" name="pays" placeholder="Pays" required class="p-2 border rounded mb-2">
-            <input type="tel" name="telephone" placeholder="Téléphone" maxlength="10" required
-              class="p-2 border rounded mb-2">
-          </div>
-          <button type="submit" name="add"
-            class="bg-blue-500 text-white p-2 rounded hover:bg-blue-700 col-span-2">➕</button>
-        </form>
+            <button type="submit" name="add"
+              class="block w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-700">➕</button>
+          </form>
+        </div>
+
 
       </div>
       <h4>Liste des utilisateurs</h4>
