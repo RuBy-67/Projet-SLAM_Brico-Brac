@@ -136,7 +136,7 @@ require '../php/functionSql.php';
             </div>
           </div>
           <button type="submit" name="add"
-            class="block bg-primary text-white px-8 py-4 flex align-center justify-center rounded">Ajouter ➕</button>
+            class="block bg-primary text-white px-8 py-4 flex align-center justify-center rounded">➕ Ajouter</button>
         </form>
       </section>
       <h4 class="text-lg font-bold mb-4">Liste des utilisateurs</h4>
@@ -198,11 +198,11 @@ require '../php/functionSql.php';
           </td>
           <td class="p-2">
             <input type="hidden" type="text" name="UsersId" value="<?= $row['usersId']; ?>">
-            <button type="submit" name="update" class="text-blue-500 hover:underline mr-2">Modifier</button>
+            <button type="submit" name="update" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark mr-2">🪄 Modifier</button>
             <input type="hidden" name="userIdToDelete" value="<?= $row['usersId']; ?>">
-            <button type="submit" name="delete" class="text-red-500 hover:underline mr-2">Supprimer</button>
+            <button type="submit" name="delete" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark mr-2">🗑️ Supprimer</button>
             <input type="hidden" name="mdpToReset" value="<?= $row['usersId']; ?>">
-            <button type="submit" name="mdp" class="text-purple-500 hover:underline">Réinitialiser le mot de passe</button>
+            <button type="submit" name="mdp" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark">❗Réinitialiser le mot de passe</button>
           </td>
         </form>
       </tr>
