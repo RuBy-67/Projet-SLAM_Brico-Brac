@@ -24,16 +24,16 @@ $cartItems = getCartItems();
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <title>Brico'brac - Panier</title>
 </head>
-<body>
+<body class="min-h-screen flex flex-col">
     <?php require '../templates/header.php'; ?>
         <!-- Slogan -->
         <section class="bg-top-banner  h-[400px] flex items-center mb-16">
             <h1 class="container sm:w-1/2 text-white text-center sm:mt-20 mt-52">Votre panier</h1>
         </section>
         
-        <section class="container flex flex-col">
+        <section class="container flex flex-col items-center my-20 grow">
             <?php if (isCartEmpty()): ?>
-                <p>Panier vide</p>
+                <p class="text-h4">Panier vide</p>
             <?php else: ?>
                 <ul class="mb-4">
                 <?php foreach($cartItems as $cartItem) :?>

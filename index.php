@@ -1,8 +1,8 @@
 <?php
-require($_SERVER['DOCUMENT_ROOT'].'/php/db.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/php/request.php');
 
-$new_product = $mysqli->query('SELECT * FROM articles WHERE nouveaute = 1');
-$promotions = $mysqli->query('SELECT * FROM articles WHERE pourcentagePromotion IS NOT NULL');
+$new_product = getNewArticles();
+$promotions =  getArticlesWithPromotion();
 ?>
 
 <!DOCTYPE html>
