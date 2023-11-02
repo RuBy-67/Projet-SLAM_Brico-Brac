@@ -151,7 +151,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
         </form>
       </section>
       <h4 class="text-lg font-bold mb-4">Liste des utilisateurs</h4>
-      <table class="border-collapse w-full m-2">
+      <table class="border-collapse w-full mb-16">
         <thead>
           <tr class="bg-gray-200">
             <th class="p-2">Noms</th>

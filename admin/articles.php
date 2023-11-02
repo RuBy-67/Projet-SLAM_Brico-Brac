@@ -196,7 +196,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
     if ($result) {
         if ($result->num_rows > 0) {
             ?>
-            <table class="border-collapse w-full">
+            <table class="border-collapse w-full mb-16">
                 <thead>
                     <tr class="bg-gray-200">
                         <th class="p-2">Nom</th>
