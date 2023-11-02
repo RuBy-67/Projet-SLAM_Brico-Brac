@@ -104,11 +104,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
 
 
     if (isset($_POST['update'])) {
-        $articleId = $_POST['article_id']; // Utilisez le même nom de variable
+        $articleId = $_POST['article_id'];
         $nom = $_POST['nom'];
         $references = $_POST['references'];
         $prixHT = $_POST['prixHT'];
-        $descritpion = $_POST['description'];
+        $description = $_POST['description'];
         $fileToUpdate = $_POST['fichierToUpdate'];
         $TVA = $_POST['TVA'];
         $pourcentagePromotion = $_POST['pourcentagePromotion'];
@@ -129,26 +129,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
             }
         }
     
-        $selectImgRefSql = "SELECT imgRef FROM articles WHERE articlesId = ?";
-        $stmt = $mysqli->prepare($selectImgRefSql);
-        $stmt->bind_param("i", $articleId);
-        $stmt->execute();
-        $stmt->bind_result($imgRef);
-    
-        if ($stmt->fetch()) {
-            // La variable $imgRef contient le nom de l'image existante
-        } else {
-            // Gérez le cas où aucun enregistrement correspondant n'a été trouvé
-            echo "Aucun enregistrement trouvé pour l'article d'ID $articleId.";
-        }
-    
-        // Effectuez la mise à jour des autres champs de l'article, en utilisant $imgRef comme nom d'image
-        if (updateArticle($mysqli, $articleId, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $imgRef, $descritpion)) {
+        // Effectuez la mise à jour des autres champs de l'article
+        if (updateArticle($mysqli, $articleId, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $newFileName, $description)) {
             echo "Mise à jour de l'article effectuée avec succès !";
         } else {
             echo "Erreur lors de la mise à jour de l'article : " . $stmt->error;
         }
     }
+    
     
 
     if (isset($_POST['delete'])) {
