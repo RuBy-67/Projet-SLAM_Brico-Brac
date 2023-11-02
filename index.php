@@ -42,8 +42,8 @@ $promotions = $mysqli->query('SELECT * FROM articles WHERE pourcentagePromotion 
             La référence du magasin de bricolage près de chez vous ! 
         </h1>
         <?php
-        echo $user;
-        echo $usergroup;
+        echo $user . 'test';
+        echo $usergroup . 'test';
         ?>
     </section>
     <?php if ($new_product->num_rows > 0) { ?>
