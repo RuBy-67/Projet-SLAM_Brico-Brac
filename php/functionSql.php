@@ -157,7 +157,7 @@ function updateArticle($mysqli, $articleId, $nom, $references, $prixHT, $TVA, $p
                         SET nom = ?, `references` = ?, prixHT = ?, TVA = ?, pourcentagePromotion = ?, nouveaute = ?,imgRef=?, descriptions = ?
                         WHERE articlesId = ?";
     $stmt = $mysqli->prepare($updateArticleSql);
-    $stmt->bind_param("siiiiiiss", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $articleId,$newFileName, $descritpion);
+    $stmt->bind_param("siiiiiiss", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute,$newFileName, $descritpion, $articleId);
 
     if ($stmt->execute()) {
         return true;
