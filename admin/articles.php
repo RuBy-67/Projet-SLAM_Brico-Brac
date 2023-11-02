@@ -32,7 +32,7 @@ require '../php/functionSql.php';
         <h2 class="container w-1/2 text-white text-center">Créer un Compte</h2>
     </section>
     <?php
-    if (isset($_POST['add']) || isset($_POST['update']) && isset($_FILES['image'])) {
+    if (isset($_POST['add'])) {
         $nom = $_POST['nom'];
         $cleanedFileName = str_replace(' ', '_', $nom);
         $newFileName = $cleanedFileName . '.jpg';
@@ -52,7 +52,7 @@ require '../php/functionSql.php';
         if (file_exists($_FILES['image']['tmp_name'])) {
 
             if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
-                
+
                 echo 'Fichier téléchargé avec succès.';
                 $newFilePath = $uploadDir . $newFileName;
                 rename($uploadFile, $newFilePath);
@@ -85,10 +85,6 @@ require '../php/functionSql.php';
                             echo '<p>Erreur lors de l\'ajout de l\'article</p>';
                         }
                     }
-                } elseif (isset($_POST['update'])) {
-                    // Mettre à jour 
-                    $articleId = $_POST['articleId'];
-                    $mysqli->query("UPDATE articles SET imgRef = '$newFileName' WHERE articleId = $articleId");
                 }
             } else {
                 echo 'Erreur lors du téléchargement du fichier.';
@@ -105,17 +101,34 @@ require '../php/functionSql.php';
         $nom = $_POST['nom'];
         $references = $_POST['references'];
         $prixHT = $_POST['prixHT'];
+        $fileToUpdate = $_POST['fichierToUpdate'];
         $TVA = $_POST['TVA'];
         $pourcentagePromotion = $_POST['pourcentagePromotion'];
         $nouveaute = $_POST['nouveaute'];
-
-        // Appel de la fonction de mise à jour
+    
+        // Vérifiez si un nouveau fichier a été téléchargé
+        if (isset($_FILES['img']) && $_FILES['img']['error'] === UPLOAD_ERR_OK) {
+            $newFileName = $fileToUpdate; // Le nom du fichier reste le même
+    
+            $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/dev/assets/products/';
+            $uploadFile = $uploadDir . $newFileName;
+    
+            // Assurez-vous que le fichier a été téléchargé avec succès
+            if (move_uploaded_file($_FILES['img']['tmp_name'], $uploadFile)) {
+                echo 'Nouveau fichier téléchargé avec succès.';
+            } else {
+                echo 'Erreur lors du téléchargement du nouveau fichier.';
+            }
+        }
+    
+        // Effectuez la mise à jour des autres champs de l'article
         if (updateArticle($mysqli, $article_id, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute)) {
-            echo "Mise à jour effectuée avec succès !";
+            echo "Mise à jour de l'article effectuée avec succès !";
         } else {
-            echo "Erreur lors de la mise à jour : " . $stmt->error;
+            echo "Erreur lors de la mise à jour de l'article : " . $stmt->error;
         }
     }
+    
 
     if (isset($_POST['delete'])) {
         $articleIdToDelete = $_POST['articleIdToDelete'];
@@ -207,6 +220,7 @@ require '../php/functionSql.php';
                                 </select>
                             </td>
                             <td>
+                                <input type="hidden" name="fichierToUpdate" value="<?= $row['imgRef']; ?>">
                                 <input type="hidden" name="article_id" value="<?= $row['articlesId']; ?>"> <!-- Pour update -->
                                 <button type="submit" name="update">🪄</button>
                                 <input type="hidden" name="fichierToDelete" value="<?= $row['imgRef']; ?>">
