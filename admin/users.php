@@ -130,7 +130,7 @@ require '../php/functionSql.php';
               <input type="tel" name="telephone" placeholder="Téléphone" maxlength="10" required
                 class="mb-8 border-primary">
               <div class="relative">
-                <select name="group" lass="mb-8 border-primary">
+                <select name="group" class="mb-8 border-primary">
                   <option value="0">Utilisateurs</option>
                   <option value="1">Vendeurs</option>
                   <option value="2">Admin</option>
