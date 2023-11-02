@@ -29,7 +29,7 @@ require '../php/functionSql.php';
 <body>
   <!-- Slogan -->
   <section class="bg-top-banner  h-[400px] flex items-center mb-8">
-    <h2 class="container w-1/2 text-white text-center">Créer un Compte</h2>
+    <h2 class="container w-1/2 text-white text-center">Gestion des Utilisateurs</h2>
   </section>
   <?php
   // Récupérer tous les users de la table "users"
