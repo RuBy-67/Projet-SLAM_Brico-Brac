@@ -120,15 +120,14 @@ require '../php/functionSql.php';
           <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
             class="flex flex-col items-center mb-0">
             <div>
-              <input type="text" name="nom" placeholder="Nom" required lass="mb-8 border-primary">
-              <input type="text" name="prenom" placeholder="Prénoms" required lass="mb-8 border-primary">
-              <input type="email" name="mail" placeholder="E-mail" required lass="mb-8 border-primary">
-              <input type="number" name="numeros" placeholder="Numéro" required lass="mb-8 border-primary">
-              <input type="text" name="rue" placeholder="Rue" required lass="mb-8 border-primary">
-              <input type="text" name="ville" placeholder="Ville" required lass="mb-8 border-primary">
-              <input type="text" name="pays" placeholder="Pays" required lass="mb-8 border-primary">
-              <input type="tel" name="telephone" placeholder="Téléphone" maxlength="10" required
-                class="mb-8 border-primary">
+              <input type="text" name="nom" placeholder="Nom" required class="mb-8 border-primary">
+              <input type="text" name="prenom" placeholder="Prénoms" required class="mb-8 border-primary">
+              <input type="email" name="mail" placeholder="E-mail" required class="mb-8 border-primary">
+              <input type="number" name="numeros" placeholder="Numéro" required class="mb-8 border-primary">
+              <input type="text" name="rue" placeholder="Rue" required class="mb-8 border-primary">
+              <input type="text" name="ville" placeholder="Ville" required class="mb-8 border-primary">
+              <input type="text" name="pays" placeholder="Pays" required class="mb-8 border-primary">
+              <input type="tel" name="telephone" placeholder="Téléphone" maxlength="10" requiredclass="mb-8 border-primary">
               <div class="relative">
                 <select name="group" class="mb-8 border-primary">
                   <option value="0">Utilisateurs</option>
