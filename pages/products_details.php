@@ -1,4 +1,17 @@
 <?php
+ if (!session_id()) {
+    session_start();
+}
+if (isset($_SESSION['group'])) {
+    $usergroup = $_SESSION['group'];
+}
+
+if (isset($_SESSION['user'])) {
+    $user = $_SESSION['user'];
+}
+if (isset($_SESSION['surname'])) {
+    $surname =  $_SESSION['surname'];
+}
 require_once($_SERVER['DOCUMENT_ROOT'].'/php/request.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/php/prices.php');
 
@@ -71,7 +84,7 @@ if($article['pourcentagePromotion'] != null){
                     <p class="mb-4">Il n'y a pas de description pour cet article</p>
                 <?php endif; ?>
                 
-                <a class=" block   bg-primary text-white px-8 py-4 flex align-center justify-center" 
+                <a class="  bg-primary text-white px-8 py-4 flex align-center justify-center" 
                 href="/action/addToCart.php?articlesId=<?= $article['articlesId'] ?>"
                 >
                     Ajouter au panier <span class="material-symbols-outlined ml-4">add</span>

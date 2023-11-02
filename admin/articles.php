@@ -2,8 +2,16 @@
 if (!session_id()) {
     session_start();
 }
-$user = $_SESSION['user'];
-$usergroup = $_SESSION['group'];
+if (isset($_SESSION['group'])) {
+    $usergroup = $_SESSION['group'];
+}
+
+if (isset($_SESSION['user'])) {
+    $user = $_SESSION['user'];
+}
+if (isset($_SESSION['surname'])) {
+    $surname =  $_SESSION['surname'];
+}
 if ($usergroup !== 2 && $usergroup !== 1) {
     header('Location: ../admin/admin.php');
     exit();

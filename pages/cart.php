@@ -3,8 +3,16 @@
 if (!session_id()) {
     session_start();
 }
-$user = $_SESSION['user'];
-$usergroup = $_SESSION['group'];
+if (isset($_SESSION['group'])) {
+    $usergroup = $_SESSION['group'];
+}
+
+if (isset($_SESSION['user'])) {
+    $user = $_SESSION['user'];
+}
+if (isset($_SESSION['surname'])) {
+    $surname =  $_SESSION['surname'];
+}
 
 require_once($_SERVER['DOCUMENT_ROOT'].'/php/prices.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/php/cart.php');

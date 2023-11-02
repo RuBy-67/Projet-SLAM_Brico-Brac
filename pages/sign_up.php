@@ -2,8 +2,16 @@
 if (!session_id()) {
     session_start();
 }
-$user = $_SESSION['user'];
-$usergroup = $_SESSION['group'];
+if (isset($_SESSION['group'])) {
+    $usergroup = $_SESSION['group'];
+}
+
+if (isset($_SESSION['user'])) {
+    $user = $_SESSION['user'];
+}
+if (isset($_SESSION['surname'])) {
+    $surname =  $_SESSION['surname'];
+}
 require '../php/db.php';
 require '../templates/header.php';
 require '../php/functionSql.php';

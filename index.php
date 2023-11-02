@@ -9,6 +9,9 @@ if (isset($_SESSION['group'])) {
 if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
 }
+if (isset($_SESSION['surname'])) {
+    $surname =  $_SESSION['surname'];
+}
 require($_SERVER['DOCUMENT_ROOT'].'/php/request.php');
 
 $new_product = getNewArticles();
