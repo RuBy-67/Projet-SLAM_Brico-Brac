@@ -42,11 +42,8 @@ require '../php/functionSql.php';
         $pourcentagePromotion = $_POST['pourcentagePromotion'];
         $nouveaute = $_POST['nouveaute'];
 
-
-        // Assurez-vous que le fichier a été téléchargé avec succès
         if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
             echo 'Fichier téléchargé avec succès.';
-            // Renommez le fichier avec le nom souhaité (par exemple, "nom.jpg")
             $newFileName = $nom . '.jpg';
             $newFilePath = $uploadDir . $newFileName;
             rename($uploadFile, $newFilePath);
@@ -80,8 +77,8 @@ require '../php/functionSql.php';
                     }
                 }
             } elseif (isset($_POST['update'])) {
-                // Mettez à jour l'enregistrement existant
-                $articleId = $_POST['articleId']; // Assurez-vous que vous récupérez l'ID de l'article
+                // Mettre à jour 
+                $articleId = $_POST['articleId']; 
                 $mysqli->query("UPDATE articles SET imgRef = '$newFileName' WHERE articleId = $articleId");
             }
         } else {
