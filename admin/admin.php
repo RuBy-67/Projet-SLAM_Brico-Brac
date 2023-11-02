@@ -35,12 +35,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
     <title>Brico'brac - Administration</title>
 </head>
 
-<body>
+<body class="min-h-screen flex flex-col"> 
     <!-- Slogan -->
     <section class="bg-top-banner  h-[400px] flex items-center mb-8">
         <h2 class="container w-1/2 text-white text-center">Créer un Compte</h2>
     </section>
-    <div class="container">
+    <section class="container my-16 grow">
         <div class="flex flex-wrap">
             <div class="w-full md:w-1/2 lg:w-1/3 p-2">
                 <a href="./articles.php" class="bg-white shadow-md rounded-md block p-4">
@@ -48,7 +48,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
                     <p class="text-gray-600">Ajouter, modifier ou supprimer des articles.</p>
                 </a>
             </div>
-            <div class="w-full md:w-1/2 lg:w-1/3 p-2">
+            <div class="w-full md:w-1/2 lg:w-1/3 p-2 ">
                 <a href="./users.php" class="bg-white shadow-md rounded-md block p-4">
                     <h3 class="text-xl font-bold mb-2">Gestion des utilisateurs</h3>
                     <p class="text-gray-600">Ajouter, modifier ou supprimer des utilisateurs.</p>
@@ -61,8 +61,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
                 </a>
             </div>
         </div>
-    </div>
     </section>
+    
 
     <?php require '../templates/footer.php'; ?>
 </body>
