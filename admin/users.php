@@ -198,11 +198,11 @@ require '../php/functionSql.php';
           </td>
           <td class="p-2">
             <input type="hidden" type="text" name="UsersId" value="<?= $row['usersId']; ?>">
-            <button type="submit" name="update" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark m-2">Modifier</button>
+            <button type="submit" name="update" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark m-2 p-2">🪄 Modifier</button>
             <input type="hidden" name="userIdToDelete" value="<?= $row['usersId']; ?>">
-            <button type="submit" name="delete" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark m-2">Supprimer</button>
+            <button type="submit" name="delete" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark m-2 p-2">🗑️ Supprimer</button>
             <input type="hidden" name="mdpToReset" value="<?= $row['usersId']; ?>">
-            <button type="submit" name="mdp" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark m-2">Réinitialiser le mot de passe</button>
+            <button type="submit" name="mdp" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark m-2 p-2">❗Réinitialiser le mot de passe</button>
           </td>
         </form>
       </tr>
