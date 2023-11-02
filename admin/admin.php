@@ -4,7 +4,7 @@ if (!session_id()) {
 }
 $user = $_SESSION['user'];
 $usergroup = $_SESSION['group'];
-if ($usergroup !== 1 && $usergroup !== 2) {
+if ($usergroup !== 2 || $usergroup !== 1) {
     header('Location: ../error/error.php');
     exit();
 }

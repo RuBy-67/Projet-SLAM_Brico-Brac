@@ -4,7 +4,7 @@ if (!session_id()) {
 }
 $user = $_SESSION['user'];
 $usergroup = $_SESSION['group'];
- if ($usergroup != "2") {
+ if ($usergroup !== 2) {
   header('Location: ../admin/admin.php');
   exit();
 }
@@ -15,7 +15,7 @@ if ($usergroup) {
 }
 
 
-require_once $_SERVER['DOCUMENT_ROOT'].'admin/dbadmin.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/admin/dbadmin.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/templates/header.php';
 $group=1;
 ?>
