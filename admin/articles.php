@@ -34,7 +34,7 @@ require '../php/functionSql.php';
     <?php
     if (isset($_POST['add']) || isset($_POST['update']) && isset($_FILES['image'])) {
         $nom = $_POST['nom'];
-        $cleanedFileName = preg_replace("/[^\w-_.]/", "", $nom);
+        $cleanedFileName = str_replace(' ', '_', $nom);
         $newFileName = $cleanedFileName . '.jpg';
         echo $newFileName. '<br>';
         $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/dev/assets/product/';
