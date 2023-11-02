@@ -114,10 +114,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
         $pourcentagePromotion = $_POST['pourcentagePromotion'];
         $nouveaute = $_POST['nouveaute'];
     
+        $newFileName = $fileToUpdate; // Déclarez la variable en dehors de la condition
+    
         // Vérifiez si un nouveau fichier a été téléchargé
         if (isset($_FILES['img']) && $_FILES['img']['error'] === UPLOAD_ERR_OK) {
-            $newFileName = $fileToUpdate; // Le nom du fichier reste le même
-    
             $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/dev/assets/products/';
             $uploadFile = $uploadDir . $newFileName;
     
@@ -136,6 +136,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
             echo "Erreur lors de la mise à jour de l'article : " . $stmt->error;
         }
     }
+    
     
     
 
