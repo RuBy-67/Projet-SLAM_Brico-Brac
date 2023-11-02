@@ -1145,6 +1145,10 @@ input {
     margin-right: 1rem;
   }
 
+  .lg\:mb-0 {
+    margin-bottom: 0px;
+  }
+
   .lg\:w-1\/2 {
     width: 50%;
   }

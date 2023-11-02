@@ -50,9 +50,14 @@ $cartItems = getCartItems();
                     <?php include($_SERVER['DOCUMENT_ROOT'].'/templates/cart_card.php');?>
                 <?php endforeach; ?>
                 </ul>
-                <div class="flex gap-8 mb-16">
+                <div class="flex lg:flex-row flex-col items-center justify-center gap-8 mb-16">
                     <p class="font-bold">Total du panier HT : <?= getCartTotalPriceHT($cartItems) ?>€</p>
-                    <p class="font-bold mb-16">Total du panier TTC : <?= getCartTotalPriceTTC($cartItems) ?>€</p>
+                    <p class="font-bold ">Total du panier TTC : <?= getCartTotalPriceTTC($cartItems) ?>€</p>
+                    <a class=" block m-2  bg-primary text-white px-8 py-4 flex items-center justify-center rounded" 
+                       href="/action/addOrderInBdd.php"
+                    >
+                        Passer votre commande <span class="material-symbols-outlined ml-4">shopping_cart_checkout</span>
+                    </a>
                 </div>
             <?php endif; ?>
         </section>

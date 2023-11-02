@@ -38,7 +38,7 @@ $priceWithReduction = calculedPriceWithPromotion($cartItem['prixHT'],$cartItem['
         </a>
     </p>
     <div class="lg:col-start-7 col-start-2">
-            <a href="/action/deleteToCart.php?articlesId=<?= $cartItem['articlesId']?>">
+            <a href="/action/deleteFromCart.php?articlesId=<?= $cartItem['articlesId']?>">
                 <span class="material-symbols-outlined">delete</span>
             </a>
     </div>
