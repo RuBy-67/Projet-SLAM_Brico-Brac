@@ -38,7 +38,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/php/db.php');
     <section class="bg-top-banner  h-[678px] flex items-center mb-8">
         <h1 class="container lg:w-1/2 text-white text-center xl:mt-0 md:mt-18 mt-52">
             Bonjour
-            <?= $user ?> <?= $surname?> <br /> - <br /> Votre compte
+            <?= $user ?> <br /> - <br /> Votre compte
         </h1>
     </section>
     <?php
