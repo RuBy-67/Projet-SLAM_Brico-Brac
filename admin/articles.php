@@ -128,9 +128,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
                 echo 'Erreur lors du téléchargement du nouveau fichier.';
             }
         }
+        $selectImgRefSql = "SELECT imgRef FROM articles WHERE articlesId = ?";
+        $stmt = $mysqli->prepare($selectImgRefSql);
+        $stmt->bind_param("i", $articleId);
+        $stmt->execute();
+        $stmt->bind_result($imgRef);
 
         // Effectuez la mise à jour des autres champs de l'article
-        if (updateArticle($mysqli, $article_id, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute,$newFileName, $descritpion)) {
+        if (updateArticle($mysqli, $article_id, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $imgRef, $descritpion)) {
             echo "Mise à jour de l'article effectuée avec succès !";
         } else {
             echo "Erreur lors de la mise à jour de l'article : " . $stmt->error;
