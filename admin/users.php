@@ -136,11 +136,11 @@ require '../php/functionSql.php';
             </div>
           </div>
           <button type="submit" name="add"
-            class="block bg-primary text-white px-8 py-4 flex align-center justify-center rounded">➕ Ajouter</button>
+            class=" bg-primary text-white px-8 py-4 flex align-center justify-center rounded">➕ Ajouter</button>
         </form>
       </section>
       <h4 class="text-lg font-bold mb-4">Liste des utilisateurs</h4>
-<table class="border-collapse w-full">
+<table class="border-collapse w-full m-2">
   <thead>
     <tr class="bg-gray-200">
       <th class="p-2">Noms</th>
@@ -202,7 +202,7 @@ require '../php/functionSql.php';
             <input type="hidden" name="userIdToDelete" value="<?= $row['usersId']; ?>">
             <button type="submit" name="delete" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark m-2 p-2">🗑️ Supprimer</button>
             <input type="hidden" name="mdpToReset" value="<?= $row['usersId']; ?>">
-            <button type="submit" name="mdp" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark m-2 p-2">❗Réinitialiser le mot de passe</button>
+            <button type="submit" name="mdp" class="bg-primary text-white rounded hover:bg-primary-dark m-2 p-2">❗Réinitialiser le mot de passe</button>
           </td>
         </form>
       </tr>

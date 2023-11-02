@@ -69,7 +69,7 @@ require ($_SERVER['DOCUMENT_ROOT'].'/templates/header.php');
             <input  class="mb-8 border-primary" type="password" name="mdp" require_one placeholder="Mot de passe">
             <input 
                 type="submit" 
-                class="block bg-primary text-white px-8 py-4 flex align-center justify-center rounded" 
+                class="bg-primary text-white px-8 py-4 flex align-center justify-center rounded" 
                 value="Se connecter"
             >
         </form>
