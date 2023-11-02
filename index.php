@@ -1,5 +1,10 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/php/request.php');
+if (!session_id()) {
+    session_start();
+}
+$usergroup = $_SESSION['group'];
+$user = $_SESSION['user'];
+require($_SERVER['DOCUMENT_ROOT'].'/php/db.php');
 
 $new_product = getNewArticles();
 $promotions =  getArticlesWithPromotion();
@@ -34,7 +39,7 @@ $promotions =  getArticlesWithPromotion();
     <section class="bg-top-banner  h-[678px] flex items-center mb-8">
         <h1 class="container lg:w-1/2 text-white text-center xl:mt-0 md:mt-18 mt-52">
             Bienvenue sur Brico’brac ! <br />
-            La référence du magasin de bricolage près de chez vous !
+            La référence du magasin de bricolage près de chez vous ! 
         </h1>
     </section>
     <?php if ($new_product->num_rows > 0) { ?>

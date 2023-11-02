@@ -1,5 +1,9 @@
 <?php
-session_start();
+if (!session_id()) {
+    session_start();
+}
+$user = $_SESSION['user'];
+$usergroup = $_SESSION['group'];
 require '../php/db.php';
 require '../templates/header.php';
 require '../php/functionSql.php';
@@ -62,23 +66,22 @@ require '../php/functionSql.php';
         <form class="flex flex-col items-center mb-0" method="post"
             action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <div class="grid grid-cols-2 gap-8 mb-8">
-                <input type="text" name="nom" require_one placeholder="Nom">
-                <input type="text" name="prenom" require_one placeholder="Prénom">
-                <input type="email" name="mail" require_one placeholder="Adresse@e-mail">
+                <input type="text" name="nom" required placeholder="Nom">
+                <input type="text" name="prenom" required placeholder="Prénom">
+                <input type="email" name="mail" required placeholder="Adresse@e-mail">
                 <input type="tel" name="tel" placeholder="Téléphone" maxlength="10">
-                <input type="password" name="mdp" require_one placeholder="Mot de passe">
-                <input type="password" name="mdp_confirm" require_one placeholder="Confirmez le mot de passe">
-                <input type="text" name="states" require_one placeholder="Pays">
-                <input type="text" name="city" require_one placeholder="Ville">
-                <input type="text" name="street" require_one placeholder="Rue">
-                <input type="text" name="number" require_one placeholder="Numéro de rue">
+                <input type="password" name="mdp" required placeholder="Mot de passe">
+                <input type="password" name="mdp_confirm" required placeholder="Confirmez le mot de passe">
+                <input type="text" name="states" required placeholder="Pays">
+                <input type="text" name="city" required placeholder="Ville">
+                <input type="text" name="street" required placeholder="Rue">
+                <input type="text" name="number" required placeholder="Numéro de rue">
             </div>
 
-            <input class="block bg-primary text-white px-8 py-4 flex align-center justify-center rounded" type="submit"
+            <input class=" bg-primary text-white px-8 py-4 flex align-center justify-center rounded" type="submit"
                 name="submit" value="S'inscrire">
         </form>
     </section>
-    <?php require '../templates/footer.php'; ?>
+    <?php require '../templates/footer.php'; ?>    
 </body>
-
 </html>
