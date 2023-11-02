@@ -36,14 +36,14 @@ require '../php/functionSql.php';
         $nom = $_POST['nom'];
         $cleanedFileName = str_replace(' ', '_', $nom);
         $newFileName = $cleanedFileName . '.jpg';
-        echo $newFileName. '<br>';
+        echo $newFileName . '<br>';
         $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/dev/assets/product/';
 
-        echo $uploadDir. '<br>';
+        echo $uploadDir . '<br>';
         $newFilePath = $uploadDir . $newFileName;
-        echo $newFilePath. '<br>';
+        echo $newFilePath . '<br>';
         $uploadFile = $uploadDir . basename($_FILES['image']['name']);
-        echo $uploadFile. '<br>';
+        echo $uploadFile . '<br>';
         $references = $_POST['references'];
         $prixHT = $_POST['prixHT'];
         $TVA = $_POST['TVA'];
@@ -51,49 +51,50 @@ require '../php/functionSql.php';
 
         $nouveaute = $_POST['nouveaute'];
         if (file_exists($_FILES['image']['tmp_name'])) {
-        if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
-            echo 'Fichier téléchargé avec succès.';
-            $newFilePath = $uploadDir . $newFileName;
-            rename($uploadFile, $newFilePath);
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
+                echo 'Fichier téléchargé avec succès.';
+                $newFilePath = $uploadDir . $newFileName;
+                rename($uploadFile, $newFilePath);
 
-            if (isset($_POST['add'])) {
+                if (isset($_POST['add'])) {
 
-                $nom = $_POST['nom'];
-                $references = $_POST['references'];
-                $prixHT = $_POST['prixHT'];
-                $TVA = $_POST['TVA'];
-                $pourcentagePromotion = $_POST['pourcentagePromotion'];
-                $nouveaute = $_POST['nouveaute'];
+                    $nom = $_POST['nom'];
+                    $references = $_POST['references'];
+                    $prixHT = $_POST['prixHT'];
+                    $TVA = $_POST['TVA'];
+                    $pourcentagePromotion = $_POST['pourcentagePromotion'];
+                    $nouveaute = $_POST['nouveaute'];
 
-                // Vérifier si la référence existe déjà dans la base de données
-                $checkReferencesSql = "SELECT COUNT(*) FROM articles WHERE references = ?";
-                $stmt = $mysqli->prepare($checkReferencesSql);
-                $stmt->bind_param("i", $references);
-                $stmt->execute();
-                $stmt->bind_result($count);
-                $stmt->fetch();
-                $stmt->close();
+                    // Vérifier si la référence existe déjà dans la base de données
+                    $checkReferencesSql = "SELECT COUNT(*) FROM articles WHERE references = ?";
+                    $stmt = $mysqli->prepare($checkReferencesSql);
+                    $stmt->bind_param("i", $references);
+                    $stmt->execute();
+                    $stmt->bind_result($count);
+                    $stmt->fetch();
+                    $stmt->close();
 
-                if ($count > 0) {
-                    echo '<p>La référence existe déjà. Veuillez en choisir une autre.</p>';
-                } else {
-                    // Appel de la fonction d'ajout
-                    if (addArticle($mysqli, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $newFileName)) {
-                        echo '<p>Article ajouté</p>';
+                    if ($count > 0) {
+                        echo '<p>La référence existe déjà. Veuillez en choisir une autre.</p>';
                     } else {
-                        echo '<p>Erreur lors de l\'ajout de l\'article</p>';
+                        // Appel de la fonction d'ajout
+                        if (addArticle($mysqli, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $newFileName)) {
+                            echo '<p>Article ajouté</p>';
+                        } else {
+                            echo '<p>Erreur lors de l\'ajout de l\'article</p>';
+                        }
                     }
+                } elseif (isset($_POST['update'])) {
+                    // Mettre à jour 
+                    $articleId = $_POST['articleId'];
+                    $mysqli->query("UPDATE articles SET imgRef = '$newFileName' WHERE articleId = $articleId");
                 }
-            } elseif (isset($_POST['update'])) {
-                // Mettre à jour 
-                $articleId = $_POST['articleId']; 
-                $mysqli->query("UPDATE articles SET imgRef = '$newFileName' WHERE articleId = $articleId");
+            } else {
+                echo 'Erreur lors du téléchargement du fichier.';
             }
         } else {
-            echo 'Erreur lors du téléchargement du fichier.';
-        }} else {
-        echo 'Le fichier temporaire n\'existe pas.';
-    }
+            echo 'Le fichier temporaire n\'existe pas.';
+        }
     }
 
 
