@@ -115,9 +115,9 @@ require '../php/functionSql.php';
     if ($result->num_rows > 0) {
       ?>
       <div>
-      <div class="mx-auto w-64">
+      <div class="mx-4">
           <h4 class="text-lg font-bold mb-4">Ajouter un nouvel Utilisateur</h4>
-          <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="mb-4">
+          <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="mb-4 max-w-xs">
             <div>
               <input type="text" name="nom" placeholder="Nom" required class="block w-full p-2 border rounded mb-2">
               <input type="text" name="prenom" placeholder="Prénoms" required class="block w-full p-2 border rounded mb-2">
