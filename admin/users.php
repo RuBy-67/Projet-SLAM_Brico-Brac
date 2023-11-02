@@ -7,8 +7,8 @@ require '../php/functionSql.php';
 ///$user = $_SESSION['username'];
 ///$usergroup = $_SESSION['group'];
 /// if ($usergroup != "2") {
- /// header('Location: ../error/error.php');
-  ////exit();
+/// header('Location: ../error/error.php');
+////exit();
 ///}
 ?>
 <!DOCTYPE html>
@@ -68,17 +68,17 @@ require '../php/functionSql.php';
     $telephone = $_POST['telephone'];
 
     $excludeUserId = $userId; // Exclure l'utilisateur actuel de la vérification
-
+  
     if (checkEmailPhoneExists($mysqli, $mail, $telephone, $excludeUserId)) {
-        echo "Les informations de l'utilisateur existent déjà, impossible d'effectuer cette mise à jour.";
+      echo "Les informations de l'utilisateur existent déjà, impossible d'effectuer cette mise à jour.";
     } else {
-        if (updateUsers($mysqli, $userId, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, $ville, $telephone)) {
-            echo "Mise à jour effectuée avec succès !";
-        } else {
-            echo "Erreur lors de la mise à jour : " . $stmt->error;
-        }
+      if (updateUsers($mysqli, $userId, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, $ville, $telephone)) {
+        echo "Mise à jour effectuée avec succès !";
+      } else {
+        echo "Erreur lors de la mise à jour : " . $stmt->error;
+      }
     }
-}
+  }
 
   if (isset($_POST['delete'])) {
     $userIdToDelete = $_POST['userIdToDelete'];
@@ -114,28 +114,29 @@ require '../php/functionSql.php';
   if ($result) {
     if ($result->num_rows > 0) {
       ?>
-         <div>
-        <h4>Ajouter un nouvel Users</h4>
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-          <div>
-            <input type="text" name="nom" placeholder="Nom" require_one>
-            <input type="text" name="prenom" placeholder="Prenoms" require_one>
-            <td>
-              <select name="group">
-                <option value="0">Users</option>
+      <div>
+        <h4 class="text-lg font-bold mb-4">Ajouter un nouvel Utilisateur</h4>
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="mb-4">
+          <div class="grid grid-cols-1 gap-4">
+            <input type="text" name="nom" placeholder="Nom" required class="p-2 border rounded">
+            <input type="text" name="prenom" placeholder="Prénoms" required class="p-2 border rounded">
+            <div class="relative">
+              <select name="group" class="p-2 border rounded">
+                <option value="0">Utilisateurs</option>
                 <option value="1">Vendeurs</option>
                 <option value="2">Admin</option>
               </select>
-            </td>
-            <input type="text" name="mail" placeholder="mail" require_one >
-            <input type="text" name="numeros" placeholder="nombre" require_one >
-            <input type="text" name="rue" placeholder="rue" require_one >
-            <input type="text" name="ville" placeholder="ville" require_one >
-            <input type="text" name="pays" placeholder="Pays" require_one >
-            <input type="text" name="telephone" placeholder="Telephone" maxlength="10" require_one >
-            <button type="submit" name="add">➕</button>
+            </div>
+            <input type="email" name="mail" placeholder="E-mail" required class="p-2 border rounded">
+            <input type="number" name="numeros" placeholder="Numéro" required class="p-2 border rounded">
+            <input type="text" name="rue" placeholder="Rue" required class="p-2 border rounded">
+            <input type="text" name="ville" placeholder="Ville" required class="p-2 border rounded">
+            <input type="text" name="pays" placeholder="Pays" required class="p-2 border rounded">
+            <input type="tel" name="telephone" placeholder="Téléphone" maxlength="10" required class="p-2 border rounded">
+            <button type="submit" name="add" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-700">➕</button>
           </div>
         </form>
+
       </div>
       <h4>Liste des utilisateurs</h4>
       <table>
@@ -170,7 +171,7 @@ require '../php/functionSql.php';
               <td><input type="text" name="numeros" value="<?= $row['number']; ?>"></td>
               <td><input type="text" name="rue" value="<?= $row['street']; ?>"></td>
               <td><input type="text" name="ville" value="<?= $row['city']; ?>"></td>
-              <td><input type="text" name="telephone" value="<?= $row['phone']; ?>"maxlength="10"></td>
+              <td><input type="text" name="telephone" value="<?= $row['phone']; ?>" maxlength="10"></td>
               <td><input type="text" name="accountCreation" value="<?= $row['accountCreation']; ?>" readonly></td>
 
               <td>
