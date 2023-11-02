@@ -1,4 +1,7 @@
 <?php
+if (!session_id()) {
+    session_start();
+}
 require($_SERVER['DOCUMENT_ROOT'].'/php/db.php');
 
 $new_product = $mysqli->query('SELECT * FROM articles WHERE nouveaute = 1');

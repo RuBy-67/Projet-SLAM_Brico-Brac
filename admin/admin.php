@@ -1,16 +1,16 @@
 <?php
-///session_start();
-
-///$user = $_SESSION['username'];
-///$usergroup = $_SESSION['group'];
-///if ($usergroup != "2" || $usergroup != "1") {
-///    header('Location: ../error/error.php');
-///    exit();
-//}
-session_start();
-require './dbadmin.php';
-require '../templates/header.php';
-require '../php/functionSql.php';
+if (!session_id()) {
+    session_start();
+}
+$user = $_SESSION['username'];
+$usergroup = $_SESSION['group'];
+if ($usergroup != "2" || $usergroup != "1") {
+    header('Location: ../error/error.php');
+    exit();
+}
+require_once $_SERVER['DOCUMENT_ROOT'].'admin/dbadmin.php';
+require_once $_SERVER['DOCUMENT_ROOT']. '/templates/header.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/php/functionSql.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">

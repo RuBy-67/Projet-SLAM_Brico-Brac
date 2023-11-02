@@ -2,6 +2,7 @@
 if (!session_id()) {
     session_start();
 }
+$usergroup = $_SESSION['group'];
 
 require_once($_SERVER['DOCUMENT_ROOT'].'/php/cart.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/php/function.php');
@@ -25,8 +26,24 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/php/function.php');
                 </a>
             </div>
             <div class="flex sm:flex-row flex-col items-center">
-                <a href="/pages/sign_in.php" class="btn sm:mr-4 sm:mb-0 mb-4">Se connnecter</a>
-                <a href="/pages/sign_up.php" class="btn">Crée un compte</a>
+                <?php
+                if (isset($_SESSION['username'])) {
+                    // Utilisateur connecté
+                    echo '<div class="flex sm:flex-row flex-col items-center">';
+                    echo '<span class="mr-4 mb-4">' . $_SESSION['username'] . '</span>';
+                    if ($_SESSION['group'] === 1 || $_SESSION['group'] === 2) {
+                        // Utilisateur connecté et a un groupe de 1 (Vendeur) ou 2 (Admin)
+                        echo '<a href="/pages/sign_in.php" class="btn">Gestion</a>';
+                    }
+                    echo '</div>';
+                } else {
+                    // Utilisateur non connecté
+                    echo '<div class="flex sm:flex-row flex-col items-center">';
+                    echo '<a href="/pages/sign_in.php" class="btn mr-4 mb-4">Se connecter</a>';
+                    echo '<a href="/pages/sign_up.php" class="btn">Créer un compte</a>';
+                    echo '</div>';
+                }
+                ?>
             </div>
         </div>
         

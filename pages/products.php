@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once($_SERVER['DOCUMENT_ROOT'].'/php/db.php');
 
 $products = $mysqli->query('SELECT * FROM articles');
