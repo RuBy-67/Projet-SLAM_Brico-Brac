@@ -124,11 +124,11 @@ function addUsers($mysqli, $nom, $prenom, $group, $mail, $pays, $numeros, $rue, 
  *
  * @return bool Retourne true en cas de succès de l'ajout, sinon retourne false.
  */
-function addArticle($mysqli, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute,$newFileName)
+function addArticle($mysqli, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute,$newFileName, $descritpion)
 {
-    $insertArticleSql = "INSERT INTO articles (nom, `references`, prixHT, TVA, pourcentagePromotion, nouveaute, imgRef) VALUES (?, ?, ?, ?, ?, ?,?)";
+    $insertArticleSql = "INSERT INTO articles (nom, `references`, prixHT, TVA, pourcentagePromotion, nouveaute, imgRef, descriptions) VALUES (?, ?, ?, ?, ?, ?,?,?)";
     $stmt = $mysqli->prepare($insertArticleSql);
-    $stmt->bind_param("siiiiis", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute,$newFileName);
+    $stmt->bind_param("siiiiiss", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute,$newFileName,$descritpion);
 
     if ($stmt->execute()) {
         return true;
@@ -151,13 +151,13 @@ function addArticle($mysqli, $nom, $references, $prixHT, $TVA, $pourcentagePromo
  *
  * @return bool Retourne true en cas de succès de la mise à jour, sinon retourne false.
  */
-function updateArticle($mysqli, $articleId, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute)
+function updateArticle($mysqli, $articleId, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute,$newFileName, $descritpion)
 {
     $updateArticleSql = "UPDATE articles 
-                        SET nom = ?, `references` = ?, prixHT = ?, TVA = ?, pourcentagePromotion = ?, nouveaute = ?
+                        SET nom = ?, `references` = ?, prixHT = ?, TVA = ?, pourcentagePromotion = ?, nouveaute = ?,imgRef=? descriptions = ?
                         WHERE articlesId = ?";
     $stmt = $mysqli->prepare($updateArticleSql);
-    $stmt->bind_param("siiiiii", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $articleId);
+    $stmt->bind_param("siiiiiiss", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $articleId,$newFileName, $descritpion);
 
     if ($stmt->execute()) {
         return true;
