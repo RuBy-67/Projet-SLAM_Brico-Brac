@@ -7,7 +7,7 @@ $article = getArticleInfos($_GET['articlesId'])[0];
 $new_product = getNewArticles();
 
 if($article['pourcentagePromotion'] != null){
-     $promotionPrice = calculedPriceWithPromotion($article['prixHT'],$article['pourcentagePromotion']);
+     $priceWithReduction = calculedPriceWithPromotion($article['prixHT'],$article['pourcentagePromotion']);
 }
 ?>
 <!DOCTYPE html>
@@ -50,21 +50,23 @@ if($article['pourcentagePromotion'] != null){
             > 
             <div class="sm:w-1/2 flex flex-col mx-2">
                 <?php if($article['pourcentagePromotion'] != null): ?>
-                    <div class="mr-8 mb-4">
-                        <p>Prix HT après remise : <?= $priceWithReduction ?>€</p>
-                        <p>Prix TTC après remise : <?= calculedPriceWithTva($priceWithReduction ,$article['TVA'])?>€</p>
-                    </div>
-                    <div>
-                        <p>Prix HT avant remise : <?= $article['prixHT']?>€</p>
-                        <p>Prix TTC avant remise : <?= calculedPriceWithTva($article['prixHT'],$article['TVA'])?>€</p>
-                    </div>
+                    <div class="flex lg:flex-row flex-col mb-4">
+                        <div class="mr-8 mb-4">
+                            <p>Prix HT après remise : <?= $priceWithReduction ?>€</p>
+                            <p>Prix TTC après remise : <?= calculedPriceWithTva($priceWithReduction ,$article['TVA'])?>€</p>
+                        </div>
+                        <div>
+                            <p>Prix HT avant remise : <?= $article['prixHT']?>€</p>
+                            <p>Prix TTC avant remise : <?= calculedPriceWithTva($article['prixHT'],$article['TVA'])?>€</p>
+                        </div>
+                        </div>
                 <?php else :?>
                     <div class="mb-4">
                         <p>Prix HT :<?= $article['prixHT']?>€</p>
                         <p>Prix TTC :<?= calculedPriceWithTva($article['prixHT'],$article['TVA'])?>€</p>
                     </div>
                 <?php endif; ?>
-                <?php if(isset$article['descriptions']):?>
+                <?php if(isset($article['descriptions'])):?>
                     <p class="mb-4"><?=$article['descriptions']?></p>
                 <?php else :?>
                     <p class="mb-4">Il n'y a pas de description pour cet article</p>
