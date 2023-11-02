@@ -34,6 +34,7 @@ require '../php/functionSql.php';
     <?php
     if (isset($_POST['add']) || isset($_POST['update']) && isset($_FILES['image'])) {
         $nom = $_POST['nom'];
+        $newFileName = $nom . '.jpg';
         $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/rb-rubydev/Projet-SLAM_Brico-Brac/dev/assets/product/';
         $newFilePath = $uploadDir . $newFileName;
         $uploadFile = $uploadDir . basename($_FILES['image']['name']);
@@ -45,7 +46,6 @@ require '../php/functionSql.php';
 
         if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
             echo 'Fichier téléchargé avec succès.';
-            $newFileName = $nom . '.jpg';
             $newFilePath = $uploadDir . $newFileName;
             rename($uploadFile, $newFilePath);
 
