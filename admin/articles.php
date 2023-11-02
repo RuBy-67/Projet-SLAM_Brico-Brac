@@ -36,7 +36,7 @@ require '../php/functionSql.php';
         $nom = $_POST['nom'];
         $newFileName = $nom . '.jpg';
         echo $newFileName. '<br>';
-        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/rb-rubydev/Projet-SLAM_Brico-Brac/dev/assets/product/';
+        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/dev/assets/product/';
         echo $uploadDir. '<br>';
         $newFilePath = $uploadDir . $newFileName;
         echo $newFilePath. '<br>';
