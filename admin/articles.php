@@ -10,7 +10,7 @@ if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
 }
 if (isset($_SESSION['surname'])) {
-    $surname =  $_SESSION['surname'];
+    $surname = $_SESSION['surname'];
 }
 if ($usergroup !== 2 && $usergroup !== 1) {
     header('Location: ../admin/admin.php');
@@ -179,8 +179,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
                 <input type="text" name="TVA" placeholder="TVA" value="20" required class="mb-8 border-primary">
                 <input type="text" name="pourcentagePromotion" placeholder="Pourcentage de promotion" required
                     class="mb-8 border-primary">
-                <input type="text" name="description" placeholder="Descriptions" required
-                    class="mb-8 border-primary">
+                <input type="text" name="description" placeholder="Descriptions" required class="mb-8 border-primary">
                 <input type="file" name="image" placeholder="Fichier" required class="mb-8 border-primary">
                 <select name="nouveaute" class="mb-8 border-primary">
                     <option value="1">Oui</option>
@@ -233,8 +232,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
                                 <td class="p-2">
                                     <input type="text" name="pourcentagePromotion" value="<?= $row['pourcentagePromotion']; ?>"
                                         class="w-full">
-                                        <input type="text" name="description" value="<?= $row['descriptions']; ?>" class="mb-8 border-primary">
                                 </td>
+                                <td></td> <input type="text" name="description" value="<?= $row['descriptions']; ?>"
+                                    class="mb-8 border-primary"></td>
                                 <td class="p-2">
                                     <p>
                                         <?= $row['imgRef']; ?>
