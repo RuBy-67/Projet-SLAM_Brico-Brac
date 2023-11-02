@@ -48,8 +48,9 @@ require '../php/functionSql.php';
         $prixHT = $_POST['prixHT'];
         $TVA = $_POST['TVA'];
         $pourcentagePromotion = $_POST['pourcentagePromotion'];
-        $nouveaute = $_POST['nouveaute'];
 
+        $nouveaute = $_POST['nouveaute'];
+        if (file_exists($_FILES['image']['tmp_name'])) {
         if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
             echo 'Fichier téléchargé avec succès.';
             $newFilePath = $uploadDir . $newFileName;
@@ -90,7 +91,9 @@ require '../php/functionSql.php';
             }
         } else {
             echo 'Erreur lors du téléchargement du fichier.';
-        }
+        }} else {
+        echo 'Le fichier temporaire n\'existe pas.';
+    }
     }
 
 
