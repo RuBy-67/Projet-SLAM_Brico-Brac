@@ -104,7 +104,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
 
 
     if (isset($_POST['update'])) {
-        $article_id = $_POST['article_id'];
+        $articleId = $_POST['article_id']; // Utilisez le même nom de variable
         $nom = $_POST['nom'];
         $references = $_POST['references'];
         $prixHT = $_POST['prixHT'];
@@ -113,14 +113,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
         $TVA = $_POST['TVA'];
         $pourcentagePromotion = $_POST['pourcentagePromotion'];
         $nouveaute = $_POST['nouveaute'];
-
+    
         // Vérifiez si un nouveau fichier a été téléchargé
         if (isset($_FILES['img']) && $_FILES['img']['error'] === UPLOAD_ERR_OK) {
             $newFileName = $fileToUpdate; // Le nom du fichier reste le même
     
             $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/dev/assets/products/';
             $uploadFile = $uploadDir . $newFileName;
-
+    
             // Assurez-vous que le fichier a été téléchargé avec succès
             if (move_uploaded_file($_FILES['img']['tmp_name'], $uploadFile)) {
                 echo 'Nouveau fichier téléchargé avec succès.';
@@ -128,20 +128,28 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
                 echo 'Erreur lors du téléchargement du nouveau fichier.';
             }
         }
+    
         $selectImgRefSql = "SELECT imgRef FROM articles WHERE articlesId = ?";
         $stmt = $mysqli->prepare($selectImgRefSql);
         $stmt->bind_param("i", $articleId);
         $stmt->execute();
         $stmt->bind_result($imgRef);
-
-        // Effectuez la mise à jour des autres champs de l'article
-        if (updateArticle($mysqli, $article_id, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $imgRef, $descritpion)) {
+    
+        if ($stmt->fetch()) {
+            // La variable $imgRef contient le nom de l'image existante
+        } else {
+            // Gérez le cas où aucun enregistrement correspondant n'a été trouvé
+            echo "Aucun enregistrement trouvé pour l'article d'ID $articleId.";
+        }
+    
+        // Effectuez la mise à jour des autres champs de l'article, en utilisant $imgRef comme nom d'image
+        if (updateArticle($mysqli, $articleId, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $imgRef, $descritpion)) {
             echo "Mise à jour de l'article effectuée avec succès !";
         } else {
             echo "Erreur lors de la mise à jour de l'article : " . $stmt->error;
         }
     }
-
+    
 
     if (isset($_POST['delete'])) {
         $articleIdToDelete = $_POST['articleIdToDelete'];
