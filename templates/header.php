@@ -14,7 +14,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/php/function.php');
                 <?php require($_SERVER['DOCUMENT_ROOT'].'/templates/menu_nav.php') ?>
                 <a href="/pages/cart.php" class="lg:mr-4 relative">
                     <span class="material-symbols-outlined text-white">shopping_cart</span>
-                    <?php if (isset($_SESSION['cart'])) : ?>
+                    <?php if (doesCartExist()) : ?>
                         <span class="text-primary text-xs border border-primary font-bold absolute -top-2.5 -right-2.5 bg-white rounded-full w-5 h-5 text-center leading-5">
                             <?= getCartTotalQuantity() ?>
                         </span>

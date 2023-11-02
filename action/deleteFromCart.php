@@ -6,8 +6,19 @@ if (!$articleId) {
     exit;
 }
 session_start();
-unset($_SESSION['cart'][$articleId]);
 
+require_once($_SERVER['DOCUMENT_ROOT'].'/php/authentication.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/php/cart.php');
+
+if (isUserLoggedIn()) {
+    $dbCart = getFullCartByUser(getUserId());
+    removeCartItemFromCart($articleId, $dbCart['cartId']);
+} else {
+    unset($_SESSION['cart'][$articleId]);
+    if (empty($_SESSION['cart'])) {
+        unset($_SESSION['cart']);
+    }
+}
 
 header("Location: {$_SERVER['HTTP_REFERER']}");
 exit;
