@@ -236,10 +236,10 @@ require '../php/functionSql.php';
           <td class="p-2">
             <input type="hidden" name="fichierToUpdate" value="<?= $row['imgRef']; ?>">
             <input type="hidden" name="article_id" value="<?= $row['articlesId']; ?>">
-            <button type="submit" name="update" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark m-2">🪄</button>
+            <button type="submit" name="update" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark m-2">🪄 Modifier</button>
             <input type="hidden" name="fichierToDelete" value="<?= $row['imgRef']; ?>">
             <input type="hidden" name="articleIdToDelete" value="<?= $row['articlesId']; ?>">
-            <button type="submit" name="delete" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark m-2">🗑️</button>
+            <button type="submit" name="delete" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark m-2">🗑️ Suprimmer</button>
           </td>
         </form>
       </tr>
