@@ -718,6 +718,18 @@ video {
   margin-top: 14rem;
 }
 
+.ml-16 {
+  margin-left: 4rem;
+}
+
+.ml-20 {
+  margin-left: 5rem;
+}
+
+.ml-24 {
+  margin-left: 6rem;
+}
+
 .block {
   display: block;
 }

@@ -44,7 +44,11 @@ if($product['pourcentagePromotion'] != null){
             <h6 class="ml-8 mt-4 text-secondary absolute top-0 left-0">NEW</h6>
         <?php endif; ?>
         <?php if($product['pourcentagePromotion'] != null): ?>
-            <h6 class="ml-8 mt-4 text-secondary absolute top-0 left-0"><?=$product['pourcentagePromotion']?>%</h6>
+            <h6 
+                class="<?php if($product['nouveaute'] == 1):?>ml-24 mt-4<?php else :?>ml-8 mt-4<?php endif;?> text-secondary absolute top-0 left-0"
+            >
+                -<?=$product['pourcentagePromotion']?>%
+            </h6>
         <?php endif; ?>
     </a>
 </article>
