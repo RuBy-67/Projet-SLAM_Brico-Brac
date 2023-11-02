@@ -8,7 +8,7 @@ if ($usergroup != "2") {
   header('Location: ../admin/admin.php');
   exit();
 }
-require_once $_SERVER['DOCUMENT_ROOT'] . 'admin/dbadmin.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/admin/dbadmin.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
 
