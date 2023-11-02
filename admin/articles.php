@@ -33,15 +33,17 @@ require '../php/functionSql.php';
     </section>
     <?php
     if (isset($_POST['add']) || isset($_POST['update']) && isset($_FILES['image'])) {
+        $nom = $_POST['nom'];
         $cleanedFileName = preg_replace("/[^\w-_.]/", "", $nom);
         $newFileName = $cleanedFileName . '.jpg';
-        echo $newFileName . '<br>';
+        echo $newFileName. '<br>';
         $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/dev/assets/product/';
-        echo $uploadDir . '<br>';
+
+        echo $uploadDir. '<br>';
         $newFilePath = $uploadDir . $newFileName;
-        echo $newFilePath . '<br>';
+        echo $newFilePath. '<br>';
         $uploadFile = $uploadDir . basename($_FILES['image']['name']);
-        echo $uploadFile . '<br>';
+        echo $uploadFile. '<br>';
         $references = $_POST['references'];
         $prixHT = $_POST['prixHT'];
         $TVA = $_POST['TVA'];
@@ -83,7 +85,7 @@ require '../php/functionSql.php';
                 }
             } elseif (isset($_POST['update'])) {
                 // Mettre à jour 
-                $articleId = $_POST['articleId'];
+                $articleId = $_POST['articleId']; 
                 $mysqli->query("UPDATE articles SET imgRef = '$newFileName' WHERE articleId = $articleId");
             }
         } else {
