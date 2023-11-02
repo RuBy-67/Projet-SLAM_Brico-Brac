@@ -32,7 +32,9 @@ if($product['pourcentagePromotion'] != null){
         </div>
     </div>
     <footer>
-        <a class=" block m-2  bg-primary text-white px-8 py-4 flex align-center justify-center" href="#">
+        <a class=" block m-2  bg-primary text-white px-8 py-4 flex align-center justify-center" 
+           href="/action/addToCart.php?articlesId=<?= $product['articlesId'] ?>"
+        >
             Ajouter au panier <span class="material-symbols-outlined ml-4">add</span>
         </a>
     </footer>

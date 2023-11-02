@@ -1,5 +1,10 @@
 <?php
-require($_SERVER['DOCUMENT_ROOT'].'/php/function.php')
+if (!session_id()) {
+    session_start();
+}
+
+require_once($_SERVER['DOCUMENT_ROOT'].'/php/cart.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/php/function.php');
 ?>
 
 <header class="z-10 absolute w-full rounded-md">
@@ -9,8 +14,15 @@ require($_SERVER['DOCUMENT_ROOT'].'/php/function.php')
         </a>
         <div class="flex lg:flex-row flex-col items-center">
                 <div class="flex items-center sm:mb-0 mb-4">
-                <?php require($_SERVER['DOCUMENT_ROOT'].'/templates/menu-nav.php') ?>
-                <a href="/pages/cart.php"><span class="material-symbols-outlined">shopping_cart</span></a>
+                <?php require($_SERVER['DOCUMENT_ROOT'].'/templates/menu_nav.php') ?>
+                <a href="/pages/cart.php" class="lg:mr-4 relative">
+                    <span class="material-symbols-outlined text-white">shopping_cart</span>
+                    <?php if (isset($_SESSION['cart'])) : ?>
+                        <span class="text-primary text-xs border border-primary font-bold absolute -top-2.5 -right-2.5 bg-white rounded-full w-5 h-5 text-center leading-5">
+                            <?= getCartTotalQuantity() ?>
+                        </span>
+                    <?php endif; ?>
+                </a>
             </div>
             <div class="flex sm:flex-row flex-col items-center">
                 <a href="/pages/sign_in.php" class="btn sm:mr-4 sm:mb-0 mb-4">Se connnecter</a>

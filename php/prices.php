@@ -1,4 +1,7 @@
 <?php
+
+$TVA = 20;
+
 /** 
 *This function allows you to obtain the price including tax of an item.
 * @param float  $price  price without tax
@@ -28,4 +31,31 @@ function calculedPriceWithPromotion(float $price,float $promo){
     $promoPrice = number_format($discountedPrice, 2);
 
     return $promoPrice;
+}
+/** 
+*This function allows you to obtain the price with a promotion
+* @return float $promoPrice price including promotion
+*/
+function getCartTotalPriceHT(array $cartItems): float
+{
+     return array_reduce(
+       $cartItems,
+        function (int $totalPrice, array $cartItem): float {
+            if($cartItem['pourcentagePromotion'] != null){
+                $cartItemPrice = $cartItem['quantity'] * calculedPriceWithPromotion($cartItem['prixHT'],$cartItem['pourcentagePromotion']);
+            }else{
+                $cartItemPrice = $cartItem['quantity'] * $cartItem['prixHT'];
+            }
+        
+            
+            return $totalPrice + $cartItemPrice;
+        },
+        0
+    );
+}
+
+function getCartTotalPriceTTC(array $cartItems): float
+{
+    global $TVA;
+    return calculedPriceWithTva(getCartTotalPriceHT($cartItems), $TVA);
 }
