@@ -1,11 +1,11 @@
 <?php
 session_start();
-$user = $_SESSION['username'];
-$usergroup = $_SESSION['group'];
-if ($usergroup != "2" || $usergroup != "1") {
-    header('Location: ../error/error.php');
-    exit();
-}
+///$user = $_SESSION['username'];
+///$usergroup = $_SESSION['group'];
+///if ($usergroup != "2" || $usergroup != "1") {
+   /// header('Location: ../error/error.php');
+    ///exit();
+//}
 require './dbadmin.php';
 require '../templates/header.php';
 require '../php/functionSql.php';
