@@ -38,7 +38,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
 <body class="min-h-screen flex flex-col"> 
     <!-- Slogan -->
     <section class="bg-top-banner  h-[400px] flex items-center mb-8">
-        <h2 class="container w-1/2 text-white text-center">Gestion</h2>
+        <h2 class="container w-1/2 text-white text-center">Gestion36</h2>
     </section>
     <section class="container my-16 grow">
         <div class="flex flex-wrap">
