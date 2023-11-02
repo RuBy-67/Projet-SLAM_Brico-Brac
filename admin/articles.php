@@ -37,28 +37,16 @@ require '../php/functionSql.php';
         $cleanedFileName = str_replace(' ', '_', $nom);
         $newFileName = $cleanedFileName . '.jpg';
         echo $newFileName . '<br>';
-
         $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/dev/assets/products/';
-
         echo $uploadDir . '<br>';
-
         $newFilePath = $uploadDir . $newFileName;
-
         echo $newFilePath . '<br>';
-
         $uploadFile = $uploadDir . basename($_FILES['image']['name']);
-
         echo $uploadFile . '<br>';
-
-
         $references = $_POST['references'];
-
         $prixHT = $_POST['prixHT'];
-
         $TVA = $_POST['TVA'];
-
         $pourcentagePromotion = $_POST['pourcentagePromotion'];
-
         $nouveaute = $_POST['nouveaute'];
 
         if (file_exists($_FILES['image']['tmp_name'])) {
