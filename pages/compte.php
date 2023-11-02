@@ -41,7 +41,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/php/db.php');
             <?= $user ?> <br /> - <br /> Votre compte
         </h1>
     </section>
-    <section class="grow my-16 flex flex-col justify-center items-center">
+    <section class="container grow my-16 flex flex-col justify-center items-center">
          <?php
         if (isset($_POST['logout'])) {
             // Déconnexion de l'utilisateur en supprimant la session
