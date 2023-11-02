@@ -10,7 +10,7 @@ if ($usergroup !== 2 && $usergroup !== 1) {
 }
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/admin/dbadmin.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'./templates/header.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/templates/header.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/php/functionSql.php';
 ?>
 <!DOCTYPE html>
