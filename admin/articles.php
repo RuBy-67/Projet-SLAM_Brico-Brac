@@ -186,7 +186,9 @@ require '../php/functionSql.php';
                             <td><input type="text" name="TVA" value="<?= $row['TVA']; ?>"></td>
                             <td><input type="text" name="pourcentagePromotion" value="<?= $row['pourcentagePromotion']; ?>"></td>
                             <td>
-                                <p>"<?= $row['imgRef']; ?>"</p>
+                                <p>"
+                                    <?= $row['imgRef']; ?>"
+                                </p>
                                 <input type="file" name="img">
                             </td>
                             <td>
@@ -198,10 +200,10 @@ require '../php/functionSql.php';
                             <td>
                                 <input type="hidden" name="article_id" value="<?= $row['articlesId']; ?>"> <!-- Pour update -->
                                 <button type="submit" name="update">🪄</button>
-                            <td><input type="hidden" name="fichierToDelete" value="<?= $row['imgRef']; ?>"></td>
-                            <input type="hidden" name="articleIdToDelete" value="<?= $row['articlesId']; ?>">
-                            <!-- Pour suppression -->
-                            <button type="submit" name="delete">🗑️</button>
+                                <input type="hidden" name="fichierToDelete" value="<?= $row['imgRef']; ?>">
+                                <input type="hidden" name="articleIdToDelete" value="<?= $row['articlesId']; ?>">
+                                <!-- Pour suppression -->
+                                <button type="submit" name="delete">🗑️</button>
                             </td>
                         </form>
                     </tr>
