@@ -3,6 +3,7 @@
 }
 $usergroup = $_SESSION['group'];
 $user = $_SESSION['user'];
+$surname =  $_SESSION['surname'];
 require($_SERVER['DOCUMENT_ROOT'] . '/php/db.php');
 ?>
 <!DOCTYPE html>
@@ -29,7 +30,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/php/db.php');
     <section class="bg-top-banner  h-[678px] flex items-center mb-8">
         <h1 class="container lg:w-1/2 text-white text-center xl:mt-0 md:mt-18 mt-52">
             Bonjour
-            <?= $user ?> <br /> - <br /> Votre compte
+            <?= $user ?> <?= $surname?> <br /> - <br /> Votre compte
         </h1>
     </section>
     <?php
