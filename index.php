@@ -9,7 +9,7 @@ if (isset($_SESSION['group'])) {
 if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
 }
-require($_SERVER['DOCUMENT_ROOT'].'/php/db.php');
+require($_SERVER['DOCUMENT_ROOT'].'/php/request.php');
 
 $new_product = getNewArticles();
 $promotions =  getArticlesWithPromotion();
