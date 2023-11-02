@@ -3,6 +3,7 @@
 if (!session_id()) {
     session_start();
 }
+
 require_once($_SERVER['DOCUMENT_ROOT'].'/php/prices.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/php/cart.php');
 
@@ -31,16 +32,19 @@ $cartItems = getCartItems();
         </section>
         
         <section class="container flex flex-col">
-            <ul class="mb-4">
+            <?php if (isCartEmpty()): ?>
+                <p>Panier vide</p>
+            <?php else: ?>
+                <ul class="mb-4">
                 <?php foreach($cartItems as $cartItem) :?>
                     <?php include($_SERVER['DOCUMENT_ROOT'].'/templates/cart_card.php');?>
                 <?php endforeach; ?>
-            </ul>
-            <div class="flex gap-8 mb-16">
-                <p class="font-bold">Total du panier HT : <?= getCartTotalPriceHT($cartItems) ?>€</p>
-                <p class="font-bold mb-16">Total du panier TTC : <?= getCartTotalPriceTTC($cartItems) ?>€</p>
-            </div>
-           
+                </ul>
+                <div class="flex gap-8 mb-16">
+                    <p class="font-bold">Total du panier HT : <?= getCartTotalPriceHT($cartItems) ?>€</p>
+                    <p class="font-bold mb-16">Total du panier TTC : <?= getCartTotalPriceTTC($cartItems) ?>€</p>
+                </div>
+            <?php endif; ?>
         </section>
        
     <?php require '../templates/footer.php'; ?>

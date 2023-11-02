@@ -27,6 +27,10 @@ function getCartItemIds(): array
 
 function getCartItems(): array
 {
+    if (isCartEmpty()) {
+        return [];
+    }
+
     $sessionCartItemIds = getCartItemIds();
     $dbCartItems = getArticlesFromIds($sessionCartItemIds);
     $sessionCartItems = $_SESSION['cart'];
@@ -39,4 +43,9 @@ function getCartItems(): array
         },
         $dbCartItems
     );
+}
+
+function isCartEmpty(): bool
+{
+    return !isset($_SESSION['cart']) || empty($_SESSION['cart']);
 }
