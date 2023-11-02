@@ -56,6 +56,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
                 $_SESSION['group'] = $row["group"];
                 $_SESSION['id'] = $row["usersId"];
                 $_SESSION['user'] = $row["name"];
+                $_SESSION['surname'] = $row["surname"];
+
 
 
                 echo '<p>Vous êtes maintenant connecté.</p>';
