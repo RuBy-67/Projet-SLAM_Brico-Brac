@@ -1,12 +1,12 @@
 <?php
 ///session_start();
 
-///$user = $_SESSION['username'];
-///$usergroup = $_SESSION['group'];
-/// if ($usergroup != "2") {
- /// header('Location: ../error/error.php');
-  ////exit();
-///}
+$user = $_SESSION['username'];
+$usergroup = $_SESSION['group'];
+if ($usergroup != "2" || $usergroup != "1") {
+    header('Location: ../error/error.php');
+    exit();
+}
 session_start();
 require './dbadmin.php';
 require '../templates/header.php';
@@ -32,28 +32,28 @@ require '../php/functionSql.php';
     <section class="bg-top-banner  h-[400px] flex items-center mb-8">
         <h2 class="container w-1/2 text-white text-center">Créer un Compte</h2>
     </section>
-        <div class="container">
-            <div class="flex flex-wrap">
-                <div class="w-full md:w-1/2 lg:w-1/3 p-2">
-                    <a href="./articles.php" class="bg-white shadow-md rounded-md block p-4">
-                        <h3 class="text-xl font-bold mb-2">Gestion des articles</h3>
-                        <p class="text-gray-600">Ajouter, modifier ou supprimer des articles.</p>
-                    </a>
-                </div>
-                <div class="w-full md:w-1/2 lg:w-1/3 p-2">
-                    <a href="./users.php" class="bg-white shadow-md rounded-md block p-4">
-                        <h3 class="text-xl font-bold mb-2">Gestion des utilisateurs</h3>
-                        <p class="text-gray-600">Ajouter, modifier ou supprimer des utilisateurs.</p>
-                    </a>
-                </div>
-                <div class="w-full md:w-1/2 lg:w-1/3 p-2">
-                    <a href="./commands.php" class="bg-white shadow-md rounded-md block p-4">
-                        <h3 class="text-xl font-bold mb-2">Gestion des commandes</h3>
-                        <p class="text-gray-600">Ajouter, modifier ou supprimer des commandes.</p>
-                    </a>
-                </div>
+    <div class="container">
+        <div class="flex flex-wrap">
+            <div class="w-full md:w-1/2 lg:w-1/3 p-2">
+                <a href="./articles.php" class="bg-white shadow-md rounded-md block p-4">
+                    <h3 class="text-xl font-bold mb-2">Gestion des articles</h3>
+                    <p class="text-gray-600">Ajouter, modifier ou supprimer des articles.</p>
+                </a>
+            </div>
+            <div class="w-full md:w-1/2 lg:w-1/3 p-2">
+                <a href="./users.php" class="bg-white shadow-md rounded-md block p-4">
+                    <h3 class="text-xl font-bold mb-2">Gestion des utilisateurs</h3>
+                    <p class="text-gray-600">Ajouter, modifier ou supprimer des utilisateurs.</p>
+                </a>
+            </div>
+            <div class="w-full md:w-1/2 lg:w-1/3 p-2">
+                <a href="./commands.php" class="bg-white shadow-md rounded-md block p-4">
+                    <h3 class="text-xl font-bold mb-2">Gestion des commandes</h3>
+                    <p class="text-gray-600">Ajouter, modifier ou supprimer des commandes.</p>
+                </a>
             </div>
         </div>
+    </div>
     </section>
 
-<?php require '../templates/footer.php'; ?>
+    <?php require '../templates/footer.php'; ?>

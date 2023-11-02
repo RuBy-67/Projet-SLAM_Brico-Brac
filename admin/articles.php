@@ -1,12 +1,11 @@
 <?php
 session_start();
-
-///$user = $_SESSION['username'];
-///$usergroup = $_SESSION['group'];
-/// if ($usergroup != "2" ||$usergroup != "1") {
-/// header('Location: ../error/error.php');
-////exit();
-///}
+$user = $_SESSION['username'];
+$usergroup = $_SESSION['group'];
+if ($usergroup != "2" || $usergroup != "1") {
+    header('Location: ../error/error.php');
+    exit();
+}
 require './dbadmin.php';
 require '../templates/header.php';
 require '../php/functionSql.php';
@@ -190,64 +189,72 @@ require '../php/functionSql.php';
         if ($result->num_rows > 0) {
             ?>
             <table class="border-collapse w-full">
-  <thead>
-    <tr class="bg-gray-200">
-      <th class="p-2">Nom</th>
-      <th class="p-2">Références</th>
-      <th class="p-2">Prix HT</th>
-      <th class="p-2">TVA</th>
-      <th class="p-2">Pourcentage Promotion</th>
-      <th class="p-2">Réf. IMG</th>
-      <th class="p-2">Nouveauté</th>
-      <th class="p-2">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php
-    while ($row = $result->fetch_assoc()):
-    ?>
-      <tr class="border-b border-gray-300">
-        <form method="post" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
-          <td class="p-2">
-            <input type="text" name="nom" value="<?= $row['nom']; ?>" class="w-full">
-          </td>
-          <td class="p-2">
-            <input type="text" name="references" value="<?= $row['references']; ?>" readonly class="w-full">
-          </td>
-          <td class="p-2">
-            <input type="text" name="prixHT" value="<?= $row['prixHT']; ?>" class="w-full">
-          </td>
-          <td class="p-2">
-            <input type="text" name="TVA" value="<?= $row['TVA']; ?>" class="w-full">
-          </td>
-          <td class="p-2">
-            <input type="text" name="pourcentagePromotion" value="<?= $row['pourcentagePromotion']; ?>" class="w-full">
-          </td>
-          <td class="p-2">
-            <p><?= $row['imgRef']; ?></p>
-            <input type="file" name="img" class="w-full">
-          </td>
-          <td class="p-2">
-            <select name="nouveaute" class="w-full">
-              <option value="1" <?= ($row['nouveaute'] == 1 ? 'selected' : ''); ?>>Oui</option>
-              <option value="0" <?= ($row['nouveaute'] == 0 ? 'selected' : ''); ?>>Non</option>
-            </select>
-          </td>
-          <td class="p-2">
-            <input type="hidden" name="fichierToUpdate" value="<?= $row['imgRef']; ?>">
-            <input type="hidden" name="article_id" value="<?= $row['articlesId']; ?>">
-            <button type="submit" name="update" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark m-2">🪄 Modifier</button>
-            <input type="hidden" name="fichierToDelete" value="<?= $row['imgRef']; ?>">
-            <input type="hidden" name="articleIdToDelete" value="<?= $row['articlesId']; ?>">
-            <button type="submit" name="delete" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark m-2">🗑️ Suprimmer</button>
-          </td>
-        </form>
-      </tr>
-    <?php
-    endwhile;
-    ?>
-  </tbody>
-</table>
+                <thead>
+                    <tr class="bg-gray-200">
+                        <th class="p-2">Nom</th>
+                        <th class="p-2">Références</th>
+                        <th class="p-2">Prix HT</th>
+                        <th class="p-2">TVA</th>
+                        <th class="p-2">Pourcentage Promotion</th>
+                        <th class="p-2">Réf. IMG</th>
+                        <th class="p-2">Nouveauté</th>
+                        <th class="p-2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    while ($row = $result->fetch_assoc()):
+                        ?>
+                        <tr class="border-b border-gray-300">
+                            <form method="post" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
+                                enctype="multipart/form-data">
+                                <td class="p-2">
+                                    <input type="text" name="nom" value="<?= $row['nom']; ?>" class="w-full">
+                                </td>
+                                <td class="p-2">
+                                    <input type="text" name="references" value="<?= $row['references']; ?>" readonly class="w-full">
+                                </td>
+                                <td class="p-2">
+                                    <input type="text" name="prixHT" value="<?= $row['prixHT']; ?>" class="w-full">
+                                </td>
+                                <td class="p-2">
+                                    <input type="text" name="TVA" value="<?= $row['TVA']; ?>" class="w-full">
+                                </td>
+                                <td class="p-2">
+                                    <input type="text" name="pourcentagePromotion" value="<?= $row['pourcentagePromotion']; ?>"
+                                        class="w-full">
+                                </td>
+                                <td class="p-2">
+                                    <p>
+                                        <?= $row['imgRef']; ?>
+                                    </p>
+                                    <input type="file" name="img" class="w-full">
+                                </td>
+                                <td class="p-2">
+                                    <select name="nouveaute" class="w-full">
+                                        <option value="1" <?= ($row['nouveaute'] == 1 ? 'selected' : ''); ?>>Oui</option>
+                                        <option value="0" <?= ($row['nouveaute'] == 0 ? 'selected' : ''); ?>>Non</option>
+                                    </select>
+                                </td>
+                                <td class="p-2">
+                                    <input type="hidden" name="fichierToUpdate" value="<?= $row['imgRef']; ?>">
+                                    <input type="hidden" name="article_id" value="<?= $row['articlesId']; ?>">
+                                    <button type="submit" name="update"
+                                        class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark m-2">🪄
+                                        Modifier</button>
+                                    <input type="hidden" name="fichierToDelete" value="<?= $row['imgRef']; ?>">
+                                    <input type="hidden" name="articleIdToDelete" value="<?= $row['articlesId']; ?>">
+                                    <button type="submit" name="delete"
+                                        class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark m-2">🗑️
+                                        Suprimmer</button>
+                                </td>
+                            </form>
+                        </tr>
+                        <?php
+                    endwhile;
+                    ?>
+                </tbody>
+            </table>
 
             <?php
         } else {
