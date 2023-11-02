@@ -8,9 +8,9 @@ if ($usergroup !== 1 && $usergroup !== 2) {
     header('Location: ../error/error.php');
     exit();
 }
-require_once $_SERVER['DOCUMENT_ROOT'].'/admin/dbadmin.php';
-require_once $_SERVER['DOCUMENT_ROOT']. '/templates/header.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/php/functionSql.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/admin/dbadmin.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -57,3 +57,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/php/functionSql.php';
     </section>
 
     <?php require '../templates/footer.php'; ?>
+</body>
+
+
+</html>

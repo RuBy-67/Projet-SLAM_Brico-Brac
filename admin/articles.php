@@ -9,9 +9,9 @@ if ($usergroup !== 2 && $usergroup !== 1) {
     exit();
 }
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/admin/dbadmin.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/templates/header.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/php/functionSql.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/admin/dbadmin.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -262,6 +262,9 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/php/functionSql.php';
     } else {
         echo "Une erreur s'est produite lors de la récupération des articles.";
     }
-
-    require '../templates/footer.php';
     ?>
+  <?php require '../templates/footer.php'; ?>
+</body>
+
+
+</html>

@@ -41,10 +41,6 @@ $promotions = $mysqli->query('SELECT * FROM articles WHERE pourcentagePromotion 
             Bienvenue sur Brico’brac ! <br />
             La référence du magasin de bricolage près de chez vous ! 
         </h1>
-        <?php
-        echo $user . 'test';
-        echo $usergroup . 'test';
-        ?>
     </section>
     <?php if ($new_product->num_rows > 0) { ?>
         <section class="mb-16 container flex flex-col items-center">

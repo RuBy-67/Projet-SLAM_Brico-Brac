@@ -78,11 +78,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
         $stmt->bind_result($userId);
         $stmt->fetch();
         $stmt->close();
-    
+
         if ($userId) {
             // Appelez la fonction de reset de mdp
             $newPassword = resetMdp($mysqli, $userId);
-    
+
             if ($newPassword !== false) {
                 echo "Réinitialisation réussie. Nouveau mot de passe : $newPassword";
             } else {
@@ -99,7 +99,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
         <form class="flex flex-col items-center mb-0" method="post"
             action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <input class="mb-8 border-primary" type="text" name="mail" required placeholder="adresse-mail@email.com">
-            <input class="mb-8 border-primary" type="password" name="mdp"  placeholder="Mot de passe">
+            <input class="mb-8 border-primary" type="password" name="mdp" placeholder="Mot de passe">
             <button type="submit" name="connexion"
                 class="bg-primary text-white px-8 py-4 flex align-center justify-center rounded">Se connecter</button>
             <button type="submit" name="mdp"

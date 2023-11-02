@@ -226,6 +226,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
   } else {
     echo "Une erreur s'est produite lors de la récupération des Utilisateurs.";
   }
-
-  require '../templates/footer.php';
   ?>
+  <?php require '../templates/footer.php'; ?>
+</body>
+
+
+</html>
