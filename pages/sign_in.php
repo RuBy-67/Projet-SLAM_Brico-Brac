@@ -30,7 +30,10 @@ require ($_SERVER['DOCUMENT_ROOT'].'/templates/header.php');
         $mail = $_POST["mail"];
         $password = $_POST["mdp"];
 
-        $sql = "SELECT * FROM users WHERE mail=?";
+        $sql = "SELECT users.*, usersInfos.name
+        FROM users
+        JOIN usersInfos ON users.usersId = usersInfos.usersInfosId
+        WHERE users.mail = ?";
         $stmt = $mysqli->prepare($sql);
         $stmt->bind_param("s", $mail);
         $stmt->execute();
@@ -47,6 +50,8 @@ require ($_SERVER['DOCUMENT_ROOT'].'/templates/header.php');
                 // Mise en session de l'utilisateur
                 $_SESSION['group'] = $row["group"];
                 $_SESSION['id'] = $row["usersId"];
+                $_SESSION['user'] = $row["name"];
+                
 
                 echo '<p>Vous êtes maintenant connecté.</p>';
                 // Redirection vers la page d'accueil
