@@ -32,7 +32,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/php/db.php');
     <title>Brico'brac - Compte</title>
 </head>
 
-<body>
+<body class="min-h-screen flex flex-col">
     <?php require($_SERVER['DOCUMENT_ROOT'] . '/templates/header.php') ?>
     <!-- Slogan -->
     <section class="bg-top-banner  h-[678px] flex items-center mb-8">
@@ -41,20 +41,23 @@ require($_SERVER['DOCUMENT_ROOT'] . '/php/db.php');
             <?= $user ?> <br /> - <br /> Votre compte
         </h1>
     </section>
-    <?php
-    if (isset($_POST['logout'])) {
-        // Déconnexion de l'utilisateur en supprimant la session
-        session_destroy();
-        header('Location: ../index.php');
-        exit();
-    }
-    ?>
-    <!-- Contenu de la page -->
+    <section class="grow my-16 flex flex-col justify-center items-center">
+         <?php
+        if (isset($_POST['logout'])) {
+            // Déconnexion de l'utilisateur en supprimant la session
+            session_destroy();
+            header('Location: ../index.php');
+            exit();
+        }
+        ?>
+        <!-- Contenu de la page -->
 
 
-    <form method="post">
-        <input class="bg-primary text-white rounded hover:bg-primary-dark m-2 p-2" type="submit" name="logout" value=" ❗Se déconnecter">
-    </form>
+        <form method="post">
+            <input class="bg-primary text-white rounded hover:bg-primary-dark m-2 p-2" type="submit" name="logout" value=" ❗Se déconnecter">
+        </form>
+    </section>
+   
     <?php require '../templates/footer.php'; ?>
 </body>
 
