@@ -72,9 +72,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
                     $descritpion = $_POST['description'];
                     $pourcentagePromotion = $_POST['pourcentagePromotion'];
                     $nouveaute = $_POST['nouveaute'];
-
                     // Si pourcentagePromotion est 0, remplacez-le par NULL
-                    if ($pourcentagePromotion == 0) {
+                    if ($pourcentagePromotion == 0 || $pourcentagePromotion == "") {
                         $pourcentagePromotion = null;
                     }
                     // Vérifier si la référence existe déjà dans la base de données
@@ -118,6 +117,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
         $pourcentagePromotion = $_POST['pourcentagePromotion'];
         $nouveaute = $_POST['nouveaute'];
 
+        // Si pourcentagePromotion est 0, remplacez-le par NULL
+        if ($pourcentagePromotion == 0 || $pourcentagePromotion == "") {
+            $pourcentagePromotion = null;
+        }
         // Vérifiez si un nouveau fichier a été téléchargé
         if (isset($_FILES['img']) && $_FILES['img']['error'] === UPLOAD_ERR_OK) {
             $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/dev/assets/products/';
@@ -130,11 +133,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
             } else {
                 echo 'Erreur lors du téléchargement du nouveau fichier.';
             }
-        }
-
-        // Si pourcentagePromotion est 0, remplacez-le par NULL
-        if ($pourcentagePromotion == 0) {
-            $pourcentagePromotion = null;
         }
 
         // Effectuez la mise à jour des autres champs de l'article
@@ -188,11 +186,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
             class="flex flex-col items-center mb-0">
             <div>
                 <input type="text" name="nom" placeholder="Nom" required class="mb-8 border-primary">
-                <input type="number" name="references" placeholder="Références" required class="mb-8 border-primary">
-                <input type="number" name="prixHT" placeholder="Prix HT" required class="mb-8 border-primary" step="0.01">
-                <input type="number" name="TVA" placeholder="TVA" value="20" required class="mb-8 border-primary"step="0.01">
+                <input type="number" name="references" placeholder="Références" required class="mb-8 border-primary"
+                    min="0">
+                <input type="number" name="prixHT" placeholder="Prix HT" required class="mb-8 border-primary"
+                    step="0.01" min="0">
+                <input type="number" name="TVA" placeholder="TVA" value="20" required class="mb-8 border-primary"
+                    step="0.01" min="0">
                 <input type="number" name="pourcentagePromotion" placeholder="Pourcentage de promotion"
-                    class="mb-8 border-primary" step="0.01">
+                    class="mb-8 border-primary" step="0.01" min="0">
                 <input type="text" name="description" placeholder="Descriptions" required class="mb-8 border-primary">
                 <input type="file" name="image" placeholder="Fichier" required class="mb-8 border-primary">
                 <select name="nouveaute" class="mb-8 border-primary">
@@ -236,17 +237,18 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
                                 </td>
                                 <td class="p-2">
                                     <input type="number" name="references" value="<?= $row['references']; ?>" readonly
-                                        class="w-full">
+                                        class="w-full" min="0">
                                 </td>
                                 <td class="p-2">
-                                    <input type="number" name="prixHT" value="<?= $row['prixHT']; ?>" class="w-full" step="0.01">
+                                    <input type="number" name="prixHT" value="<?= $row['prixHT']; ?>" class="w-full" step="0.01"
+                                        min="0">
                                 </td>
                                 <td class="p-2">
-                                    <input type="number" name="TVA" value="<?= $row['TVA']; ?>" class="w-full" step="0.01">
+                                    <input type="number" name="TVA" value="<?= $row['TVA']; ?>" class="w-full" step="0.01" min="0">
                                 </td>
                                 <td class="p-2">
                                     <input type="number" name="pourcentagePromotion" value="<?= $row['pourcentagePromotion']; ?>"
-                                        class="w-full" step="0.01">
+                                        class="w-full" step="0.01" min="0">
                                 </td>
                                 <td class="p-2"> <input type="text" name="description" value="<?= $row['descriptions']; ?>"
                                         class="w-full"></td>
