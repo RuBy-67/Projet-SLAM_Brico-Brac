@@ -127,7 +127,7 @@ function addArticle($mysqli, $nom, $references, $prixHT, $TVA, $pourcentagePromo
 {
     $insertArticleSql = "INSERT INTO articles (nom, `references`, prixHT, TVA, pourcentagePromotion, nouveaute, imgRef, descriptions) VALUES (?, ?, ?, ?, ?, ?,?,?)";
     $stmt = $mysqli->prepare($insertArticleSql);
-    $stmt->bind_param("siiiiiss", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute,$newFileName,$descritpion);
+    $stmt->bind_param("sidddiss", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute,$newFileName,$descritpion);
 
     if ($stmt->execute()) {
         return true;
@@ -156,7 +156,7 @@ function updateArticle($mysqli, $articleId, $nom, $references, $prixHT, $TVA, $p
                         SET nom = ?, `references` = ?, prixHT = ?, TVA = ?, pourcentagePromotion = ?, nouveaute = ?,  descriptions = ?
                         WHERE articlesId = ?";
     $stmt = $mysqli->prepare($updateArticleSql);
-    $stmt->bind_param("siiiiisi", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute,  $description, $articleId);
+    $stmt->bind_param("sidddisi", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute,  $description, $articleId);
 
     if ($stmt->execute()) {
         return true;
