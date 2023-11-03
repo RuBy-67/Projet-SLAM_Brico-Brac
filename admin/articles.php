@@ -72,7 +72,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
                     $descritpion = $_POST['description'];
                     $pourcentagePromotion = $_POST['pourcentagePromotion'];
                     $nouveaute = $_POST['nouveaute'];
-                    
+
                     // Si pourcentagePromotion est 0, remplacez-le par NULL
                     if ($pourcentagePromotion == 0) {
                         $pourcentagePromotion = null;
@@ -203,7 +203,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
                 <input type="number" name="references" placeholder="Références" required class="mb-8 border-primary">
                 <input type="number" name="prixHT" placeholder="Prix HT" required class="mb-8 border-primary">
                 <input type="number" name="TVA" placeholder="TVA" value="20" required class="mb-8 border-primary">
-                <input type="number" name="pourcentagePromotion" placeholder="Pourcentage de promotion" required
+                <input type="number" name="pourcentagePromotion" placeholder="Pourcentage de promotion"
                     class="mb-8 border-primary">
                 <input type="text" name="description" placeholder="Descriptions" required class="mb-8 border-primary">
                 <input type="file" name="image" placeholder="Fichier" required class="mb-8 border-primary">
