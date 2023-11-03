@@ -53,7 +53,7 @@ function createCart(int $userId): void
 function getCartItemsFromCart(int $cartId): array
 {
     global $mysqli;
-    return $mysqli->query("SELECT cartItems.*, articles.* FROM cartItems JOIN articles ON cartItems.articleId = articles.articlesId WHERE cartItems.cartId = {$cartId}")
+    return $mysqli->query("SELECT cartitems.*, articles.* FROM cartitems JOIN articles ON cartitems.articleId = articles.articlesId WHERE cartitems.cartId = {$cartId}")
                   ->fetch_all(MYSQLI_ASSOC);
 }
 
@@ -73,4 +73,16 @@ function deleteCartItem(int $articleId, int $cartId): void
 {
     global $mysqli;
     $mysqli->query("DELETE FROM cartitems WHERE articleId = {$articleId} AND cartId = {$cartId}");
+}
+
+function deleteAllItemsOfCart(int $cartId): void
+{
+    global $mysqli;
+    $mysqli->query("DELETE FROM cartitems WHERE cartId = {$cartId}");
+}
+
+function deleteCart($cartId): void
+{
+    global $mysqli;
+    $mysqli->query("DELETE FROM cart WHERE cartId = {$cartId}");
 }

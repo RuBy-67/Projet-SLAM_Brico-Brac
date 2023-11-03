@@ -14,9 +14,9 @@ function calculedPriceWithTva(float $price,float $tva):float{
         return "Les valeurs doivent être positives.";
     }
     $priceTTC = $price + ($price * ($tva / 100));
-    $priceTTC = number_format($priceTTC, 2);
+    $priceTTC = round($priceTTC, 2);
 
-    return $priceTTC;
+    return (float)$priceTTC;
 }
 
 /** 
