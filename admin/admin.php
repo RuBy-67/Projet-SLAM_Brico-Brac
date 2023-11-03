@@ -54,12 +54,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
                     <p class="text-gray-600">Ajouter, modifier ou supprimer des utilisateurs.</p>
                 </a>
             </div>
-            <div class="w-full md:w-1/2 lg:w-1/3 p-2">
+            <!-- <div class="w-full md:w-1/2 lg:w-1/3 p-2">
                 <a href="./commands.php" class="bg-white shadow-md rounded-md block p-4">
                     <h3 class="text-xl font-bold mb-2">Gestion des commandes</h3>
                     <p class="text-gray-600">Ajouter, modifier ou supprimer des commandes.</p>
                 </a>
-            </div>
+            </div> -->
         </div>
     </section>
     
