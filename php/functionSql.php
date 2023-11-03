@@ -150,13 +150,13 @@ function addArticle($mysqli, $nom, $references, $prixHT, $TVA, $pourcentagePromo
  *
  * @return bool Retourne true en cas de succès de la mise à jour, sinon retourne false.
  */
-function updateArticle($mysqli, $articleId, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute,$newFileName, $descritpion)
+function updateArticle($mysqli, $articleId, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $newFileName, $description)
 {
     $updateArticleSql = "UPDATE articles 
-                        SET nom = ?, `references` = ?, prixHT = ?, TVA = ?, pourcentagePromotion = ?, nouveaute = ?,imgRef=?, descriptions = ?
+                        SET nom = ?, `references` = ?, prixHT = ?, TVA = ?, pourcentagePromotion = ?, nouveaute = ?, imgRef = ?, descriptions = ?
                         WHERE articlesId = ?";
     $stmt = $mysqli->prepare($updateArticleSql);
-    $stmt->bind_param("siiiiiiss", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute,$newFileName, $descritpion, $articleId);
+    $stmt->bind_param("siiiiiiss", $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $newFileName, $description, $articleId);
 
     if ($stmt->execute()) {
         return true;
@@ -164,6 +164,7 @@ function updateArticle($mysqli, $articleId, $nom, $references, $prixHT, $TVA, $p
         return false;
     }
 }
+
 ///----------------------- SQL USERS---------------------------------///
 
 /**

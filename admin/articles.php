@@ -117,13 +117,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
         $TVA = $_POST['TVA'];
         $pourcentagePromotion = $_POST['pourcentagePromotion'];
         $nouveaute = $_POST['nouveaute'];
-
+        $newFileName = null; // Initialisez $newFileName à NULL par défaut
+    
         // Vérifiez si un nouveau fichier a été téléchargé
         if (isset($_FILES['img']) && $_FILES['img']['error'] === UPLOAD_ERR_OK) {
             $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/dev/assets/products/';
             $newFileName = $fileToUpdate; // Conservez la valeur précédente
             $uploadFile = $uploadDir . $newFileName;
-
+    
             // Assurez-vous que le fichier a été téléchargé avec succès
             if (move_uploaded_file($_FILES['img']['tmp_name'], $uploadFile)) {
                 echo 'Nouveau fichier téléchargé avec succès.';
@@ -131,24 +132,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
                 echo 'Erreur lors du téléchargement du nouveau fichier.';
             }
         }
-
+    
         // Si pourcentagePromotion est 0, remplacez-le par NULL
         if ($pourcentagePromotion == 0) {
             $pourcentagePromotion = null;
         }
-
-        // Vérifiez si $newFileName est NULL, et si oui, effectuez une requête pour récupérer la valeur actuelle de 'imgRef' depuis la base de données
-        if ($newFileName === null) {
-            $query = "SELECT imgRef FROM articles WHERE articlesId = ?";
-            $stmt = $mysqli->prepare($query);
-            $stmt->bind_param("i", $articleId);
-            $stmt->execute();
-            $stmt->bind_result($currentFileName);
-            $stmt->fetch();
-            $stmt->close();
-            $newFileName = $currentFileName;
-        }
-
+    
         // Effectuez la mise à jour des autres champs de l'article
         if (updateArticle($mysqli, $articleId, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $newFileName, $description)) {
             echo "Mise à jour de l'article effectuée avec succès !";
@@ -156,7 +145,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
             echo "Erreur lors de la mise à jour de l'article : " . $stmt->error;
         }
     }
-
+    
 
 
 
