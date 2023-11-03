@@ -114,11 +114,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
         $pourcentagePromotion = $_POST['pourcentagePromotion'];
         $nouveaute = $_POST['nouveaute'];
     
-        $newFileName = $fileToUpdate; // Déclarez la variable en dehors de la condition
-    
         // Vérifiez si un nouveau fichier a été téléchargé
         if (isset($_FILES['img']) && $_FILES['img']['error'] === UPLOAD_ERR_OK) {
             $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/dev/assets/products/';
+            $newFileName = $fileToUpdate; // Conservez la valeur précédente
             $uploadFile = $uploadDir . $newFileName;
     
             // Assurez-vous que le fichier a été téléchargé avec succès
@@ -129,6 +128,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
             }
         }
     
+        // Si pourcentagePromotion est 0, remplacez-le par NULL
+        if ($pourcentagePromotion == 0) {
+            $pourcentagePromotion = null;
+        }
+    
         // Effectuez la mise à jour des autres champs de l'article
         if (updateArticle($mysqli, $articleId, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $newFileName, $description)) {
             echo "Mise à jour de l'article effectuée avec succès !";
@@ -136,6 +140,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
             echo "Erreur lors de la mise à jour de l'article : " . $stmt->error;
         }
     }
+    
     
     
     
