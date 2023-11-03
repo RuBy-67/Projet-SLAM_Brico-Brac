@@ -117,13 +117,13 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
         $TVA = $_POST['TVA'];
         $pourcentagePromotion = $_POST['pourcentagePromotion'];
         $nouveaute = $_POST['nouveaute'];
-    
+
         // Vérifiez si un nouveau fichier a été téléchargé
         if (isset($_FILES['img']) && $_FILES['img']['error'] === UPLOAD_ERR_OK) {
             $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/dev/assets/products/';
             $newFileName = $fileToUpdate; // Conservez la valeur précédente
             $uploadFile = $uploadDir . $newFileName;
-    
+
             // Assurez-vous que le fichier a été téléchargé avec succès
             if (move_uploaded_file($_FILES['img']['tmp_name'], $uploadFile)) {
                 echo 'Nouveau fichier téléchargé avec succès.';
@@ -131,12 +131,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
                 echo 'Erreur lors du téléchargement du nouveau fichier.';
             }
         }
-    
+
         // Si pourcentagePromotion est 0, remplacez-le par NULL
         if ($pourcentagePromotion == 0) {
             $pourcentagePromotion = null;
         }
-    
+
         // Effectuez la mise à jour des autres champs de l'article
         if (updateArticle($mysqli, $articleId, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $description)) {
             echo "Mise à jour de l'article effectuée avec succès !";
@@ -144,7 +144,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
             echo "Erreur lors de la mise à jour de l'article : " . $stmt->error;
         }
     }
-    
+
 
 
 
@@ -189,10 +189,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
             <div>
                 <input type="text" name="nom" placeholder="Nom" required class="mb-8 border-primary">
                 <input type="number" name="references" placeholder="Références" required class="mb-8 border-primary">
-                <input type="number" name="prixHT" placeholder="Prix HT" required class="mb-8 border-primary">
-                <input type="number" name="TVA" placeholder="TVA" value="20" required class="mb-8 border-primary">
+                <input type="number" name="prixHT" placeholder="Prix HT" required class="mb-8 border-primary" step="0.01">
+                <input type="number" name="TVA" placeholder="TVA" value="20" required class="mb-8 border-primary"step="0.01">
                 <input type="number" name="pourcentagePromotion" placeholder="Pourcentage de promotion"
-                    class="mb-8 border-primary">
+                    class="mb-8 border-primary" step="0.01">
                 <input type="text" name="description" placeholder="Descriptions" required class="mb-8 border-primary">
                 <input type="file" name="image" placeholder="Fichier" required class="mb-8 border-primary">
                 <select name="nouveaute" class="mb-8 border-primary">
@@ -239,14 +239,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
                                         class="w-full">
                                 </td>
                                 <td class="p-2">
-                                    <input type="number" name="prixHT" value="<?= $row['prixHT']; ?>" class="w-full">
+                                    <input type="number" name="prixHT" value="<?= $row['prixHT']; ?>" class="w-full" step="0.01">
                                 </td>
                                 <td class="p-2">
-                                    <input type="number" name="TVA" value="<?= $row['TVA']; ?>" class="w-full">
+                                    <input type="number" name="TVA" value="<?= $row['TVA']; ?>" class="w-full" step="0.01">
                                 </td>
                                 <td class="p-2">
                                     <input type="number" name="pourcentagePromotion" value="<?= $row['pourcentagePromotion']; ?>"
-                                        class="w-full">
+                                        class="w-full" step="0.01">
                                 </td>
                                 <td class="p-2"> <input type="text" name="description" value="<?= $row['descriptions']; ?>"
                                         class="w-full"></td>
