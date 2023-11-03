@@ -53,7 +53,7 @@ function createCart(int $userId): void
 function getCartItemsFromCart(int $cartId): array
 {
     global $mysqli;
-    return $mysqli->query("SELECT cartitems.*, articles.* FROM cartitems JOIN articles ON cartItems.articleId = articles.articlesId WHERE cartItems.cartId = {$cartId}")
+    return $mysqli->query("SELECT cartitems.*, articles.* FROM cartitems JOIN articles ON cartitems.articleId = articles.articlesId WHERE cartitems.cartId = {$cartId}")
                   ->fetch_all(MYSQLI_ASSOC);
 }
 
