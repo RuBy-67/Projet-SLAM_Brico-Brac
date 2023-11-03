@@ -8,7 +8,8 @@ $TVA = 20;
 * @param float  $tva  percent of the tax
 * @return float $priceWithTax price including tax
 */
-function calculedPriceWithTva(float $price,float $tva):float{
+function calculedPriceWithTva(float $price,float $tva):float|string
+{
     if ($price < 0 || $tva < 0) {
         //? Check if value are positives
         return "Les valeurs doivent être positives.";
