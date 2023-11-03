@@ -12,9 +12,10 @@ if (isset($_SESSION['user'])) {
 if (isset($_SESSION['surname'])) {
     $surname =  $_SESSION['surname'];
 }
-require '../php/db.php';
-require '../templates/header.php';
-require '../php/functionSql.php';
+require_once($_SERVER['DOCUMENT_ROOT'] . '/php/db.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/templates/header.php');
+require_once ($_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php');
+require_once ($_SERVER['DOCUMENT_ROOT'] . '/php/password.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">

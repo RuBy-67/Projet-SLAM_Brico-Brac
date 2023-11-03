@@ -19,8 +19,7 @@ if ($usergroup !== 2) {
 require_once $_SERVER['DOCUMENT_ROOT'] . '/admin/dbadmin.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
-
-
+require_once ($_SERVER['DOCUMENT_ROOT'] . '/php/password.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">

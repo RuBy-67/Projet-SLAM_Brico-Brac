@@ -1,7 +1,6 @@
 <?php
 
 require_once($_SERVER['DOCUMENT_ROOT'].'/php/cart.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/php/function.php');
 ?>
 
 <header class="z-10 absolute w-full rounded-md">
