@@ -11,7 +11,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/php/cart.php');
 
 if (isUserLoggedIn()) {
     $dbCart = getFullCartByUser(getUserId());
-    removeCartItemFromCart($articleId, $dbCart['cartId']);
+    clearUserCart($dbCart['cartId']);
 } else {
     unset($_SESSION['cart']);
 }

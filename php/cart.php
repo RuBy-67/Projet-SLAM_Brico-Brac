@@ -134,3 +134,11 @@ function removeCartItemFromCart(int $articleId, int $cartId): void
 {
     deleteCartItem($articleId, $cartId);
 }
+
+function clearUserCart(int $cartId,):void{
+
+    deleteAllItemsOfCart($cartId);
+    deleteCart($cartId);
+}
+
+    
