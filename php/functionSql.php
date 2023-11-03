@@ -10,7 +10,6 @@
  *
  * @return bool Retourne true en cas de succès de la suppression, sinon retourne false.
  */
-
 function deleteRecord($mysqli, $table, $idField, $recordId)
 {
     // Requête SQL pour supprimer l'enregistrement de la table spécifiée en utilisant l'ID
@@ -165,17 +164,6 @@ function updateArticle($mysqli, $articleId, $nom, $references, $prixHT, $TVA, $p
         return false;
     }
 }
-/**
- * Supprime un enregistrement d'une table de la base de données en utilisant son ID.
- *
- * @param  $mysqli Une instance de la connexion MySQLi à la base de données.
- * @param string $table Le nom de la table cible.
- * @param string $idField Le nom du champ ID dans la table.
- * @param int $recordId L'ID de l'enregistrement à supprimer.
- *
- * @return bool Retourne true en cas de succès de la suppression, sinon retourne false.
- */
-
 ///----------------------- SQL USERS---------------------------------///
 
 /**

@@ -178,10 +178,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
             class="flex flex-col items-center mb-0">
             <div>
                 <input type="text" name="nom" placeholder="Nom" required class="mb-8 border-primary">
-                <input type="text" name="references" placeholder="Références" required class="mb-8 border-primary">
-                <input type="text" name="prixHT" placeholder="Prix HT" required class="mb-8 border-primary">
-                <input type="text" name="TVA" placeholder="TVA" value="20" required class="mb-8 border-primary">
-                <input type="text" name="pourcentagePromotion" placeholder="Pourcentage de promotion" required
+                <input type="number" name="references" placeholder="Références" required class="mb-8 border-primary">
+                <input type="number" name="prixHT" placeholder="Prix HT" required class="mb-8 border-primary">
+                <input type="number" name="TVA" placeholder="TVA" value="20" required class="mb-8 border-primary">
+                <input type="number" name="pourcentagePromotion" placeholder="Pourcentage de promotion" required
                     class="mb-8 border-primary">
                 <input type="text" name="description" placeholder="Descriptions" required class="mb-8 border-primary">
                 <input type="file" name="image" placeholder="Fichier" required class="mb-8 border-primary">
@@ -225,16 +225,16 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
                                     <input type="text" name="nom" value="<?= $row['nom']; ?>" class="w-full">
                                 </td>
                                 <td class="p-2">
-                                    <input type="text" name="references" value="<?= $row['references']; ?>" readonly class="w-full">
+                                    <input type="number" name="references" value="<?= $row['references']; ?>" readonly class="w-full">
                                 </td>
                                 <td class="p-2">
-                                    <input type="text" name="prixHT" value="<?= $row['prixHT']; ?>" class="w-full">
+                                    <input type="number" name="prixHT" value="<?= $row['prixHT']; ?>" class="w-full">
                                 </td>
                                 <td class="p-2">
-                                    <input type="text" name="TVA" value="<?= $row['TVA']; ?>" class="w-full">
+                                    <input type="number" name="TVA" value="<?= $row['TVA']; ?>" class="w-full">
                                 </td>
                                 <td class="p-2">
-                                    <input type="text" name="pourcentagePromotion" value="<?= $row['pourcentagePromotion']; ?>"
+                                    <input type="number" name="pourcentagePromotion" value="<?= $row['pourcentagePromotion']; ?>"
                                         class="w-full">
                                 </td>
                                 <td class="p-2"> <input type="text" name="description" value="<?= $row['descriptions']; ?>"
