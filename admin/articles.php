@@ -117,7 +117,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
         $TVA = $_POST['TVA'];
         $pourcentagePromotion = $_POST['pourcentagePromotion'];
         $nouveaute = $_POST['nouveaute'];
-        $newFileName = null; // Initialisez $newFileName à NULL par défaut
     
         // Vérifiez si un nouveau fichier a été téléchargé
         if (isset($_FILES['img']) && $_FILES['img']['error'] === UPLOAD_ERR_OK) {
@@ -139,7 +138,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
         }
     
         // Effectuez la mise à jour des autres champs de l'article
-        if (updateArticle($mysqli, $articleId, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $newFileName, $description)) {
+        if (updateArticle($mysqli, $articleId, $nom, $references, $prixHT, $TVA, $pourcentagePromotion, $nouveaute, $description)) {
             echo "Mise à jour de l'article effectuée avec succès !";
         } else {
             echo "Erreur lors de la mise à jour de l'article : " . $stmt->error;
