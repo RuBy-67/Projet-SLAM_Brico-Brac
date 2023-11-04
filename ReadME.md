@@ -7,7 +7,7 @@ clientèle en mettant en place un site de vente en ligne pour compléter son off
 
 ## Organisation des tâches:
 
-Disponible sur le notion : https://www.notion.so/ruby-bts-sio/Semaine-Projet-48472b1e30fc4707ae96049a4655a912
+Disponible sur le notion : 
 
 ## Rangement des fichiers :
 
