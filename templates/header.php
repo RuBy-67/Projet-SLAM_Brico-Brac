@@ -1,6 +1,6 @@
 <?php
 
-require_once($_SERVER['DOCUMENT_ROOT'].'/php/cart.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Projet-SLAM_Brico-Brac/php/cart.php');
 ?>
 
 <header class="z-10 absolute w-full rounded-md">
@@ -10,7 +10,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/php/cart.php');
         </a>
         <div class="flex lg:flex-row flex-col items-center">
                 <div class="flex items-center sm:mb-0 mb-4">
-                <?php require($_SERVER['DOCUMENT_ROOT'].'/templates/menu_nav.php') ?>
+                <?php require($_SERVER['DOCUMENT_ROOT'].'/Projet-SLAM_Brico-Brac/templates/menu_nav.php') ?>
                 <a href="/pages/cart.php" class="lg:mr-4 relative">
                     <span class="material-symbols-outlined text-white">shopping_cart</span>
                     <?php if (doesCartExist()) : ?>

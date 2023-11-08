@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-require_once($_SERVER['DOCUMENT_ROOT'].'/php/authentication.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/php/cart.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Projet-SLAM_Brico-Brac/php/authentication.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Projet-SLAM_Brico-Brac/php/cart.php');
 
 
 if (isUserLoggedIn()) {

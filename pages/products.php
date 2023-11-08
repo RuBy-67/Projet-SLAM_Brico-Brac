@@ -12,7 +12,7 @@ if (isset($_SESSION['user'])) {
 if (isset($_SESSION['surname'])) {
     $surname =  $_SESSION['surname'];
 }
-require_once($_SERVER['DOCUMENT_ROOT'].'/php/db.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Projet-SLAM_Brico-Brac/php/db.php');
 
 $products = $mysqli->query('SELECT * FROM articles');
 ?>
@@ -24,7 +24,7 @@ $products = $mysqli->query('SELECT * FROM articles');
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="../dev/dist/output.css" rel="stylesheet">
     <link 
-    href="<?= $_SERVER['DOCUMENT_ROOT'] ?>/dev/css/splide.css" 
+    href="<?= $_SERVER['DOCUMENT_ROOT'] ?>/Projet-SLAM_Brico-Brac/dev/css/splide.css" 
     rel="stylesheet"
     />
     <link rel="icon" type="image/png" href="../dev/assets/favicon.png" />

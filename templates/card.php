@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/php/prices.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Projet-SLAM_Brico-Brac/php/prices.php');
 
 if($product['pourcentagePromotion'] != null){
      $promotionPrice = calculedPriceWithPromotion($product['prixHT'],$product['pourcentagePromotion']);

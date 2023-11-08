@@ -12,7 +12,7 @@ if (isset($_SESSION['user'])) {
 if (isset($_SESSION['surname'])) {
     $surname =  $_SESSION['surname'];
 }
-require($_SERVER['DOCUMENT_ROOT'].'/php/request.php');
+require($_SERVER['DOCUMENT_ROOT'].'/Projet-SLAM_Brico-Brac/php/request.php');
 
 $new_product = getNewArticles();
 $promotions =  getArticlesWithPromotion();
@@ -42,7 +42,7 @@ $promotions =  getArticlesWithPromotion();
     <title>Brico'brac</title>
 </head>
 <body>
-    <?php require($_SERVER['DOCUMENT_ROOT'].'/templates/header.php') ?>
+    <?php require($_SERVER['DOCUMENT_ROOT'].'/Projet-SLAM_Brico-Brac/templates/header.php') ?>
     <!-- Slogan -->
     <section class="bg-top-banner  h-[678px] flex items-center mb-8">
         <h1 class="container lg:w-1/2 text-white text-center xl:mt-0 md:mt-18 mt-52">
@@ -58,7 +58,7 @@ $promotions =  getArticlesWithPromotion();
                     <ul class="splide__list">
                     <?php foreach ($new_product as $product) {?>
                         <li class="splide__slide flex justify-center">
-                            <?php require($_SERVER['DOCUMENT_ROOT'].'/templates/card.php') ?>
+                            <?php require($_SERVER['DOCUMENT_ROOT'].'/Projet-SLAM_Brico-Brac/templates/card.php') ?>
                         </li>
                     <?php } ?>
                     </ul>
@@ -74,7 +74,7 @@ $promotions =  getArticlesWithPromotion();
                     <ul class="splide__list">
                     <?php foreach ($promotions as $product) {?>
                         <li class="splide__slide flex justify-center">
-                            <?php require($_SERVER['DOCUMENT_ROOT'].'/templates/card.php') ?>
+                            <?php require($_SERVER['DOCUMENT_ROOT'].'/Projet-SLAM_Brico-Brac/templates/card.php') ?>
                         </li>
                     <?php } ?>
                     </ul>
@@ -87,12 +87,12 @@ $promotions =  getArticlesWithPromotion();
             <h2 class="mb-8">Les incontournables</h2>
             <div class="grid gap-x-2.5 gap-y-8 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 mb-16 justify-items-center">
                 <?php foreach ($promotions as $product) {?>
-                    <?php require($_SERVER['DOCUMENT_ROOT'].'/templates/card.php') ?>
+                    <?php require($_SERVER['DOCUMENT_ROOT'].'/Projet-SLAM_Brico-Brac/templates/card.php') ?>
                 <?php } ?>
             </div>
         </section>
     <?php } ?>
-    <?php require($_SERVER['DOCUMENT_ROOT'].'/templates/footer.php') ?>
+    <?php require($_SERVER['DOCUMENT_ROOT'].'/Projet-SLAM_Brico-Brac/templates/footer.php') ?>
     <script type="text/javascript" src="/dev/js/slider.js"></script>
 </body>
 </html>

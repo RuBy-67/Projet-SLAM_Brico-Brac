@@ -15,8 +15,8 @@ if (isset($_SESSION['surname'])) {
     $surname =  $_SESSION['surname'];
 }
 
-require_once($_SERVER['DOCUMENT_ROOT'].'/php/prices.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/php/cart.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Projet-SLAM_Brico-Brac/php/prices.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Projet-SLAM_Brico-Brac/php/cart.php');
 
 $cartItems = getCartItems();
 ?>
@@ -28,7 +28,7 @@ $cartItems = getCartItems();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="../dev/dist/output.css" rel="stylesheet">
     <link 
-    href="<?= $_SERVER['DOCUMENT_ROOT'] ?>/dev/css/splide.css" 
+    href="<?= $_SERVER['DOCUMENT_ROOT'] ?>/Projet-SLAM_Brico-Brac/dev/css/splide.css" 
     rel="stylesheet"
     />
     <link rel="icon" type="image/png" href="../dev/assets/favicon.png" />
@@ -48,7 +48,7 @@ $cartItems = getCartItems();
             <?php else: ?>
                 <ul class="mb-4">
                 <?php foreach($cartItems as $cartItem) :?>
-                    <?php include($_SERVER['DOCUMENT_ROOT'].'/templates/cart_card.php');?>
+                    <?php include($_SERVER['DOCUMENT_ROOT'].'/Projet-SLAM_Brico-Brac/templates/cart_card.php');?>
                 <?php endforeach; ?>
                 </ul>
                 <div class="flex lg:flex-row flex-col items-center justify-center gap-8 mb-16">

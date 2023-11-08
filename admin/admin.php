@@ -16,9 +16,9 @@ if ($usergroup !== 1 && $usergroup !== 2) {
     header('Location: ../error/error.php');
     exit();
 }
-require_once $_SERVER['DOCUMENT_ROOT'] . '/admin/dbadmin.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Projet-SLAM_Brico-Brac/admin/dbadmin.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Projet-SLAM_Brico-Brac/templates/header.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Projet-SLAM_Brico-Brac/php/functionSql.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -28,8 +28,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="../dev/dist/output.css" rel="stylesheet">
-    <link href="<?= $_SERVER['DOCUMENT_ROOT'] ?>/dev/css/splide.css" rel="stylesheet" />
-    <link rel="icon" type="image/png" href="<?= $_SERVER['DOCUMENT_ROOT'] ?>/dev/assets/favicon.png" />
+    <link href="<?= $_SERVER['DOCUMENT_ROOT'] ?>/Projet-SLAM_Brico-Brac/dev/css/splide.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="<?= $_SERVER['DOCUMENT_ROOT'] ?>/Projet-SLAM_Brico-Brac/dev/assets/favicon.png" />
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <title>Brico'brac - Administration</title>

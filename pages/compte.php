@@ -12,7 +12,7 @@ if (isset($_SESSION['surname'])) {
     $surname =  $_SESSION['surname'];
 }
 
-require($_SERVER['DOCUMENT_ROOT'] . '/php/db.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/Projet-SLAM_Brico-Brac/php/db.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -33,7 +33,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/php/db.php');
 </head>
 
 <body class="min-h-screen flex flex-col">
-    <?php require($_SERVER['DOCUMENT_ROOT'] . '/templates/header.php') ?>
+    <?php require($_SERVER['DOCUMENT_ROOT'] . '/Projet-SLAM_Brico-Brac/templates/header.php') ?>
     <!-- Slogan -->
     <section class="bg-top-banner  h-[678px] flex items-center mb-8">
         <h1 class="container lg:w-1/2 text-white text-center xl:mt-0 md:mt-18 mt-52">

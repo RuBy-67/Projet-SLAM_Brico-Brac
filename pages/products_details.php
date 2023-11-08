@@ -12,8 +12,8 @@ if (isset($_SESSION['user'])) {
 if (isset($_SESSION['surname'])) {
     $surname =  $_SESSION['surname'];
 }
-require_once($_SERVER['DOCUMENT_ROOT'].'/php/request.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/php/prices.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Projet-SLAM_Brico-Brac/php/request.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Projet-SLAM_Brico-Brac/php/prices.php');
 
 $article = getArticleInfos($_GET['articlesId'])[0];
 $new_product = getNewArticles();
@@ -99,7 +99,7 @@ if($article['pourcentagePromotion'] != null){
                     <ul class="splide__list">
                     <?php foreach ($new_product as $product) {?>
                         <li class="splide__slide flex justify-center">
-                            <?php require($_SERVER['DOCUMENT_ROOT'].'/templates/card.php') ?>
+                            <?php require($_SERVER['DOCUMENT_ROOT'].'/Projet-SLAM_Brico-Brac/templates/card.php') ?>
                         </li>
                     <?php } ?>
                     </ul>

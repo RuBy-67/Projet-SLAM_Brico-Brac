@@ -23,8 +23,8 @@ if ($usergroup) {
 }
 
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/admin/dbadmin.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Projet-SLAM_Brico-Brac/admin/dbadmin.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Projet-SLAM_Brico-Brac/templates/header.php';
 $group = 1;
 ?>
 <!DOCTYPE html>
@@ -35,7 +35,7 @@ $group = 1;
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="../dev/dist/output.css" rel="stylesheet">
-    <link href="<?= $_SERVER['DOCUMENT_ROOT'] ?>/dev/css/splide.css" rel="stylesheet" />
+    <link href="<?= $_SERVER['DOCUMENT_ROOT'] ?>Projet-SLAM_Brico-Brac/dev/css/splide.css" rel="stylesheet" />
     <link rel="icon" type="image/png" href="../dev/assets/favicon.png" />
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />

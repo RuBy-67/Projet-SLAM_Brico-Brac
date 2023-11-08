@@ -1,7 +1,7 @@
 <?php
 
-require_once($_SERVER['DOCUMENT_ROOT'].'/php/request.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/php/authentication.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Projet-SLAM_Brico-Brac/php/request.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Projet-SLAM_Brico-Brac/php/authentication.php');
 
 if (!session_id()) {
     session_start();

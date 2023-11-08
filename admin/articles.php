@@ -17,9 +17,9 @@ if ($usergroup !== 2 && $usergroup !== 1) {
     exit();
 }
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/admin/dbadmin.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Projet-SLAM_Brico-Brac/admin/dbadmin.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Projet-SLAM_Brico-Brac/templates/header.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Projet-SLAM_Brico-Brac/php/functionSql.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -29,8 +29,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="../dev/dist/output.css" rel="stylesheet">
-    <link href="<?= $_SERVER['DOCUMENT_ROOT'] ?>/dev/css/splide.css" rel="stylesheet" />
-    <link rel="icon" type="image/png" href="<?= $_SERVER['DOCUMENT_ROOT'] ?>/dev/assets/favicon.png" />
+    <link href="<?= $_SERVER['DOCUMENT_ROOT'] ?>/Projet-SLAM_Brico-Brac/dev/css/splide.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="<?= $_SERVER['DOCUMENT_ROOT'] ?>/Projet-SLAM_Brico-Brac/dev/assets/favicon.png" />
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <title>Brico'brac - Gestion des articles</title>
@@ -46,7 +46,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
         $nom = $_POST['nom'];
         $cleanedFileName = str_replace(' ', '_', $nom);
         $newFileName = $cleanedFileName . '.jpg';
-        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/dev/assets/products/';
+        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . 'Projet-SLAM_Brico-Brac/dev/assets/products/';
         $newFilePath = $uploadDir . $newFileName;
         $uploadFile = $uploadDir . basename($_FILES['image']['name']);
         $references = $_POST['references'];
@@ -123,7 +123,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php/functionSql.php';
         }
         // Vérifiez si un nouveau fichier a été téléchargé
         if (isset($_FILES['img']) && $_FILES['img']['error'] === UPLOAD_ERR_OK) {
-            $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/dev/assets/products/';
+            $uploadDir = $_SERVER['DOCUMENT_ROOT'] . 'Projet-SLAM_Brico-Brac/dev/assets/products/';
             $newFileName = $fileToUpdate; // Conservez la valeur précédente
             $uploadFile = $uploadDir . $newFileName;
 
