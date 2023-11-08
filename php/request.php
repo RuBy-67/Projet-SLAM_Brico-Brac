@@ -10,7 +10,7 @@ function getArticlesFromIds(array $ids): array
                   ->fetch_all(MYSQLI_ASSOC);
 }
 
-require_once($_SERVER['DOCUMENT_ROOT'].'/php/db.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Projet-SLAM_Brico-Brac/php/db.php');
 
 function getArticleInfos(string $id):array
 {
