@@ -1,7 +1,7 @@
 <?php
 $menuItems = [
-    ['name' => 'Accueil', 'url' => '../index.php'],
-    ['name' => 'Produits', 'url' => '../pages/products.php'],
+    ['name' => 'Accueil', 'url' => '../Projet-SLAM_Brico-Brac/index.php'],
+    ['name' => 'Produits', 'url' => '../Projet-SLAM_Brico-Brac/pages/products.php'],
 ];
 ?>
 <ul class="flex mr-4">

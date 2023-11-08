@@ -34,7 +34,7 @@ $promotions =  getArticlesWithPromotion();
     rel="stylesheet"
     />
     <link 
-    href="/dev/css/splide.css" 
+    href="./dev/css/splide.css" 
     rel="stylesheet"
     />
     <link rel="icon" type="image/png" href="../dev/assets/favicon.png" />
