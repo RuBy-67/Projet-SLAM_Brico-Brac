@@ -47,7 +47,7 @@ if($article['pourcentagePromotion'] != null){
         </section>
         <section class="container flex sm:flex-row flex-col mb-8 gap-8">
             <img 
-            src="/dev/assets/products/<?=$article['imgRef']?>" 
+            src="/Projet-SLAM_Brico-Brac/dev/assets/products/<?=$article['imgRef']?>" 
             alt="product <?=$article['references']?>" 
             class="sm:w-1/2 w-full h-[248px] object-contain"
             > 
@@ -98,6 +98,6 @@ if($article['pourcentagePromotion'] != null){
             </div>
         </section>
         <?php require($_SERVER['DOCUMENT_ROOT'].'/Projet-SLAM_Brico-Brac/templates/footer.php') ?>
-    <script type="text/javascript" src="../dev/js/slider.js"></script>
+    <script type="text/javascript" src="./dev/js/slider.js"></script>
 </body>
 </html>

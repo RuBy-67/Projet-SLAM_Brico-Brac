@@ -84,6 +84,6 @@ $promotions =  getArticlesWithPromotion();
         </section>
     <?php } ?>
     <?php require($_SERVER['DOCUMENT_ROOT'].'/Projet-SLAM_Brico-Brac/templates/footer.php') ?>
-    <script type="text/javascript" src="../dev/js/slider.js"></script>
+    <script type="text/javascript" src="./dev/js/slider.js"></script>
 </body>
 </html>
