@@ -56,7 +56,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/Projet-SLAM_Brico-Brac/php/db.php');
         </form>
     </section>
    
-    <?php require '../templates/footer.php'; ?>
+    <?php require($_SERVER['DOCUMENT_ROOT'].'/Projet-SLAM_Brico-Brac/templates/footer.php') ?>
 </body>
 
 </html>

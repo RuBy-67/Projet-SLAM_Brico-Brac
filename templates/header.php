@@ -5,7 +5,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/Projet-SLAM_Brico-Brac/php/cart.php');
 
 <header class="z-10 absolute w-full rounded-md">
     <div class="container flex lg:flex-row flex-col items-center justify-between py-4 sm:border-b sm:border-opacity-60">
-        <a href="/index.php">
+        <a href="/Projet-SLAM_Brico-Brac/index.php">
             <img src="/Projet-SLAM_Brico-Brac/dev/assets/logo.png" alt="Brico'brac"/>
         </a>
         <div class="flex lg:flex-row flex-col items-center">
