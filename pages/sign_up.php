@@ -21,14 +21,15 @@ require_once ($_SERVER['DOCUMENT_ROOT'] . '/Projet-SLAM_Brico-Brac/php/password.
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="../dev/dist/output.css" rel="stylesheet">
-    <link href="<?= $_SERVER['DOCUMENT_ROOT'] ?>/Projet-SLAM_Brico-Brac/dev/css/splide.css" rel="stylesheet" />
-    <link rel="icon" type="image/png" href="../dev/assets/favicon.png" />
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link href="/Projet-SLAM_Brico-Brac/dev/dist/output.css" rel="stylesheet">
+    <link 
+    href="<?= $_SERVER['DOCUMENT_ROOT'] ?>/Projet-SLAM_Brico-Brac/dev/css/splide.css" 
+    rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="/Projet-SLAM_Brico-Brac/dev/assets/favicon.png" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <title>Brico'brac - s'inscrire</title>
 </head>
 
@@ -91,6 +92,6 @@ require_once ($_SERVER['DOCUMENT_ROOT'] . '/Projet-SLAM_Brico-Brac/php/password.
                 name="submit" value="S'inscrire">
         </form>
     </section>
-    <?php require '../templates/footer.php'; ?>    
+    <?php require($_SERVER['DOCUMENT_ROOT'].'/Projet-SLAM_Brico-Brac/templates/footer.php') ?>  
 </body>
 </html>

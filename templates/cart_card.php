@@ -29,16 +29,16 @@ $priceWithReduction = calculedPriceWithPromotion($cartItem['prixHT'],$cartItem['
     </div>
     <p class="lg:row-start-1  row-start-3 lg:col-start-6 col-start-1 flex flex-row justify-center">
         Quantités : 
-        <a href="/action/removeQuantityCart.php?articlesId=<?= $cartItem['articlesId']?>" class=" px-1.5 w-8 h-8 ">
+        <a href="/Projet-SLAM_Brico-Brac/action/removeQuantityCart.php?articlesId=<?= $cartItem['articlesId']?>" class=" px-1.5 w-8 h-8 ">
             <span class="material-symbols-outlined">remove</span>
         </a>
         <?= $cartItem['quantity']?>
-        <a href="/action/addToCart.php?articlesId=<?= $cartItem['articlesId']?>">
+        <a href="/Projet-SLAM_Brico-Brac/action/addToCart.php?articlesId=<?= $cartItem['articlesId']?>">
             <span class="material-symbols-outlined">add</span>
         </a>
     </p>
     <div class="lg:col-start-7 col-start-2">
-            <a href="/action/deleteFromCart.php?articlesId=<?= $cartItem['articlesId']?>">
+            <a href="/Projet-SLAM_Brico-Brac/action/deleteFromCart.php?articlesId=<?= $cartItem['articlesId']?>">
                 <span class="material-symbols-outlined">delete</span>
             </a>
     </div>

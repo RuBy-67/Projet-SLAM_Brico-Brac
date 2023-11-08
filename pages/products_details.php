@@ -25,28 +25,19 @@ if($article['pourcentagePromotion'] != null){
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="../dev/dist/output.css" rel="stylesheet">
-    <script 
-    src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"
-    >
-    </script>
+    <link href="/Projet-SLAM_Brico-Brac/dev/dist/output.css" rel="stylesheet">
     <link 
-    href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" 
+    href="<?= $_SERVER['DOCUMENT_ROOT'] ?>/Projet-SLAM_Brico-Brac/dev/css/splide.css" 
     rel="stylesheet"
     />
-    <link 
-    href="/dev/css/splide.css" 
-    rel="stylesheet"
-    />
-    <link rel="icon" type="image/png" href="../dev/assets/favicon.png" />
+    <link rel="icon" type="image/png" href="/Projet-SLAM_Brico-Brac/dev/assets/favicon.png" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <title>Brico'brac - <?= $article['nom'] ?></title>
 </head>
 <body>
-    <?php require '../templates/header.php'; ?>
+<?php require($_SERVER['DOCUMENT_ROOT'].'/Projet-SLAM_Brico-Brac/templates/header.php') ?>
         <!-- Slogan -->
         <section class="bg-top-banner  h-[400px] flex items-center mb-16">
             <div class="container sm:w-1/2 flex flex-col sm:mt-40 mt-56">
@@ -85,7 +76,7 @@ if($article['pourcentagePromotion'] != null){
                 <?php endif; ?>
                 
                 <a class="  bg-primary text-white px-8 py-4 flex align-center justify-center" 
-                href="/action/addToCart.php?articlesId=<?= $article['articlesId'] ?>"
+                href="/Projet-SLAM_Brico-Brac/action/addToCart.php?articlesId=<?= $article['articlesId'] ?>"
                 >
                     Ajouter au panier <span class="material-symbols-outlined ml-4">add</span>
                 </a>
@@ -106,7 +97,7 @@ if($article['pourcentagePromotion'] != null){
                 </div>
             </div>
         </section>
-    <?php require '../templates/footer.php'; ?>
+        <?php require($_SERVER['DOCUMENT_ROOT'].'/Projet-SLAM_Brico-Brac/templates/footer.php') ?>
     <script type="text/javascript" src="/dev/js/slider.js"></script>
 </body>
 </html>

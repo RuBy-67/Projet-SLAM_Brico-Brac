@@ -21,23 +21,14 @@ $promotions =  getArticlesWithPromotion();
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="../dev/dist/output.css" rel="stylesheet">
-    <script 
-    src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"
-    >
-    </script>
+    <link href="/Projet-SLAM_Brico-Brac/dev/dist/output.css" rel="stylesheet">
     <link 
-    href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" 
+    href="<?= $_SERVER['DOCUMENT_ROOT'] ?>/Projet-SLAM_Brico-Brac/dev/css/splide.css" 
     rel="stylesheet"
     />
-    <link 
-    href="./dev/css/splide.css" 
-    rel="stylesheet"
-    />
-    <link rel="icon" type="image/png" href="../dev/assets/favicon.png" />
+    <link rel="icon" type="image/png" href="/Projet-SLAM_Brico-Brac/dev/assets/favicon.png" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <title>Brico'brac</title>
 </head>

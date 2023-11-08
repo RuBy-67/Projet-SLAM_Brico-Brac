@@ -7,10 +7,10 @@ if($product['pourcentagePromotion'] != null){
 ?>
 
 <article class="card border">
-    <a href="/pages/products_details.php?articlesId=<?= $product['articlesId'] ?>" class="flex flex-col grow">
+    <a href="/Projet-SLAM_Brico-Brac/pages/products_details.php?articlesId=<?= $product['articlesId'] ?>" class="flex flex-col grow">
         <header class="img-container">
             <img 
-            src="/dev/assets/products/<?=$product['imgRef']?>" 
+            src="/Projet-SLAM_Brico-Brac/dev/assets/products/<?=$product['imgRef']?>" 
             alt="product <?=$product['references']?>" 
             class="w-full h-[248px] object-contain"
             >
@@ -34,7 +34,7 @@ if($product['pourcentagePromotion'] != null){
         </div>
         <footer>
             <a class=" block m-2  bg-primary text-white px-8 py-4 flex align-center justify-center" 
-            href="/action/addToCart.php?articlesId=<?= $product['articlesId'] ?>"
+            href="/Projet-SLAM_Brico-Brac/action/addToCart.php?articlesId=<?= $product['articlesId'] ?>"
             >
                 Ajouter au panier <span class="material-symbols-outlined ml-4">add</span>
             </a>

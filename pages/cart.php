@@ -23,20 +23,19 @@ $cartItems = getCartItems();
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="../dev/dist/output.css" rel="stylesheet">
+    <link href="/Projet-SLAM_Brico-Brac/dev/dist/output.css" rel="stylesheet">
     <link 
     href="<?= $_SERVER['DOCUMENT_ROOT'] ?>/Projet-SLAM_Brico-Brac/dev/css/splide.css" 
     rel="stylesheet"
     />
-    <link rel="icon" type="image/png" href="../dev/assets/favicon.png" />
+    <link rel="icon" type="image/png" href="/Projet-SLAM_Brico-Brac/dev/assets/favicon.png" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <title>Brico'brac - Panier</title>
 </head>
 <body class="min-h-screen flex flex-col">
-    <?php require '../templates/header.php'; ?>
+<?php require($_SERVER['DOCUMENT_ROOT'].'/Projet-SLAM_Brico-Brac/templates/header.php') ?>
         <!-- Slogan -->
         <section class="bg-top-banner  h-[400px] flex items-center mb-16">
             <h1 class="container sm:w-1/2 text-white text-center sm:mt-20 mt-52">Votre panier</h1>
@@ -63,6 +62,6 @@ $cartItems = getCartItems();
             <?php endif; ?>
         </section>
        
-    <?php require '../templates/footer.php'; ?>
+        <?php require($_SERVER['DOCUMENT_ROOT'].'/Projet-SLAM_Brico-Brac/templates/footer.php') ?>
 </body>
 </html>
